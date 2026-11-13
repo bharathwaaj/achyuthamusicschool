@@ -7,6 +7,8 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaPanel from '../components/CtaPanel.astro';
 import { Image } from 'astro:assets';
 import guruPhoto from '../assets/images/achyutha-iyer.jpg';
+import jayanthiPhoto from '../assets/images/jayanthi-ravichandran.jpg';
+import divyaPhoto from '../assets/images/dr-divya.jpg';
 import veenaTeaching from '../assets/images/veena-teaching.png';
 import { photoBrief } from '../data/imagePrompts';
 import { site } from '../config/site';
@@ -24,8 +26,8 @@ const values = [
 ];
 
 const teachers = [
-  { name: 'Jayanthi Ravichandran', line: 'Trained for about ten years under ' + site.guru + '.' },
-  { name: 'Dr. Divya C.R.', line: 'Performs and teaches Carnatic vocal and violin, and is also a psychiatrist.' },
+  { name: 'Jayanthi Ravichandran', photo: jayanthiPhoto, line: 'Trained for about ten years under ' + site.guru + '.' },
+  { name: 'Dr. Divya C.R.', photo: divyaPhoto, line: 'Performs and teaches Carnatic vocal and violin, and is also a psychiatrist.' },
 ];
 ---
 
@@ -43,40 +45,43 @@ const teachers = [
   </section>
 
   <section class="py-14 md:py-20">
-    <Container size="wide" class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-      <div class="mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-line md:order-2" style="aspect-ratio: 721/873;">
-        <Image
-          src={guruPhoto}
-          alt="Sri S.V. Achyutha Iyer with his wife"
-          width={720}
-          sizes="(min-width: 768px) 448px, 100vw"
-          class="h-full w-full object-cover object-bottom"
-        />
-      </div>
+    <Container size="wide" class="grid items-center gap-10 md:grid-cols-[2fr_3fr] md:gap-14">
+      <figure class="mx-auto w-full max-w-sm">
+        <div class="overflow-hidden rounded-2xl border border-line" style="aspect-ratio: 721/873;">
+          <Image
+            src={guruPhoto}
+            alt="Sri S.V. Achyutha Iyer with his wife"
+            width={720}
+            sizes="(min-width: 768px) 384px, 100vw"
+            class="h-full w-full object-cover object-bottom"
+          />
+        </div>
+        <figcaption class="mt-3 text-center text-sm text-muted">{site.guru} with his wife</figcaption>
+      </figure>
       <div>
         <SectionHeading eyebrow="Our guru" title={site.guru} />
-        <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">
-          <p>He was a violinist and a devoted master with a rare gift for passing music on.</p>
-          <p>
-            He taught sangathis, the small variations that make each Carnatic song its own. Our
-            school carries his way of teaching forward.
-          </p>
-        </div>
+        <p class="mt-6 border-l-4 border-brand pl-5 font-serif text-2xl leading-snug text-ink sm:text-3xl">
+          A devoted master with a rare gift for passing music on.
+        </p>
+        <p class="mt-6 text-lg leading-relaxed text-muted">
+          He was a violinist, and he taught sangathis, the small variations that make each Carnatic
+          song its own. Our school carries his way of teaching forward.
+        </p>
       </div>
     </Container>
   </section>
 
-  <section class="border-y border-line bg-sunken py-14 md:py-16">
+  <section class="border-y border-line bg-brand-soft py-14 md:py-16">
     <Container size="wide">
       <SectionHeading title="How we teach" align="center" />
-      <ul class="mt-10 grid gap-5 md:grid-cols-3">
+      <ul class="mt-10 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line">
         {values.map((item) => (
-          <li class="rounded-2xl border border-line bg-surface p-6 text-center">
-            <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+          <li class="flex flex-col items-center px-6 text-center">
+            <span class="flex h-14 w-14 items-center justify-center rounded-full bg-surface text-link shadow-sm">
               <item.icon size={26} aria-hidden="true" />
             </span>
             <h3 class="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
-            <p class="mt-1 leading-relaxed text-muted">{item.text}</p>
+            <p class="mt-1 max-w-xs leading-relaxed text-muted">{item.text}</p>
           </li>
         ))}
       </ul>
@@ -84,17 +89,27 @@ const teachers = [
   </section>
 
   <section class="py-14 md:py-16">
-    <Container size="narrow">
+    <Container size="default">
       <SectionHeading title="Your teachers" align="center" />
-      <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+      <ul class="mt-8 grid gap-5 md:grid-cols-2">
         {teachers.map((teacher) => (
-          <li class="rounded-2xl border border-line bg-surface p-6">
-            <h3 class="text-lg font-semibold text-ink">{teacher.name}</h3>
-            <p class="mt-1 leading-relaxed text-muted">{teacher.line}</p>
+          <li class="flex items-center gap-5 rounded-2xl border border-line bg-surface p-5">
+            <Image
+              src={teacher.photo}
+              alt={teacher.name}
+              width={192}
+              height={192}
+              layout="fixed"
+              class="h-24 w-24 shrink-0 rounded-full object-cover object-top"
+            />
+            <div>
+              <h3 class="text-lg font-semibold text-ink">{teacher.name}</h3>
+              <p class="mt-1 leading-relaxed text-muted">{teacher.line}</p>
+            </div>
           </li>
         ))}
       </ul>
-      <p class="mt-6 text-center">
+      <p class="mt-8 text-center">
         <a href="/team/" class="inline-flex items-center gap-1 font-semibold text-link hover:text-link-hover">
           Meet our teachers <ArrowRight size={18} aria-hidden="true" />
         </a>
