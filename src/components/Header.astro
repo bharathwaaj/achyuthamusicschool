@@ -33,9 +33,11 @@ const isActive = (href: string) => current === href || current.startsWith(href);
 
     <div class="flex items-center gap-2">
       <ThemeToggle />
-      <Button href={whatsappLink(whatsappMessages.general)} external class="hidden sm:inline-flex">
-        <MessageCircle size={16} aria-hidden="true" /> WhatsApp us
-      </Button>
+      <div class="hidden sm:block">
+        <Button href={whatsappLink(whatsappMessages.general)} external>
+          <MessageCircle size={16} aria-hidden="true" /> WhatsApp us
+        </Button>
+      </div>
       <button
         type="button"
         id="menu-button"
