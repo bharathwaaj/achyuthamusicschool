@@ -16,7 +16,7 @@ const { variant } = Astro.props;
 // stretches it to the real content width so it starts at the content's
 // left edge and the house ends at its right edge.
 const contactPath =
-  'M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 S 1020 74, 1040 78';
+  'M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 C 1028 57, 1036 70, 1048 74';
 
 // Note and leaf shapes shared by the vocal and violin drawings.
 const notes = (positions: [number, number][]) => positions;
@@ -217,7 +217,7 @@ const notes = (positions: [number, number][]) => positions;
     if (!base || box.height === 0) return;
     const width = (box.width / box.height) * 100;
     const houseRight = 1162;
-    const pathEnd = 1040;
+    const pathEnd = 1048;
     const scale = (width - (houseRight - pathEnd)) / pathEnd;
     let index = 0;
     // Path numbers alternate x, y; scale only the x values.
