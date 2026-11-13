@@ -1,11 +1,8 @@
 ---
 /**
- * Veena icon, drawn to match Lucide: 24x24 grid, outline strokes with
- * round ends, no fill, colour from currentColor. Lucide has no veena.
- *
- * Drawn upright and then tilted 45 degrees. What makes it read as a
- * veena: a large round resonator, a wide fretted neck that looks like a
- * ladder, a second small gourd on the neck, and tuning pegs at the head.
+ * Veena icon: a thin line drawing with a pear-shaped body, a slim
+ * double-rail neck, a curled head with pegs and a gourd under the neck.
+ * Single colour, taken from currentColor.
  */
 interface Props {
   size?: number | string;
@@ -13,7 +10,7 @@ interface Props {
   class?: string;
 }
 
-const { size = 24, strokeWidth = 1.6, class: className } = Astro.props;
+const { size = 24, strokeWidth = 1.5, class: className } = Astro.props;
 ---
 
 <svg
@@ -29,16 +26,17 @@ const { size = 24, strokeWidth = 1.6, class: className } = Astro.props;
   class={className}
   aria-hidden="true"
 >
-  <g transform="translate(1.2 -1.2) rotate(45 12 12)">
-    <!-- resonator -->
-    <circle cx="12" cy="22" r="4.3" />
-    <!-- neck, two rails with frets between them -->
-    <path d="M10.2 18.1V.6M13.8 18.1V.6" />
-    <path d="M10.2 5h3.6M10.2 8h3.6M10.2 11h3.6M10.2 14h3.6" />
-    <!-- head and pegs -->
-    <path d="M10.2 .6c0-1.7 3.6-1.7 3.6 0" />
-    <path d="M10.2 2.4H8.6M10.2 4.6H8.6" />
-    <!-- second gourd -->
-    <circle cx="16" cy="9" r="2.1" />
+  <g transform="translate(12 12) scale(.8) rotate(45) translate(-12 -12.35)">
+    <!-- body -->
+    <ellipse cx="12" cy="23.6" rx="3.9" ry="4.7" />
+    <path d="M11.3 22h1.4M11.3 24.2h1.4" />
+    <!-- neck -->
+    <path d="M10.9 19.1V-1M13.1 19.1V-.4" />
+    <path d="M10.9-1C10.9-4 14.2-4.6 14.8-2.5c.3 1.1-.5 2-1.7 2.1" />
+    <!-- pegs -->
+    <circle cx="9.4" cy=".2" r=".8" />
+    <circle cx="9.4" cy="2.6" r=".8" />
+    <!-- gourd -->
+    <circle cx="15.7" cy="7.4" r="2.4" />
   </g>
 </svg>
