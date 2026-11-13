@@ -4,118 +4,102 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import { courses } from '../../data/courses';
 
 const title = 'Online Veena, Violin and Carnatic Vocal Classes';
 const description =
   'Not sure which class to choose? See how veena, violin and Carnatic vocal classes differ, how online and in-person lessons work, and how to get started.';
 
-// One line on who each class suits. Kept general: no syllabus facts.
+// One short line per class. Kept general: no syllabus facts.
 const suits: Record<string, string> = {
-  veena:
-    'You want to learn the instrument at the heart of our school, or you are a parent looking for a calm, rewarding instrument for your child.',
-  violin:
-    'You like the idea of a melody instrument played in the Carnatic style, and weekend sessions will help you fit lessons in.',
-  vocal:
-    'You love to sing, or want to learn Carnatic music through your own voice. Weekend sessions are available.',
+  veena: 'Learn the instrument at the heart of our school.',
+  violin: 'Play the violin in the Carnatic style.',
+  vocal: 'Learn Carnatic music through your own voice.',
+};
+
+const palette =
+  'warm sandal-orange and charcoal colour palette on an ivory background, soft lamp light, calm and respectful mood, no text, no logos, illustrated editorial style';
+
+// Prompts for illustrations to be generated in ChatGPT, one per slot.
+const heroPrompt = `A veena, a violin and a tambura resting together on a woven mat beside a brass lamp and jasmine flowers, the veena in the centre and largest, ${palette}, 4:3`;
+const classPrompts: Record<string, string> = {
+  veena: `A student's hands plucking the strings of a Saraswati veena, a laptop on a low stool showing a teacher on a video call, ${palette}, 4:3`,
+  violin: `A young violinist seated cross-legged on a mat, the violin resting on the shoulder and foot in the Carnatic style, sheet-free and relaxed, ${palette}, 4:3`,
+  vocal: `A singer seated on a mat with a tambura beside her, one hand keeping tala on her knee, eyes closed in song, ${palette}, 4:3`,
 };
 
 const howItWorks = [
-  {
-    icon: Laptop,
-    title: 'Online, from anywhere',
-    text: 'All three classes are taught online. This is how we prefer to teach, and students join from different cities.',
-  },
-  {
-    icon: MapPin,
-    title: 'In person, if you live nearby',
-    text: 'You are also welcome at our school in Kovaipudur, Coimbatore. Tell us which you would like.',
-  },
-  {
-    icon: CalendarClock,
-    title: 'Weekends for violin and vocal',
-    text: 'Violin and vocal have weekend sessions, which suit school and work weeks.',
-  },
-  {
-    icon: Sprout,
-    title: 'Beginners and beyond',
-    text: 'Children and adults are welcome, whether you are starting fresh or returning to music.',
-  },
+  { icon: Laptop, title: 'Online, from anywhere' },
+  { icon: MapPin, title: 'In person in Kovaipudur' },
+  { icon: CalendarClock, title: 'Weekends for violin and vocal' },
+  { icon: Sprout, title: 'Children, adults, beginners' },
 ];
 ---
 
 <BaseLayout title={title} description={description}>
   <section class="border-b border-line bg-brand-soft py-14 md:py-20">
-    <Container size="wide">
+    <Container size="wide" class="grid items-center gap-10 md:grid-cols-2">
       <SectionHeading
         level={1}
         eyebrow="Our classes"
         title="Which class is right for you?"
         lead="We teach the veena, violin and Carnatic vocal. Here is a little about each, and how classes work, so you can choose with confidence."
       />
+      <ImagePlaceholder prompt={heroPrompt} width={1200} height={900} aspect="4/3" loading="eager" />
     </Container>
   </section>
 
   <section class="py-14 md:py-16">
-    <Container size="narrow">
-      <ul class="divide-y divide-line rounded-2xl border border-line bg-surface">
-        {courses.map((course) => (
-          <li class="p-6">
-            <h2 class="text-xl font-semibold text-ink">
-              {course.name}
-              {course.primary && (
-                <span class="ml-2 rounded-full bg-brand-soft px-2.5 py-0.5 align-middle text-xs font-medium text-link">
-                  Our main class
-                </span>
-              )}
-            </h2>
-            <p class="mt-2 leading-relaxed text-muted">
-              <span class="font-medium text-ink">A good fit if</span>
-              {' '}{suits[course.slug].charAt(0).toLowerCase() + suits[course.slug].slice(1)}
-            </p>
+    <Container size="wide" class="space-y-14 md:space-y-20">
+      {courses.map((course, index) => (
+        <article class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+          <ImagePlaceholder
+            prompt={classPrompts[course.slug]}
+            width={1200}
+            height={900}
+            aspect="4/3"
+            class={index % 2 === 1 ? 'md:order-2' : ''}
+          />
+          <div>
+            {course.primary && (
+              <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-link">Our main class</p>
+            )}
+            <h2 class="text-3xl font-semibold text-ink">{course.name}</h2>
+            <p class="mt-3 text-lg text-muted">{suits[course.slug]}</p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {course.formats.map((format) => (
+                <li class="rounded-full bg-brand-soft px-3 py-1 text-xs font-medium text-link">{format}</li>
+              ))}
+            </ul>
             <a
               href={course.href}
-              class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-link hover:text-link-hover"
+              class="mt-5 inline-flex items-center gap-1 font-semibold text-link hover:text-link-hover"
             >
               About {course.name.toLowerCase()} classes
-              <ArrowRight size={16} aria-hidden="true" />
+              <ArrowRight size={18} aria-hidden="true" />
             </a>
-          </li>
-        ))}
-      </ul>
+          </div>
+        </article>
+      ))}
     </Container>
   </section>
 
   <section class="border-y border-line bg-sunken py-14 md:py-16">
     <Container size="wide">
-      <SectionHeading title="How classes work" />
-      <ul class="mt-8 grid gap-5 md:grid-cols-2">
+      <SectionHeading title="How classes work" align="center" />
+      <ul class="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
         {howItWorks.map((item) => (
-          <li class="flex gap-4 rounded-2xl border border-line bg-surface p-6">
-            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft text-link">
-              <item.icon size={22} aria-hidden="true" />
+          <li class="flex flex-col items-center gap-3 rounded-2xl border border-line bg-surface p-5 text-center">
+            <span class="flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+              <item.icon size={26} aria-hidden="true" />
             </span>
-            <div>
-              <h3 class="font-semibold text-ink">{item.title}</h3>
-              <p class="mt-1 leading-relaxed text-muted">{item.text}</p>
-            </div>
+            <span class="font-medium text-ink">{item.title}</span>
           </li>
         ))}
       </ul>
-      <p class="mt-8 max-w-2xl leading-relaxed text-muted">
-        Theory classes are held twice a month. They are optional and charged separately. Fees
-        depend on the number of classes and the level, and we are happy to share the details
-        when you message us.
-      </p>
-    </Container>
-  </section>
-
-  <section class="py-14 md:py-16">
-    <Container size="narrow">
-      <SectionHeading title="Not sure where to begin?" />
-      <p class="mt-4 text-lg leading-relaxed text-muted">
-        Tell us who will be learning, their age, and whether they have played before. We will
-        suggest a class and a timing that suits you.
+      <p class="mt-8 text-center text-muted">
+        Message us for fees and timings.
       </p>
     </Container>
   </section>
