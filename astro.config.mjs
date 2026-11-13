@@ -23,6 +23,11 @@ export default defineConfig({
   redirects,
   integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') })],
   // Build several sizes of each image so phones download smaller files.
+  // The site's CSS is small, so put it in each page instead of a
+  // separate file the browser must fetch before it can draw anything.
+  build: {
+    inlineStylesheets: 'always',
+  },
   image: {
     layout: 'constrained',
     responsiveStyles: true,

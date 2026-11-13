@@ -119,6 +119,14 @@
     color: var(--c-link-hover);
   }
 
+  /* Links inside running text are underlined, so they do not rely on
+     colour alone. Button-style links opt out with no-underline. */
+  p a:not(.no-underline) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
   :focus-visible {
     outline: 2px solid var(--c-brand-strong);
     outline-offset: 2px;

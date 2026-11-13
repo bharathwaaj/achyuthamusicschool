@@ -62,6 +62,7 @@ const ratio = aspect ?? `${width}/${height}`;
       height={height}
       loading={loading}
       fetchpriority={loading === 'eager' ? 'high' : undefined}
+      quality={75}
       sizes={sizes}
       class="h-full w-full object-cover"
     />
