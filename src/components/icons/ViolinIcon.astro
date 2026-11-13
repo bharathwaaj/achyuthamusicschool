@@ -1,45 +1,18 @@
 ---
-/**
- * Violin icon: a solid silhouette with a waisted body, a slim neck, a
- * scroll with pegs, and two strips cut through the body. Single colour,
- * taken from currentColor. The cut-outs are real transparency, so they
- * show whatever is behind the icon.
- */
+import raw from '../../assets/icons/violin.svg?raw';
+
 interface Props {
   size?: number | string;
   class?: string;
 }
 
-const { size = 24, class: className } = Astro.props;
+const { size = 24, class: className = '' } = Astro.props;
+
+// Outline drawing in a single colour. Size it and let it take the
+// surrounding text colour, so it works in light and dark.
+const svg = raw
+  .trim()
+  .replace('<svg ', `<svg width="${size}" height="${size}" aria-hidden="true" class="${className}" `);
 ---
 
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width={size}
-  height={size}
-  viewBox="0 0 24 24"
-  fill="currentColor"
-  class={className}
-  aria-hidden="true"
->
-  <defs>
-    <mask id="violin-cutouts" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-      <rect width="24" height="24" fill="white" />
-      <path d="M11.4 9.8 11.8 19M12.6 9.8 12.2 19" stroke="black" stroke-width=".55" stroke-linecap="round" />
-    </mask>
-  </defs>
-  <g transform="rotate(20 12 12)">
-    <!-- body, with the strips cut out -->
-    <path
-      mask="url(#violin-cutouts)"
-      d="M12 9c2.5 0 3.8 1.2 3.6 3-.2 1.4-1.2 2-1.2 3.2 0 1.2 2.2 1.8 2.2 4.4 0 2.1-1.8 3.2-4.6 3.2s-4.6-1.1-4.6-3.2c0-2.6 2.2-3.2 2.2-4.4 0-1.2-1-1.8-1.2-3.2C8.2 10.2 9.5 9 12 9Z"
-    />
-    <!-- neck -->
-    <path d="M11.3 9.2 11.6 3.6h.8l.3 5.6Z" />
-    <!-- scroll and pegs -->
-    <rect x="11" y="2" width="2" height="2" rx=".7" />
-    <path
-      d="M9.7 2.2h1.3v.7H9.7ZM13 2.2h1.3v.7H13ZM9.7 3.4h1.3v.7H9.7ZM13 3.4h1.3v.7H13Z"
-    />
-  </g>
-</svg>
+<Fragment set:html={svg} />
