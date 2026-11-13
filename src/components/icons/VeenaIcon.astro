@@ -1,0 +1,35 @@
+---
+/**
+ * Veena icon, drawn to match Lucide: 24x24 grid, outline strokes with
+ * round ends, no fill, colour from currentColor. Lucide has no veena.
+ *
+ * Shape: large resonator at the lower left, a long neck rising to the
+ * upper right, a small gourd hanging under the neck and a curled head.
+ */
+interface Props {
+  size?: number | string;
+  strokeWidth?: number | string;
+  class?: string;
+}
+
+const { size = 24, strokeWidth = 2, class: className } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden="true"
+>
+  <circle cx="6.3" cy="17.7" r="4.3" />
+  <path d="m9.3 14.7 10.7-10.7" />
+  <path d="M20 4c.8-1.4 2.4-2 2.9-1.1.4.8-.5 1.8-1.6 1.6" />
+  <path d="M12.33 11.67A2.4 2.4 0 1 0 15.37 8.63" />
+</svg>
