@@ -1,11 +1,47 @@
 ---
+import { MessageCircle } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
-import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import { site } from '../config/site';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
+
+const title = 'Carnatic Music Classes in Coimbatore | Vocal, Violin and Veena';
+const description =
+  'Learn Carnatic vocal, violin or veena in Kovaipudur, Coimbatore. Personal lessons for children and adults in the tradition of Sri S.V. Achyutha Iyer.';
 ---
 
-<BaseLayout>
-  <Container class="py-16">
-    <SectionHeading level={1} title="Achyutha Music School" />
-  </Container>
+<BaseLayout title={title} description={description}>
+  <section class="border-b border-line bg-brand-soft">
+    <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
+      <div>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-link">
+          {site.area}, {site.city}
+        </p>
+        <h1 class="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          Carnatic music classes in Coimbatore
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          Learn vocal, violin or veena in the tradition of {site.guru}. Lessons are shaped
+          around each student, whether you are starting from the first swara or returning to
+          music after a break.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href={whatsappLink(whatsappMessages.general)} external size="lg">
+            <MessageCircle size={18} aria-hidden="true" /> Message us on WhatsApp
+          </Button>
+          <Button href="/courses/" variant="secondary" size="lg">See the classes</Button>
+        </div>
+      </div>
+
+      <ImagePlaceholder
+        prompt="A teacher and a young student sitting together on a mat with a veena and a violin beside them, a brass lamp glowing, warm sandal-orange and charcoal palette on ivory, calm and respectful mood, illustrated editorial style, no text, no logos"
+        width={1200}
+        height={900}
+        aspect="4/3"
+        loading="eager"
+      />
+    </Container>
+  </section>
 </BaseLayout>
