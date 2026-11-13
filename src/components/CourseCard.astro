@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, Mic, Music2, Music4 } from '@lucide/astro';
+import { ArrowRight, Guitar, GuitarElectric, MicVocal } from '@lucide/astro';
 import type { Course } from '../data/courses';
 
 interface Props {
@@ -7,7 +7,9 @@ interface Props {
 }
 
 const { course } = Astro.props;
-const icons = { vocal: Mic, veena: Music4, violin: Music2 };
+// Lucide has no veena or violin icon. These are the closest stringed
+// instruments, chosen so the three cards look different from each other.
+const icons = { vocal: MicVocal, veena: Guitar, violin: GuitarElectric };
 const Icon = icons[course.slug];
 const featured = course.primary === true;
 ---
