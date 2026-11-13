@@ -11,12 +11,15 @@ interface Props {
   description?: string;
   /** Hide from search engines (for example the 404 page). */
   noindex?: boolean;
+  /** Structured data objects to add to the page as JSON-LD. */
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title,
   description = `${site.name} teaches Carnatic vocal, violin and veena in ${site.area}, ${site.city}.`,
   noindex = false,
+  jsonLd = [],
 } = Astro.props;
 
 const fullTitle = pageTitle(title);
@@ -39,6 +42,10 @@ const canonical = canonicalUrl(Astro.url.pathname);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
+
+    {jsonLd.map((data) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
 
     <!-- Apply the saved theme before first paint to avoid a flash. -->
     <script is:inline>
