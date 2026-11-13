@@ -1,17 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 ---
 
 <BaseLayout>
-  <Header slot="header" />
   <Container class="py-16">
-    <SectionHeading level={1} title="Achyutha Music School" lead="Foundation preview." />
-    <ImagePlaceholder class="mt-10" prompt="Sample prompt: a veena resting beside a brass lamp in warm evening light." />
+    <SectionHeading level={1} title="Achyutha Music School" />
   </Container>
-  <Footer slot="footer" />
 </BaseLayout>
