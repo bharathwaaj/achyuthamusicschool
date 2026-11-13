@@ -1,0 +1,32 @@
+---
+import { ArrowRight, Mic, Music2, Music4 } from '@lucide/astro';
+import type { Course } from '../data/courses';
+
+interface Props {
+  course: Course;
+}
+
+const { course } = Astro.props;
+const icons = { vocal: Mic, veena: Music4, violin: Music2 };
+const Icon = icons[course.slug];
+---
+
+<a
+  href={course.href}
+  class="group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 no-underline transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
+>
+  <span class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-link">
+    <Icon size={24} aria-hidden="true" />
+  </span>
+  <h3 class="mt-5 text-xl font-semibold text-ink">{course.name}</h3>
+  <p class="mt-2 flex-1 leading-relaxed text-muted">{course.summary}</p>
+  <ul class="mt-4 flex flex-wrap gap-2">
+    {course.formats.map((format) => (
+      <li class="rounded-full bg-sunken px-3 py-1 text-xs font-medium text-muted">{format}</li>
+    ))}
+  </ul>
+  <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-link group-hover:text-link-hover">
+    Explore {course.name.toLowerCase()} classes
+    <ArrowRight size={16} class="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+  </span>
+</a>
