@@ -1,0 +1,23 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** Short intro under the heading. */
+  lead?: string;
+  align?: 'left' | 'center';
+  /** Use h1 only for the main heading of a page. */
+  level?: 1 | 2 | 3;
+}
+
+const { eyebrow, title, lead, align = 'left', level = 2 } = Astro.props;
+const Tag = `h${level}` as 'h1' | 'h2' | 'h3';
+const sizes = { 1: 'text-4xl sm:text-5xl', 2: 'text-3xl sm:text-4xl', 3: 'text-2xl' };
+---
+
+<div class={align === 'center' ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}>
+  {eyebrow && (
+    <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-link">{eyebrow}</p>
+  )}
+  <Tag class={`${sizes[level]} font-semibold text-ink`}>{title}</Tag>
+  {lead && <p class="mt-4 text-lg leading-relaxed text-muted">{lead}</p>}
+</div>
