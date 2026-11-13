@@ -8,7 +8,7 @@
 export const site = {
   name: 'Achyutha Music School',
   shortName: 'Achyutha',
-  tagline: 'Carnatic vocal, violin and veena in Kovaipudur, Coimbatore',
+  tagline: 'Online veena classes, with Carnatic violin and vocal',
   url: 'https://achyuthamusicschool.com',
   email: 'support@achyuthamusicschool.com',
   phone: '+919445913868',
