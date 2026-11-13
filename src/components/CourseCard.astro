@@ -12,6 +12,8 @@ const { course } = Astro.props;
 // Lucide has no veena or violin icon, so those two are drawn in-house.
 const icons = { vocal: MicVocal, veena: VeenaIcon, violin: ViolinIcon };
 const Icon = icons[course.slug];
+// Lucide's default line is heavy next to the drawn icons, so thin it.
+const iconProps = course.slug === 'vocal' ? { strokeWidth: 1.1 } : {};
 const featured = course.primary === true;
 ---
 
@@ -27,10 +29,10 @@ const featured = course.primary === true;
   <span
     class:list={[
       'flex shrink-0 items-center justify-center rounded-full bg-brand-soft text-link',
-      featured ? 'h-24 w-24' : 'h-20 w-20',
+      featured ? 'h-20 w-20' : 'h-16 w-16',
     ]}
   >
-    <Icon size={featured ? 68 : 52} />
+    <Icon size={featured ? 58 : 44} {...iconProps} />
   </span>
   <div class="flex flex-1 flex-col">
     <h3 class:list={['font-semibold text-ink', featured ? 'text-2xl' : 'mt-5 text-xl']}>
