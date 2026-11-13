@@ -12,6 +12,12 @@ interface Props {
 
 const { variant } = Astro.props;
 
+// The contact flight path, drawn for a 1200-wide box. A script below
+// stretches it to the real content width so it starts at the content's
+// left edge and the house ends at its right edge.
+const contactPath =
+  'M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 S 1070 76, 1094 80';
+
 // Note and leaf shapes shared by the vocal and violin drawings.
 const notes = (positions: [number, number][]) => positions;
 ---
@@ -168,14 +174,15 @@ const notes = (positions: [number, number][]) => positions;
       </svg>
     )}
     {variant === 'contact' && (
-      <svg viewBox="0 0 1200 100" preserveAspectRatio="xMinYMax meet">
+      <svg class="contact-art" viewBox="0 0 1200 100" preserveAspectRatio="xMinYMax meet" data-base-path={contactPath}>
         <path
-          class="stroke"
-          d="M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 S 1070 76, 1094 80"
+          class="stroke contact-trail"
+          d={contactPath}
           stroke-width="2.4"
           stroke-dasharray="1 10"
           opacity="0.7"
         />
+        <g class="contact-house">
         <g class="fill">
           <path d="M1110 64 L1110 93 L1162 93 L1162 64 L1136 42 Z" />
           <rect x="1149" y="44" width="7" height="14" />
@@ -184,7 +191,8 @@ const notes = (positions: [number, number][]) => positions;
         <rect class="door" x="1138" y="76" width="10" height="17" rx="1" />
         <path class="stroke smoke" d="M1152 40 C 1146 32, 1158 26, 1152 18" stroke-width="2" />
         <path class="stroke smoke smoke--late" d="M1154 40 C 1162 32, 1150 26, 1158 18" stroke-width="2" />
-        <g class="plane" style="offset-path: path('M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 S 1070 76, 1094 80');">
+        </g>
+        <g class="plane" style={`offset-path: path('${contactPath}');`}>
           <g transform="scale(1.45) rotate(-8) translate(27 1)">
             <path class="fill" d="M24 -1 L-20 -17 L-6 -1 Z" />
             <path class="fill" d="M24 -1 L-6 -1 L-2 8 Z" opacity="0.45" />
@@ -196,6 +204,40 @@ const notes = (positions: [number, number][]) => positions;
     )}
   </div>
 </div>
+
+<script>
+  // Fit the contact drawing to the content width. The box keeps a fixed
+  // height, so its width in drawing units changes with the screen. The
+  // path is stretched horizontally to that width, the house is moved to
+  // the right end, and the plane follows the new path. The plane and
+  // house keep their shape because only path points move.
+  function fitContactArt(svg: SVGSVGElement) {
+    const base = svg.dataset.basePath ?? '';
+    const box = svg.getBoundingClientRect();
+    if (!base || box.height === 0) return;
+    const width = (box.width / box.height) * 100;
+    const houseRight = 1162;
+    const pathEnd = 1094;
+    const scale = (width - (houseRight - pathEnd)) / pathEnd;
+    let index = 0;
+    // Path numbers alternate x, y; scale only the x values.
+    const path = base.replace(/-?\d+(\.\d+)?/g, (n) => {
+      const value = index % 2 === 0 ? Number(n) * scale : Number(n);
+      index += 1;
+      return value.toFixed(1);
+    });
+    svg.setAttribute('viewBox', `0 0 ${width.toFixed(1)} 100`);
+    svg.querySelector('.contact-trail')?.setAttribute('d', path);
+    svg.querySelector('.contact-house')?.setAttribute('transform', `translate(${(width - houseRight).toFixed(1)} 0)`);
+    const plane = svg.querySelector<SVGGElement>('.plane');
+    if (plane) plane.style.offsetPath = `path('${path}')`;
+  }
+
+  document.querySelectorAll<SVGSVGElement>('.contact-art').forEach((svg) => {
+    fitContactArt(svg);
+    new ResizeObserver(() => fitContactArt(svg)).observe(svg);
+  });
+</script>
 
 <style>
   .hero-art {
