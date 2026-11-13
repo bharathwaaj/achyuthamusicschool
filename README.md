@@ -4,6 +4,9 @@ The website for Achyutha Music School: online veena classes, with Carnatic
 violin and vocal. Built with Astro, Tailwind CSS and TypeScript, and output
 as a fully static site.
 
+Live at **[achyuthamusicschool.com](https://achyuthamusicschool.com)**, hosted
+on Cloudflare and deployed automatically from `main`.
+
 ## Run it
 
 Requires Node 24 (see `.nvmrc`).
