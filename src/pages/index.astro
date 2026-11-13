@@ -48,6 +48,25 @@ const steps = [
     text: 'Lessons start from where the student is, and move on as they grow in confidence.',
   },
 ];
+
+const faqs = [
+  {
+    question: 'Can a complete beginner join?',
+    answer: 'Yes. The school teaches all ages and skill levels, and every student begins with a conversation with the instructors about where to start.',
+  },
+  {
+    question: 'Are online classes available?',
+    answer: 'Veena classes are available online. Vocal and violin have weekend sessions. Message us with your preferred instrument and timing, and we will tell you what is possible.',
+  },
+  {
+    question: 'How much do the classes cost?',
+    answer: 'Fees depend on how many classes a student needs and their level of learning. Theory classes, held twice a month, are optional and charged separately. Message us for the current details.',
+  },
+  {
+    question: 'Where are the classes held?',
+    answer: 'In Kovaipudur, Coimbatore. Message us on WhatsApp and we will share the exact location.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -158,6 +177,18 @@ const steps = [
           </li>
         ))}
       </ol>
+    </Container>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <Container size="narrow">
+      <SectionHeading title="Questions parents often ask" />
+      <div class="mt-8">
+        <Faq items={faqs} />
+      </div>
+      <p class="mt-6 text-muted">
+        More about costs is on our <a href="/fees-enrollment/">fees and enrolment page</a>.
+      </p>
     </Container>
   </section>
 </BaseLayout>
