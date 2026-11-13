@@ -130,11 +130,15 @@ const faqs = [
   <section class="py-16 md:py-20">
     <Container size="wide">
       <SectionHeading
-        title="Choose your instrument"
-        lead="The school teaches three Carnatic disciplines. Pick the one that draws you, or message us and we will help you decide."
+        title="Our classes"
+        lead="Veena is our main class. We also teach Carnatic violin and vocal. Message us if you would like help choosing."
       />
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {courses.map((course) => <CourseCard course={course} />)}
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {courses.map((course) => (
+          <div class:list={[course.primary && 'md:col-span-2']}>
+            <CourseCard course={course} />
+          </div>
+        ))}
       </div>
     </Container>
   </section>
