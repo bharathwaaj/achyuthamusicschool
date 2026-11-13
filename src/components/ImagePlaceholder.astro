@@ -39,7 +39,8 @@ const {
   height = 675,
   aspect,
   loading = 'lazy',
-  sizes,
+  // Most slots sit in half-width columns on tablets and desktops.
+  sizes = '(min-width: 1152px) 560px, (min-width: 768px) 50vw, 100vw',
   class: className = '',
   rounded = 'rounded-2xl',
 } = Astro.props;

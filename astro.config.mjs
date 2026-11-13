@@ -8,6 +8,11 @@ export default defineConfig({
   site: 'https://achyuthamusicschool.com',
   output: 'static',
   trailingSlash: 'always',
+  // Build several sizes of each image so phones download smaller files.
+  image: {
+    layout: 'constrained',
+    responsiveStyles: true,
+  },
   vite: {
     plugins: [tailwindcss()],
   },
