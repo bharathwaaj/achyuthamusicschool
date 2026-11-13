@@ -1,0 +1,58 @@
+---
+import { Mail, MapPin, Phone } from '@lucide/astro';
+import Logo from './Logo.astro';
+import Container from './Container.astro';
+import { site } from '../config/site';
+import { courseLinks, footerLinks } from '../data/nav';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 bg-header text-header-text">
+  <Container size="wide" class="grid gap-10 py-14 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <div class="h-14 w-36 text-header-text">
+        <Logo class="h-full w-full" />
+      </div>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed opacity-80">
+        Carnatic vocal, violin and veena, taught in the tradition of {site.guru}.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-brand">Classes</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        {courseLinks.map((link) => (
+          <li><a href={link.href} class="text-header-text no-underline opacity-80 hover:opacity-100">{link.label}</a></li>
+        ))}
+      </ul>
+      <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-brand">Explore</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        {footerLinks.map((link) => (
+          <li><a href={link.href} class="text-header-text no-underline opacity-80 hover:opacity-100">{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-brand">Contact</h2>
+      <ul class="mt-4 space-y-3 text-sm">
+        <li class="flex gap-2">
+          <MapPin size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
+          <span>{site.address ?? `${site.area}, ${site.city}`}</span>
+        </li>
+        <li class="flex gap-2">
+          <Phone size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
+          <a href={`tel:${site.phone}`} class="text-header-text no-underline">{site.phoneDisplay}</a>
+        </li>
+        <li class="flex gap-2">
+          <Mail size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
+          <a href={`mailto:${site.email}`} class="break-all text-header-text no-underline">{site.email}</a>
+        </li>
+      </ul>
+    </div>
+  </Container>
+  <div class="border-t border-white/10 py-5 text-center text-xs opacity-70">
+    &copy; {year} {site.name}
+  </div>
+</footer>
