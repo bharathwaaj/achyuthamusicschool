@@ -208,11 +208,14 @@ const notes = (positions: [number, number][]) => positions;
       </svg>
     )}
     {variant === 'about' && (
-      <svg viewBox="0 0 640 100" preserveAspectRatio="xMinYMax meet">
-        <path class="stroke" d="M0 93 L640 93" stroke-width="1.5" opacity="0.6" />
+      <svg class="about-art" viewBox="0 0 640 100" preserveAspectRatio="xMinYMax meet">
+        <path class="stroke about-ground" d="M0 93 L640 93" stroke-width="1.5" opacity="0.6" />
+        <g class="about-stage" data-x="16">
         <g class="grow" style="animation-delay: 0.2s">
           <ellipse class="fill" cx="16" cy="89" rx="6" ry="4" />
         </g>
+        </g>
+        <g class="about-stage" data-x="78">
         <g class="grow" style="animation-delay: 0.55s">
           <g class="sway" style="animation-delay: -1s">
             <path class="stroke" d="M78 93 L78 77" stroke-width="2.2" />
@@ -220,6 +223,8 @@ const notes = (positions: [number, number][]) => positions;
             <path class="fill" d="M78 78 C 87 77, 90 69, 85 67 C 80 68, 78 73, 78 78 Z" />
           </g>
         </g>
+        </g>
+        <g class="about-stage" data-x="150">
         <g class="grow" style="animation-delay: 0.9s">
           <g class="sway" style="animation-delay: -2.5s">
             <path class="stroke" d="M150 93 L150 63" stroke-width="2.6" />
@@ -229,6 +234,8 @@ const notes = (positions: [number, number][]) => positions;
             <path class="fill" d="M150 66 C 158 64, 161 57, 156 55 C 151 57, 150 61, 150 66 Z" />
           </g>
         </g>
+        </g>
+        <g class="about-stage" data-x="238">
         <g class="grow" style="animation-delay: 1.25s">
           <g class="sway" style="animation-delay: -0.5s">
             <path class="fill" d="M236 93 L236 60 L240 60 L240 93 Z" />
@@ -237,6 +244,8 @@ const notes = (positions: [number, number][]) => positions;
             <circle class="fill" cx="249" cy="55" r="8.5" />
           </g>
         </g>
+        </g>
+        <g class="about-stage" data-x="350">
         <g class="grow" style="animation-delay: 1.6s">
           <g class="sway" style="animation-delay: -3s">
             <path class="fill" d="M345 93 C 347 80, 346 62, 347 50 L 353 50 C 354 62, 353 80, 356 93 Z" />
@@ -248,6 +257,8 @@ const notes = (positions: [number, number][]) => positions;
             <circle class="fill" cx="360" cy="25" r="9" />
           </g>
         </g>
+        </g>
+        <g class="about-stage" data-x="522">
         <g class="grow grow--tree" style="animation-delay: 2s">
           <path class="fill" d="M512 93 C 516 78, 514 58, 516 44 L 530 44 C 532 58, 530 78, 536 93 Z" />
           <path class="stroke" d="M520 56 L494 40 M526 54 L556 38 M522 48 L510 32" stroke-width="3.2" />
@@ -265,6 +276,7 @@ const notes = (positions: [number, number][]) => positions;
             <path class="root" d="M560 46 C 561 60, 559 72, 560 86" style="animation-delay: -1.4s" />
             <path class="root" d="M578 45 C 577 58, 579 68, 578 76" style="animation-delay: -3.2s" />
           </g>
+        </g>
         </g>
       </svg>
     )}
@@ -307,6 +319,31 @@ const notes = (positions: [number, number][]) => positions;
     const plane = svg.querySelector<SVGGElement>('.plane');
     if (plane) plane.style.offsetPath = `path('${path}')`;
   }
+
+  // Spread the about drawing's six stages across the content width, so
+  // the seed sits at the left edge and the banyan's canopy ends at the
+  // right edge. Each stage keeps its shape; only its position changes.
+  function fitAboutArt(svg: SVGSVGElement) {
+    const box = svg.getBoundingClientRect();
+    if (box.height === 0) return;
+    const width = (box.width / box.height) * 100;
+    const firstX = 16;
+    const lastX = 522;
+    const lastRightReach = 73;
+    const scale = (width - lastRightReach - firstX) / (lastX - firstX);
+    svg.setAttribute('viewBox', `0 0 ${width.toFixed(1)} 100`);
+    svg.querySelector('.about-ground')?.setAttribute('d', `M0 93 L${width.toFixed(1)} 93`);
+    svg.querySelectorAll<SVGGElement>('.about-stage').forEach((stage) => {
+      const x = Number(stage.dataset.x ?? 0);
+      const target = firstX + (x - firstX) * scale;
+      stage.setAttribute('transform', `translate(${(target - x).toFixed(1)} 0)`);
+    });
+  }
+
+  document.querySelectorAll<SVGSVGElement>('.about-art').forEach((svg) => {
+    fitAboutArt(svg);
+    new ResizeObserver(() => fitAboutArt(svg)).observe(svg);
+  });
 
   document.querySelectorAll<SVGSVGElement>('.contact-art').forEach((svg) => {
     fitContactArt(svg);
