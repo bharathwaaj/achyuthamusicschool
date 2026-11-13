@@ -91,7 +91,7 @@ const structuredData = [
 
   <section class="border-b border-line bg-sunken py-14 md:py-16">
     <Container size="wide" class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-      <ImagePlaceholder prompt={aboutPrompts[course.slug]} alt={aboutAlts[course.slug]} src={aboutImages[course.slug]} width={1200} height={900} aspect="4/3" />
+      <ImagePlaceholder prompt={aboutPrompts[course.slug]} alt={aboutAlts[course.slug]} src={aboutImages[course.slug]} width={1200} height={900} aspect="4/3" sizes="(min-width: 1152px) 520px, (min-width: 1024px) calc(50vw - 56px), (min-width: 768px) calc(50vw - 48px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" />
       <div>
         <SectionHeading title="About the class" />
         <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">

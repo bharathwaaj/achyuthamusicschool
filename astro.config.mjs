@@ -46,6 +46,9 @@ export default defineConfig({
   image: {
     layout: 'constrained',
     responsiveStyles: true,
+    // Include the site's ~524px columns and smaller phone images rather
+    // than making every browser start with Astro's 640px candidate.
+    breakpoints: [320, 384, 480, 528, 640, 672, 768, 960, 1056, 1280, 1600, 1920],
   },
   vite: {
     plugins: [tailwindcss()],
