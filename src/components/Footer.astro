@@ -4,8 +4,12 @@ import Logo from './Logo.astro';
 import Container from './Container.astro';
 import { site } from '../config/site';
 import { courseLinks, footerLinks } from '../data/nav';
+import { publishedPosts } from '../utils/blog';
 
 const year = new Date().getFullYear();
+// The blog is linked only once it has at least one published post.
+const hasPosts = (await publishedPosts()).length > 0;
+const exploreLinks = hasPosts ? [...footerLinks, { href: '/blog/', label: 'Blog' }] : footerLinks;
 ---
 
 <footer class="mt-24 bg-header text-header-text">
@@ -28,7 +32,7 @@ const year = new Date().getFullYear();
       </ul>
       <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-brand">Explore</h2>
       <ul class="mt-4 space-y-2 text-sm">
-        {footerLinks.map((link) => (
+        {exploreLinks.map((link) => (
           <li><a href={link.href} class="text-header-text no-underline opacity-80 hover:opacity-100">{link.label}</a></li>
         ))}
       </ul>

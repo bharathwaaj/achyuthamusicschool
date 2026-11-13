@@ -17,6 +17,7 @@ import { courses } from '../../data/courses';
 import { objectBrief } from '../../data/imagePrompts';
 import type { Course } from '../../data/courses';
 import { breadcrumbSchema, courseSchema, faqSchema } from '../../utils/schema';
+import { publishedPosts } from '../../utils/blog';
 import { whatsappLink, whatsappMessages } from '../../utils/whatsapp';
 
 export function getStaticPaths() {
@@ -38,6 +39,8 @@ const aboutPrompts: Record<string, string> = {
   vocal: objectBrief('A tambura leaning against a plain wall beside a window, shallow depth of field.'),
 };
 const others = courses.filter((other) => other.slug !== course.slug);
+// Blog posts about this class, shown only when there are any.
+const relatedPosts = (await publishedPosts()).filter((post) => post.data.relatedClass === course.slug);
 // Short descriptions of the photos, for screen readers and search engines.
 const heroAlts: Record<string, string> = {
   veena: 'A woman seated beside a veena on its stand at home',
@@ -138,6 +141,22 @@ const structuredData = [
       <div class="mt-8"><Faq items={page.faqs} /></div>
     </Container>
   </section>
+
+  {relatedPosts.length > 0 && (
+    <section class="pb-14 md:pb-16">
+      <Container size="narrow">
+        <SectionHeading title="Read more" />
+        <ul class="mt-6 space-y-3">
+          {relatedPosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`} class="font-semibold text-link hover:text-link-hover">{post.data.title}</a>
+              <p class="mt-1 text-muted">{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  )}
 
   <section class="border-t border-line py-14 md:py-16">
     <Container size="wide">
