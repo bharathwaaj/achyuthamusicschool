@@ -1,5 +1,7 @@
 ---
-import { ArrowRight, Flame, HeartHandshake, Laptop } from '@lucide/astro';
+import { ArrowRight, Flame, HeartHandshake, Laptop, MessageCircle, Music, Users } from '@lucide/astro';
+import Button from '../components/Button.astro';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -7,6 +9,7 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaPanel from '../components/CtaPanel.astro';
 import { Image } from 'astro:assets';
 import guruPhoto from '../assets/images/achyutha-iyer.jpg';
+import guruAvatar from '../assets/images/achyutha-iyer-avatar.jpg';
 import jayanthiPhoto from '../assets/images/jayanthi-ravichandran.jpg';
 import divyaPhoto from '../assets/images/dr-divya.jpg';
 import veenaTeaching from '../assets/images/veena-teaching.png';
@@ -18,6 +21,12 @@ const description =
   'Achyutha Music School teaches the veena online, with Carnatic violin and vocal too. Learn how the school grew from the teaching of Sri S.V. Achyutha Iyer.';
 
 const heroPrompt = photoBrief('A teacher and a young student seated together on the floor at a lesson, the teacher gently correcting the student\'s hand position on a Saraswati veena.');
+
+const heroFacts = [
+  { icon: Music, text: 'Veena, violin and vocal' },
+  { icon: Laptop, text: 'Online, or in person' },
+  { icon: Users, text: 'Children and adults' },
+];
 
 const values = [
   { icon: HeartHandshake, title: 'Lessons shaped around you', text: 'Each lesson fits the student\'s level and way of learning.' },
@@ -33,18 +42,54 @@ const teachers = [
 
 <BaseLayout title={title} description={description}>
   <section class="border-b border-line bg-brand-soft">
-    <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
-      <SectionHeading
-        level={1}
-        eyebrow="About us"
-        title="A school that grew from a guru's teaching"
-        lead="We teach the veena online, with Carnatic violin and vocal too. Everything we do begins with the way our guru taught."
-      />
-      <ImagePlaceholder prompt={heroPrompt} src={veenaTeaching} width={1200} height={900} aspect="4/3" loading="eager" />
+    <Container size="wide" class="grid items-center gap-12 py-14 md:grid-cols-2 md:py-20">
+      <div>
+        <SectionHeading
+          level={1}
+          eyebrow="About us"
+          title="A school that grew from a guru's teaching"
+          lead="We teach the veena online, with Carnatic violin and vocal too. Everything we do begins with the way our guru taught."
+        />
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {heroFacts.map((fact) => (
+            <li class="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-ink">
+              <fact.icon size={15} class="text-link" aria-hidden="true" />
+              {fact.text}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href={whatsappLink(whatsappMessages.general)} external size="lg">
+            <MessageCircle size={17} aria-hidden="true" /> WhatsApp us
+          </Button>
+          <Button href="/team/" variant="secondary" size="lg">Meet our teachers</Button>
+        </div>
+      </div>
+
+      <div class="relative pb-8 md:pb-0">
+        <ImagePlaceholder prompt={heroPrompt} src={veenaTeaching} width={1200} height={900} aspect="4/3" loading="eager" />
+        <a
+          href="#our-guru"
+          class="absolute bottom-0 left-4 flex items-center gap-3 rounded-2xl border border-line bg-surface py-2.5 pl-2.5 pr-5 no-underline shadow-lg transition hover:-translate-y-0.5 md:-bottom-6 md:-left-6"
+        >
+          <Image
+            src={guruAvatar}
+            alt=""
+            width={112}
+            layout="fixed"
+            loading="eager"
+            class="h-14 w-14 shrink-0 rounded-full object-cover"
+          />
+          <span>
+            <span class="block text-xs text-muted">In the tradition of</span>
+            <span class="block font-serif font-semibold text-ink">{site.guru}</span>
+          </span>
+        </a>
+      </div>
     </Container>
   </section>
 
-  <section class="py-14 md:py-20">
+  <section id="our-guru" class="scroll-mt-24 py-14 md:py-20">
     <Container size="wide" class="grid items-center gap-10 md:grid-cols-[2fr_3fr] md:gap-14">
       <figure class="mx-auto w-full max-w-sm">
         <div class="overflow-hidden rounded-2xl border border-line" style="aspect-ratio: 721/873;">
