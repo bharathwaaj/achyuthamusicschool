@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaPanel from '../components/CtaPanel.astro';
+import groupClass from '../assets/gallery/veena-group-class.jpg';
+import classroom from '../assets/gallery/veena-classroom.jpg';
+import stage from '../assets/gallery/festival-stage.jpg';
+import practice from '../assets/gallery/veena-practice.jpg';
+import portrait from '../assets/gallery/student-portrait.jpg';
+
+const title = 'Gallery: Veena Classes and Performances';
+const description =
+  'Photos from Achyutha Music School: students learning the veena together, practising at home and performing on stage.';
+
+// Photos from the school's own collection. Captions describe only what is visible.
+const photos = [
+  { src: groupClass, alt: 'A group of young students seated on a mat with veenas in front of them' },
+  { src: practice, alt: 'A student practising the veena at home' },
+  { src: stage, alt: 'Veena students performing on stage at a music festival' },
+  { src: classroom, alt: 'Students holding veenas in a classroom' },
+  { src: portrait, alt: 'A young student seated on the floor at home before class' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="border-b border-line bg-brand-soft py-14 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        level={1}
+        eyebrow="Gallery"
+        title="Moments from our classes"
+        lead="Students learning, practising and performing."
+      />
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="wide">
+      <ul class="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        {photos.map((photo, index) => (
+          <li class="mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-line">
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={900}
+              loading={index < 2 ? 'eager' : 'lazy'}
+              class="h-auto w-full"
+            />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <CtaPanel title="Join our next class" text="Send us a message and tell us who will be learning. We will help you choose a class and a timing that suits you." />
+</BaseLayout>
