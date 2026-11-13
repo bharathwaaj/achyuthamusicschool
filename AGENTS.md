@@ -82,7 +82,7 @@ Describe the school the way it describes itself. This section is the source of t
 - Achyutha Music School teaches online first. Online is how the school prefers to teach, and it applies to all three instruments.
 - Veena is the main class. Violin and Carnatic vocal are secondary classes, and both have weekend sessions.
 - The school also has a physical location in Kovaipudur, Coimbatore for in-person lessons. This is an option for students nearby, not the school's identity.
-- The school follows the teaching of Sri S.V. Achyutha Iyer.
+- The school follows the teaching of Sri S.V. Achyutha Iyer. He was a violinist who taught sangathis, the variations in a Carnatic song. Explain the word the first time it appears on a page.
 
 When writing about the school:
 
@@ -118,6 +118,7 @@ The writing should reflect the richness of Carnatic music while remaining approa
 - Prefer active voice and direct sentences.
 - Vary sentence length naturally to create a pleasant reading rhythm.
 - Convey enthusiasm through meaningful details, not excessive adjectives.
+- Invite instead of announce. Do not stack declarative statements one after another. Keep an opening to two or three short sentences, and read it aloud to check that it sounds warm.
 - Maintain a consistent voice across pages.
 
 Avoid generic AI-generated marketing phrases such as "embark on a musical journey," "unlock your potential," "world-class excellence," and "where tradition meets innovation."
