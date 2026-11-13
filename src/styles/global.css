@@ -233,22 +233,3 @@
   }
 }
 
-@layer components {
-  .hero-surface--home {
-    padding-bottom: 2rem;
-  }
-
-  /* Home: one small, quiet diya at the bottom left, under the buttons. */
-  .hero-surface--home::before {
-    left: max(1rem, calc((100% - 72rem) / 2 + 1.5rem));
-    right: auto;
-    width: 6rem;
-    height: 3.75rem;
-    bottom: 0.75rem;
-    opacity: 0.3;
-    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'><g fill='%23000'><path d='M36 66 L124 66 Q117 86 80 89 Q43 86 36 66 Z'/><path d='M36 66 L20 59 L40 74 Z'/><rect x='56' y='89' width='48' height='3' rx='1.5'/><path d='M23 20 C 14 35, 15 47, 23 53 C 31 47, 32 35, 23 20 Z'/></g></svg>");
-    mask-size: contain;
-    mask-position: left bottom;
-    mask-repeat: no-repeat;
-  }
-}
