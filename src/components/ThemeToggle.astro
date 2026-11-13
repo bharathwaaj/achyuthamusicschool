@@ -1,0 +1,25 @@
+---
+import { Moon, Sun } from '@lucide/astro';
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-brand"
+  aria-label="Switch between light and dark theme"
+>
+  <Sun size={18} class="hidden dark:block" aria-hidden="true" />
+  <Moon size={18} class="block dark:hidden" aria-hidden="true" />
+</button>
+
+<script>
+  const button = document.getElementById('theme-toggle');
+  button?.addEventListener('click', () => {
+    const dark = document.documentElement.classList.toggle('dark');
+    try {
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    } catch {
+      // Storage can be blocked in private windows; the toggle still works.
+    }
+  });
+</script>
