@@ -3,9 +3,9 @@
  * Veena icon, drawn to match Lucide: 24x24 grid, outline strokes with
  * round ends, no fill, colour from currentColor. Lucide has no veena.
  *
- * Shape: large resonator at the lower left, a long neck rising to the
- * upper right, a small gourd hanging under the neck, two tuning pegs and
- * a curled head.
+ * Drawn upright and then tilted 45 degrees. What makes it read as a
+ * veena: a large round resonator, a wide fretted neck that looks like a
+ * ladder, a second small gourd on the neck, and tuning pegs at the head.
  */
 interface Props {
   size?: number | string;
@@ -13,7 +13,7 @@ interface Props {
   class?: string;
 }
 
-const { size = 24, strokeWidth = 2, class: className } = Astro.props;
+const { size = 24, strokeWidth = 1.6, class: className } = Astro.props;
 ---
 
 <svg
@@ -29,10 +29,16 @@ const { size = 24, strokeWidth = 2, class: className } = Astro.props;
   class={className}
   aria-hidden="true"
 >
-  <circle cx="6.3" cy="17.7" r="4.3" />
-  <path d="m9.3 14.7 10.7-10.7" />
-  <path d="M20 4c.8-1.4 2.4-2 2.9-1.1.4.8-.5 1.8-1.6 1.6" />
-  <path d="M12.33 11.67A2.4 2.4 0 1 0 15.37 8.63" />
-  <path d="m16.5 7.5-1.1-1.1" />
-  <path d="m18 6-1.1-1.1" />
+  <g transform="translate(1.2 -1.2) rotate(45 12 12)">
+    <!-- resonator -->
+    <circle cx="12" cy="22" r="4.3" />
+    <!-- neck, two rails with frets between them -->
+    <path d="M10.2 18.1V.6M13.8 18.1V.6" />
+    <path d="M10.2 5h3.6M10.2 8h3.6M10.2 11h3.6M10.2 14h3.6" />
+    <!-- head and pegs -->
+    <path d="M10.2 .6c0-1.7 3.6-1.7 3.6 0" />
+    <path d="M10.2 2.4H8.6M10.2 4.6H8.6" />
+    <!-- second gourd -->
+    <circle cx="16" cy="9" r="2.1" />
+  </g>
 </svg>
