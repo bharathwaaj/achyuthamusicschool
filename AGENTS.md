@@ -67,112 +67,203 @@
 - Use automated checks for enforceable style rules instead of spending
   review effort on formatting.
 
-## Communication and Technical Writing Guidelines
+# Website Content and Copywriting Guidelines
 
-Write like an experienced engineer who is also an excellent technical writer and teacher.
+Write like an experienced website copywriter, SEO specialist, and thoughtful editor.
 
-Your goal is to communicate technical information accurately, naturally, and with minimal cognitive effort for the reader.
+Your goal is to create clear, engaging, search-friendly content that feels genuinely human. Every page should help visitors understand the school, feel confident about its teaching, and take the next step.
 
-### Clarity and understanding
+Prioritize usefulness, authenticity, and readability over promotional language or keyword density.
 
-Help the reader build a clear mental model of the system.
+## Understand the reader
 
-Introduce concepts progressively. Establish the context and explain why something matters before diving into implementation details.
+Write primarily for parents exploring music classes for their children and adults interested in learning Carnatic music.
 
-Use concrete explanations, natural sentences, and familiar language. Avoid compressed technical phrases, noun stacking, bureaucratic language, and unnecessary jargon.
+Assume visitors may know little about Carnatic music or its terminology.
 
-Explain the reasoning behind technical decisions when it helps understanding. Use realistic examples when they make an idea clearer.
+- Explain unfamiliar concepts naturally without oversimplifying them.
+- Anticipate practical questions about learning an instrument.
+- Address what visitors care about before describing the school's achievements.
+- Communicate the value of musical heritage, disciplined learning, and personal guidance.
+- Be welcoming to beginners without excluding experienced learners.
 
-Do not explain the obvious or introduce unnecessary background.
+Write for people first, search engines second.
 
-Write as though you are explaining the system directly to the reader. Keep prose paragraphs to one or two sentences, with one main idea per paragraph.
+## Voice and tone
 
-Start a new paragraph when moving from context to an explanation, from an explanation to an action, or from current behavior to future work. Do not squeeze more clauses into a sentence just to stay within the paragraph limit.
+Use warm, confident, natural English.
 
-Use a short lead-in followed by bullets for distinct capabilities, responsibilities, or outcomes. Keep connected explanations conversational rather than turning every sentence into a separate fragment.
+The writing should reflect the richness of Carnatic music while remaining approachable and contemporary.
 
-### Structure and presentation
+- Sound like a knowledgeable, welcoming music teacher, not a marketing agency.
+- Be sincere and specific rather than grand or promotional.
+- Use simple, familiar words wherever possible.
+- Prefer active voice and direct sentences.
+- Vary sentence length naturally to create a pleasant reading rhythm.
+- Convey enthusiasm through meaningful details, not excessive adjectives.
+- Maintain a consistent voice across pages.
 
-Exercise editorial judgment rather than mechanically following formatting rules.
+Avoid generic AI-generated marketing phrases such as "embark on a musical journey," "unlock your potential," "world-class excellence," and "where tradition meets innovation."
 
-Choose the format that best communicates each idea:
+Avoid exaggerated claims, artificial urgency, clichés, and unnecessary superlatives.
 
-- Use prose to explain concepts, reasoning, and relationships.
-- Use bullets when information is genuinely easier to scan as a list.
-- Use numbered steps for procedures.
-- Use tables when comparisons benefit from them.
-- Use code blocks for commands and examples.
+## Clarity and readability
 
-These are guidelines, not mandatory formatting rules. Do not default to any particular format.
+Make every sentence easy to understand on the first reading.
 
-Avoid excessive headings, fragmented paragraphs, and repetitive structures. Do not turn a connected explanation into a list of disconnected points.
+- Express one main idea at a time.
+- Prefer short, natural sentences without making the writing choppy.
+- Keep paragraphs focused, generally one to three sentences.
+- Replace abstract statements with concrete explanations.
+- Remove filler, repetition, and unnecessary qualifiers.
+- Explain the benefits of a class or teaching approach rather than simply listing features.
 
-Make the writing flow naturally. Organize information so that each section builds on what the reader already understands.
+Do not sacrifice warmth or personality in pursuit of brevity.
 
-### Make the page easy to scan
+Read the content as a whole and ensure it flows like thoughtful human writing, not a collection of disconnected SEO phrases.
 
-Formatting should help the reader see how information is organized before they read every sentence. Plain language alone is not enough if the page still looks like a wall of text.
+## Structure and presentation
 
-Use short prose to introduce an idea, then choose a clear way to present its parts. For example:
+Organize content so visitors can quickly understand the page without reading every word.
 
-- When explaining who does what, introduce the relationship in prose and use bullets to distinguish each person's or system's responsibility.
-- When describing project progress, separate what works today from what remains. Lists often make the individual capabilities easier to find.
-- When giving instructions, use numbered steps for the sequence and place each command beside the step it belongs to.
+Use:
 
-Use short labels and selective bold text to give the reader useful cues. Leave natural pauses between an explanation, an example, and the next action.
+- Clear, descriptive headings that communicate meaningful information.
+- Short paragraphs for explanations and storytelling.
+- Bullets when presenting distinct details or options.
+- Descriptive links and calls to action.
+- Natural transitions between related sections.
 
-Avoid bolding whole paragraphs or adding a heading for every small point.
+Do not turn every sentence into a separate paragraph or bullet.
 
-Do not interpret "avoid excessive bullets" as a preference for paragraphs. Equally, do not turn every sentence into a bullet.
+Avoid excessive headings, repetitive section structures, and unnecessary content blocks.
 
-Use prose for reasoning and connections; use lists for distinct items the reader should be able to find separately.
+Headings should help readers navigate the page, not merely decorate it.
 
-There is no required number of bullets or headings. Keep paragraphs short, and judge the page by how easily someone can follow it and find what they need.
+## SEO copywriting
 
-### Respect the reader's attention
+Apply modern, people-first SEO principles throughout the website.
 
-Prioritize information based on its importance to the reader.
+### Search intent
 
-Start with what matters. Introduce supporting details only when they become relevant.
+Before writing a page, identify:
 
-Do not overwhelm the reader with implementation details, exceptions, or edge cases before establishing the main idea.
+- Who is likely to search for it.
+- What information they are looking for.
+- Which primary search query the page should address.
+- Which related queries and questions naturally belong on the page.
 
-Distinguish essential information from reference material. Keep READMEs approachable and move lengthy technical specifications or unusual recovery procedures into dedicated documents when appropriate.
+Match the content to the visitor's intent rather than forcing keywords into predetermined sections.
 
-**Do not confuse completeness with usefulness or brevity with clarity.**
+### Keyword usage
 
-### Communication versus documentation
+Use relevant search phrases naturally in page titles, headings, introductory content, and body copy where appropriate.
 
-Adapt your writing to its purpose.
+Examples include:
 
-In conversations, explain what changed, why it matters, how it was verified, and whether anything needs my attention. Lead with the important information rather than a lengthy implementation report.
+- Carnatic music classes in Coimbatore
+- Carnatic vocal classes in Kovaipudur
+- Violin classes in Coimbatore
+- Veena classes in Coimbatore
 
-In documentation, help the reader understand the project and accomplish tasks. Explain commands in context, including what they do and what to expect.
+Use related terms, natural variations, and relevant geographical references where they improve clarity.
 
-In technical specifications, preserve the precision and detail required for correct implementation.
+Do not repeat keywords mechanically, insert awkward location phrases, or write sentences solely for search engines.
 
-Do not apply the same structure or level of detail to every type of writing.
+Avoid creating multiple pages that target essentially the same search intent without offering distinct value.
 
-### Technical accuracy
+### Titles and meta descriptions
 
-Never sacrifice correctness, security requirements, or operational safety for readability.
+Write a unique, descriptive SEO title and meta description for every important page.
 
-Preserve exact technical identifiers, commands, configuration names, and important constraints.
+- Place the primary topic prominently when natural.
+- Include location information when relevant.
+- Communicate what makes the page useful.
+- Make the description compelling without clickbait.
+- Keep titles and descriptions concise enough to display effectively in search results, recognizing that search engines may rewrite them.
 
-Do not invent explanations, motivations, or system behavior.
+Do not generate generic titles by simply changing the instrument name.
 
-### Editorial review
+### Headings and on-page content
 
-Before finalizing substantial writing, perform a separate editorial pass.
+Use one clear primary heading that accurately describes the page.
 
-Review the document as a whole, not merely individual sentences.
+Organize supporting content with meaningful subheadings.
 
-Consider whether the reader will find it approachable, coherent, engaging, and easy to navigate. Look at the visual structure as well as the wording: can someone scanning the page identify the main responsibilities, current capabilities, and next actions?
+Include relevant search terms where they fit naturally, but never compromise readability to accommodate keywords.
 
-Reconsider consecutive paragraphs that would be clearer as a list, comparison, or procedure. Check that each prose paragraph contains no more than two sentences and still reads naturally.
+Answer important visitor questions directly.
 
-Improve the flow, remove unnecessary repetition, reconsider the structure, and choose better presentation formats where appropriate.
+Use descriptive internal links to help visitors discover related classes, teachers, and contact information.
 
-Be willing to rewrite or reorganize sections rather than merely polishing their wording.
+### Local SEO
 
-**The ultimate goal is not to satisfy a checklist of writing rules. It is to produce writing that a human genuinely wants to read and can understand on the first pass.**
+Make the school's location and local relevance clear wherever useful.
+
+Naturally reference Kovaipudur and Coimbatore in appropriate contexts.
+
+Use verified business information consistently.
+
+Do not invent addresses, service areas, opening hours, testimonials, or local credentials.
+
+Avoid repetitive location mentions and doorway-style pages created only to target different neighbourhoods.
+
+## Persuasive writing and conversion
+
+Use ethical, persuasive copywriting to help visitors make informed decisions.
+
+A page should generally:
+
+1. Establish what is offered and who it is for.
+2. Explain why it may be valuable to the learner.
+3. Provide credible information about the teaching and school.
+4. Address important questions or uncertainties.
+5. Offer a clear, natural next step.
+
+This is a guiding structure, not a mandatory template for every page.
+
+Prefer concrete evidence, authentic teaching experience, and useful explanations over generic claims.
+
+Calls to action should be specific, friendly, and relevant to the surrounding content.
+
+Use WhatsApp enquiries as the primary conversion path without making every section feel like a sales pitch.
+
+## Accuracy and authenticity
+
+Never invent facts to make the content sound more impressive.
+
+Do not fabricate:
+
+- Teacher qualifications or experience.
+- Student achievements or testimonials.
+- Founding dates or institutional history.
+- Class schedules, fees, or facilities.
+- Teaching methods or promises of outcomes.
+
+Preserve accurate names, musical terminology, and cultural references.
+
+When information is missing, flag it clearly rather than replacing it with plausible-sounding claims.
+
+Use authentic details about the school wherever available. Specific, truthful information is more persuasive than generic marketing copy.
+
+## Editorial review
+
+Before finalizing substantial website content, perform a separate editorial pass.
+
+Review the page as a visitor would, not merely sentence by sentence.
+
+Ask:
+
+- Is the purpose of the page immediately clear?
+- Does the opening give visitors a reason to continue reading?
+- Does the content answer the questions that brought them here?
+- Does it sound natural when read aloud?
+- Are any sentences generic, repetitive, exaggerated, or obviously AI-generated?
+- Are the keywords integrated naturally?
+- Is the information credible and accurate?
+- Is the next step clear without being pushy?
+- Could anything be removed without losing useful meaning?
+
+Improve the content through rewriting and restructuring, not merely proofreading.
+
+**The ultimate goal is to create website content that people genuinely enjoy reading, trust, and find useful—while making it easy for search engines to understand what each page offers.**
