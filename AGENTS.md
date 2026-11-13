@@ -178,12 +178,16 @@ Use relevant search phrases naturally in page titles, headings, introductory con
 
 Examples include:
 
-- Carnatic music classes in Coimbatore
-- Carnatic vocal classes in Kovaipudur
-- Violin classes in Coimbatore
-- Veena classes in Coimbatore
+- online veena classes
+- learn the veena online
+- veena classes for beginners
+- veena classes for children
+- online Carnatic violin classes
+- online Carnatic vocal classes
 
-Use related terms, natural variations, and relevant geographical references where they improve clarity.
+Target the instrument and the fact that classes are online. Do not target generic phrases such as "Carnatic music classes", and do not add a city to every phrase.
+
+Use related terms and natural variations where they improve clarity. Place names such as Kovaipudur and Coimbatore are secondary keywords and belong on pages about in-person classes and contact.
 
 Do not repeat keywords mechanically, insert awkward location phrases, or write sentences solely for search engines.
 
@@ -193,8 +197,8 @@ Avoid creating multiple pages that target essentially the same search intent wit
 
 Write a unique, descriptive SEO title and meta description for every important page.
 
-- Place the primary topic prominently when natural.
-- Include location information when relevant.
+- Place the primary topic prominently when natural. For most pages that is the instrument and online classes.
+- Add a location only on pages about in-person lessons or contact. Do not put Coimbatore or Kovaipudur in the home page or instrument page titles.
 - Communicate what makes the page useful.
 - Make the description compelling without clickbait.
 - Keep titles and descriptions concise enough to display effectively in search results, recognizing that search engines may rewrite them.
@@ -213,17 +217,19 @@ Answer important visitor questions directly.
 
 Use descriptive internal links to help visitors discover related classes, teachers, and contact information.
 
-### Local SEO
+### Location and local search
 
-Make the school's location and local relevance clear wherever useful.
+The school teaches online first, so location is supporting information and not part of its headline identity.
 
-Naturally reference Kovaipudur and Coimbatore in appropriate contexts.
+State the Kovaipudur, Coimbatore location clearly where visitors need it: the contact page, the footer, structured data, and answers about in-person classes.
+
+Do not use Coimbatore or Kovaipudur in primary headings, page titles or the opening of the home page and instrument pages. Do not describe the school as a Coimbatore school, or imply that it serves only one area.
 
 Use verified business information consistently.
 
-Do not invent addresses, service areas, opening hours, testimonials, or local credentials.
+Do not invent addresses, service areas, opening hours, testimonials, or local credentials. Do not list a service area in structured data.
 
-Avoid repetitive location mentions and doorway-style pages created only to target different neighbourhoods.
+Avoid repetitive location mentions and doorway-style pages created only to target different cities or neighbourhoods.
 
 ## Persuasive writing and conversion
 
