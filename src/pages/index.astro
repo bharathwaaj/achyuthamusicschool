@@ -116,12 +116,10 @@ const faqs = [
         <p class="mt-4 max-w-xl text-xl text-ink">
           Learn the veena from the comfort of your home.
         </p>
-        <ul class="mt-4 space-y-1.5">
+        <ul class="mt-6 space-y-2">
           {heroPoints.map((point) => (
             <li class="flex items-center gap-2.5 text-muted">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface text-link">
-                <point.icon size={16} aria-hidden="true" />
-              </span>
+              <point.icon size={18} class="shrink-0 text-link" aria-hidden="true" />
               {point.text}
             </li>
           ))}
