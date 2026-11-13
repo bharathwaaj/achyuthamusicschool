@@ -1,0 +1,96 @@
+---
+import { Mail, MapPin, MessageCircle, Phone } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../config/site';
+import { canonicalUrl } from '../utils/seo';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
+
+const title = `Contact ${site.name}: WhatsApp, Email and Visits`;
+const description = `Message ${site.name} on WhatsApp to ask about veena, violin or Carnatic vocal classes. You can also email us, or visit our school in ${site.area}, ${site.city}.`;
+
+const faqs = [
+  {
+    question: 'Is there an age limit to learn music?',
+    answer: 'No. What matters is your interest and dedication, so children and adults are both welcome.',
+  },
+  {
+    question: 'Can I learn the instrument online?',
+    answer: 'Yes. Online is how we prefer to teach, and it works well with patience and practice.',
+  },
+];
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: title,
+  url: canonicalUrl('/contact/'),
+  about: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
+};
+---
+
+<BaseLayout title={title} description={description} jsonLd={[contactSchema]}>
+  <section class="border-b border-line bg-brand-soft py-14 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        level={1}
+        eyebrow="Contact"
+        title="We would love to hear from you"
+        lead="The quickest way to reach us is WhatsApp. Tell us who will be learning and we will take it from there."
+      />
+      <div class="mt-8">
+        <Button href={whatsappLink(whatsappMessages.general)} external size="lg">
+          <MessageCircle size={17} aria-hidden="true" /> Message us on WhatsApp
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="wide">
+      <ul class="grid gap-5 md:grid-cols-3">
+        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+            <Mail size={26} aria-hidden="true" />
+          </span>
+          <h2 class="mt-4 text-lg font-semibold text-ink">Email</h2>
+          <p class="mt-1 break-words">
+            <a href={`mailto:${site.email}`} class="text-link hover:text-link-hover">{site.email}</a>
+          </p>
+        </li>
+        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+            <Phone size={26} aria-hidden="true" />
+          </span>
+          <h2 class="mt-4 text-lg font-semibold text-ink">Phone</h2>
+          <p class="mt-1">
+            <a href={`tel:${site.phone}`} class="text-link hover:text-link-hover">{site.phoneDisplay}</a>
+          </p>
+        </li>
+        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+            <MapPin size={26} aria-hidden="true" />
+          </span>
+          <h2 class="mt-4 text-lg font-semibold text-ink">Visit us</h2>
+          <p class="mt-1 text-muted">
+            {site.address ?? `${site.area}, ${site.city}`}
+          </p>
+        </li>
+      </ul>
+      <p class="mx-auto mt-8 max-w-xl text-center leading-relaxed text-muted">
+        Planning to visit our school in {site.area}? Message us first and we will send you the exact
+        location and a time that suits you.
+      </p>
+    </Container>
+  </section>
+
+  <section class="border-t border-line bg-sunken py-14 md:py-16">
+    <Container size="narrow">
+      <SectionHeading title="Quick answers" align="center" />
+      <div class="mt-8"><Faq items={faqs} /></div>
+    </Container>
+  </section>
+</BaseLayout>
