@@ -1,7 +1,7 @@
 ---
 /**
- * A tilted ribbon of playful hashtags that scrolls gently across the page,
- * like a festival banner. Decorative: the same nudges appear as plain text
+ * A softly tilted line of playful hashtags that drifts slowly across the
+ * page. Decorative: the same nudges appear as plain text
  * for screen readers, and the scrolling stops for visitors who prefer
  * reduced motion.
  */
@@ -45,12 +45,13 @@ const {
     padding-block: 1.25rem;
   }
 
+  /* Quiet on purpose: soft brand text between two thin lines, no solid
+     band, so it reads as a playful aside rather than a banner. */
   .ribbon {
-    transform: rotate(-1.5deg);
+    transform: rotate(-1deg);
     margin-inline: -2rem;
-    background: var(--c-brand);
-    color: var(--c-brand-on);
-    box-shadow: 0 6px 18px -10px rgb(0 0 0 / 0.5);
+    border-block: 1px dashed color-mix(in oklab, var(--c-brand) 40%, transparent);
+    color: color-mix(in oklab, var(--c-link) 75%, transparent);
   }
 
   .ribbon__track {
@@ -66,8 +67,8 @@ const {
     padding: 0.7rem 0.75rem;
     margin: 0;
     list-style: none;
-    font-weight: 700;
-    font-size: 0.95rem;
+    font-weight: 600;
+    font-size: 0.875rem;
     letter-spacing: 0.01em;
     white-space: nowrap;
   }
@@ -79,12 +80,12 @@ const {
   }
 
   .ribbon__dot {
-    opacity: 0.55;
+    opacity: 0.5;
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .ribbon__track {
-      animation: ribbon-scroll 40s linear infinite;
+      animation: ribbon-scroll 70s linear infinite;
     }
 
     .ribbon-wrap:hover .ribbon__track {
