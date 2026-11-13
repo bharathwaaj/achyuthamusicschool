@@ -125,11 +125,26 @@ export function pageSchema(type: string, name: string, path: string, description
   };
 }
 
+/** Anchor for a teacher on the team page, such as "dr-divya-c-r". */
+export function teacherAnchor(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** Address of a teacher's profile on the team page. */
+export function teacherUrl(name: string): string {
+  return canonicalUrl(`/team/#${teacherAnchor(name)}`);
+}
+
 /** A teacher at the school. */
 export function teacherSchema(name: string, description: string, knowsAbout: string[] = []) {
   return {
     '@context': context,
     '@type': 'Person',
+    '@id': teacherUrl(name),
+    url: teacherUrl(name),
     name,
     description,
     jobTitle: 'Teacher',
@@ -173,7 +188,7 @@ export function blogPostingSchema(post: {
     datePublished: post.published.toISOString(),
     dateModified: (post.updated ?? post.published).toISOString(),
     inLanguage: 'en',
-    author: { '@type': 'Person', name: post.author, worksFor: { '@id': schoolId } },
+    author: { '@type': 'Person', '@id': teacherUrl(post.author), name: post.author, url: teacherUrl(post.author), worksFor: { '@id': schoolId } },
     publisher: { '@id': schoolId },
     ...(post.imageUrl ? { image: post.imageUrl } : {}),
   };

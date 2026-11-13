@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { breadcrumbSchema, teacherSchema } from '../utils/schema';
+import { breadcrumbSchema, teacherAnchor, teacherSchema } from '../utils/schema';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -53,7 +53,7 @@ const teachers = [
   <section class="py-14 md:py-20">
     <Container size="wide" class="space-y-14 md:space-y-20">
       {teachers.map((teacher, index) => (
-        <article class="grid items-center gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
+        <article id={teacherAnchor(teacher.name)} class="grid scroll-mt-24 items-center gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
           <div
             class:list={[
               'mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-line',

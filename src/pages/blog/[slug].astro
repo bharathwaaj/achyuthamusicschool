@@ -7,7 +7,7 @@ import Container from '../../components/Container.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
 import { courses } from '../../data/courses';
 import { site } from '../../config/site';
-import { blogPostingSchema, breadcrumbSchema } from '../../utils/schema';
+import { blogPostingSchema, breadcrumbSchema, teacherAnchor } from '../../utils/schema';
 import { formatDate, publishedPosts, type Post } from '../../utils/blog';
 
 export async function getStaticPaths() {
@@ -61,7 +61,7 @@ const imageUrl = data.image
         </nav>
         <h1 class="mt-4 text-3xl font-semibold text-ink sm:text-4xl">{data.title}</h1>
         <p class="mt-4 text-sm text-muted">
-          By {data.author}
+          By <a href={`/team/#${teacherAnchor(data.author)}`}>{data.author}</a>
           {' · '}
           <time datetime={data.published.toISOString()}>{formatDate(data.published)}</time>
           {data.updated && (
