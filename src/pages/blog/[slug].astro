@@ -1,0 +1,105 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import { ArrowRight } from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import { courses } from '../../data/courses';
+import { site } from '../../config/site';
+import { blogPostingSchema, breadcrumbSchema } from '../../utils/schema';
+import { formatDate, publishedPosts, type Post } from '../../utils/blog';
+
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const data = post.data;
+const path = `/blog/${post.id}/`;
+const related = courses.find((course) => course.slug === data.relatedClass);
+
+const imageUrl = data.image
+  ? new URL((await getImage({ src: data.image, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src, site.url).toString()
+  : undefined;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  image={data.image}
+  imageAlt={data.imageAlt}
+  jsonLd={[
+    blogPostingSchema({
+      title: data.title,
+      description: data.description,
+      path,
+      published: data.published,
+      updated: data.updated,
+      author: data.author,
+      imageUrl,
+    }),
+    breadcrumbSchema([
+      { name: 'Blog', path: '/blog/' },
+      { name: data.title, path },
+    ]),
+  ]}
+>
+  <article>
+    <header class="hero-surface border-b border-line py-12 md:py-16">
+      <Container size="narrow">
+        <nav aria-label="Breadcrumb" class="text-sm text-subtle">
+          <a href="/" class="text-subtle no-underline hover:text-link">Home</a>
+          <span aria-hidden="true"> / </span>
+          <a href="/blog/" class="text-subtle no-underline hover:text-link">Blog</a>
+        </nav>
+        <h1 class="mt-4 text-3xl font-semibold text-ink sm:text-4xl">{data.title}</h1>
+        <p class="mt-4 text-sm text-muted">
+          By {data.author}
+          {' · '}
+          <time datetime={data.published.toISOString()}>{formatDate(data.published)}</time>
+          {data.updated && (
+            <>
+              {' · Updated '}
+              <time datetime={data.updated.toISOString()}>{formatDate(data.updated)}</time>
+            </>
+          )}
+        </p>
+      </Container>
+    </header>
+
+    <Container size="narrow" class="py-12 md:py-16">
+      {data.image && (
+        <Image
+          src={data.image}
+          alt={data.imageAlt ?? ''}
+          width={1200}
+          sizes="(min-width: 768px) 720px, 100vw"
+          class="mb-10 w-full rounded-2xl border border-line"
+        />
+      )}
+      <div class="prose">
+        <Content />
+      </div>
+
+      {related && (
+        <aside class="mt-12 rounded-2xl border border-line bg-sunken p-6">
+          <p class="text-sm font-semibold uppercase tracking-wide text-link">Related class</p>
+          <p class="mt-2 text-lg font-semibold text-ink">{related.name}</p>
+          <p class="mt-1 leading-relaxed text-muted">{related.summary}</p>
+          <a href={related.href} class="mt-3 inline-flex items-center gap-1 font-semibold text-link no-underline hover:text-link-hover">
+            About {related.name.toLowerCase()} classes <ArrowRight size={16} aria-hidden="true" />
+          </a>
+        </aside>
+      )}
+    </Container>
+  </article>
+
+  <CtaPanel />
+</BaseLayout>

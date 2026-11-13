@@ -152,3 +152,29 @@ export function videoSchema(id: string, name: string, uploadDate: string) {
     publisher: { '@id': schoolId },
   };
 }
+
+/** A blog post written from the teachers' experience. */
+export function blogPostingSchema(post: {
+  title: string;
+  description: string;
+  path: string;
+  published: Date;
+  updated?: Date;
+  author: string;
+  imageUrl?: string;
+}) {
+  return {
+    '@context': context,
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    url: canonicalUrl(post.path),
+    mainEntityOfPage: canonicalUrl(post.path),
+    datePublished: post.published.toISOString(),
+    dateModified: (post.updated ?? post.published).toISOString(),
+    inLanguage: 'en',
+    author: { '@type': 'Person', name: post.author, worksFor: { '@id': schoolId } },
+    publisher: { '@id': schoolId },
+    ...(post.imageUrl ? { image: post.imageUrl } : {}),
+  };
+}

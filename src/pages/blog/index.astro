@@ -1,0 +1,70 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import { breadcrumbSchema, pageSchema } from '../../utils/schema';
+import { formatDate, publishedPosts } from '../../utils/blog';
+
+const title = 'Veena, Violin and Carnatic Music Blog';
+const description =
+  'Answers to the questions parents and learners ask about the veena, Carnatic violin and vocal, written from our teachers’ experience.';
+
+const posts = await publishedPosts();
+// Until the first post is published, keep the empty page out of search.
+const noindex = posts.length === 0;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  noindex={noindex}
+  jsonLd={[
+    pageSchema('Blog', title, '/blog/', description),
+    breadcrumbSchema([{ name: 'Blog', path: '/blog/' }]),
+  ]}
+>
+  <section class="hero-surface border-b border-line py-14 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        level={1}
+        eyebrow="Blog"
+        title="Questions from parents and learners"
+        lead="Short, honest answers from our teachers about learning the veena, violin and Carnatic vocal."
+      />
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="default">
+      {posts.length === 0 ? (
+        <p class="text-center text-lg text-muted">Our first articles are on their way.</p>
+      ) : (
+        <ul class="space-y-5">
+          {posts.map((post) => (
+            <li class="rounded-2xl border border-line bg-surface p-6 transition hover:border-brand">
+              <p class="text-sm text-subtle">
+                <time datetime={post.data.published.toISOString()}>{formatDate(post.data.published)}</time>
+                {' · '}
+                {post.data.author}
+              </p>
+              <h2 class="mt-2 text-2xl font-semibold text-ink">
+                <a href={`/blog/${post.id}/`} class="text-ink no-underline hover:text-link">{post.data.title}</a>
+              </h2>
+              <p class="mt-2 leading-relaxed text-muted">{post.data.description}</p>
+              <a
+                href={`/blog/${post.id}/`}
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-link no-underline hover:text-link-hover"
+              >
+                Read the answer <ArrowRight size={16} aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Container>
+  </section>
+
+  <CtaPanel />
+</BaseLayout>
