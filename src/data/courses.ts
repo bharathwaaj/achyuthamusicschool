@@ -35,6 +35,8 @@ export interface CoursePageContent {
   /** Plain statements about how classes run. */
   howItWorks: string[];
   faqs: { question: string; answer: string }[];
+  /** Playful facts shown as flip cards. General knowledge, worth checking. */
+  facts: { question: string; answer: string }[];
 }
 
 export const courses: Course[] = [
@@ -68,6 +70,12 @@ export const courses: Course[] = [
         'Online classes, so you can join from any city.',
         'In-person classes at our school in Kovaipudur, Coimbatore, for students who live nearby.',
         'Message us to talk about timings.',
+      ],
+      facts: [
+        { question: 'How many frets does a veena have?', answer: 'Twenty-four, set in wax along its long neck.' },
+        { question: 'And how many strings?', answer: 'Seven. Four play the melody, and three along the side keep the rhythm.' },
+        { question: 'What is it carved from?', answer: 'Traditionally, jackfruit wood, shaped by hand.' },
+        { question: 'Which instrument was first in India to get a GI tag?', answer: 'The Thanjavur veena, in 2013.' },
       ],
       faqs: [
         { question: 'Can a complete beginner learn the veena?', answer: 'Yes. Many students begin with no earlier experience. We start from the basics and go at your pace.' },
@@ -106,6 +114,12 @@ export const courses: Course[] = [
         'Online classes, so you can join from any city.',
         'Weekend sessions are available.',
         'In-person classes at our school in Kovaipudur, Coimbatore, for students who live nearby.',
+      ],
+      facts: [
+        { question: 'Is the Carnatic violin a different instrument?', answer: 'No, it is the same violin. What changes is how it is held, tuned and played.' },
+        { question: 'Why rest it on the foot?', answer: 'Sitting on the floor with the scroll on the foot frees the left hand to slide smoothly between notes.' },
+        { question: 'How long has it been in Carnatic music?', answer: 'About two hundred years. Baluswami Dikshitar, brother of the composer Muthuswami Dikshitar, is credited with bringing it in.' },
+        { question: 'What did our guru play?', answer: 'The violin. Sri S.V. Achyutha Iyer was a violinist.' },
       ],
       faqs: [
         { question: 'Is this Western or Carnatic violin?', answer: 'Our classes teach the violin in the Carnatic style.' },
@@ -146,6 +160,12 @@ export const courses: Course[] = [
         'Weekend classes on Saturday and Sunday, in the morning (9:00 AM to 12:00 PM) or the evening (4:00 PM to 7:00 PM).',
         'One-on-one sessions are available for students who need more personal attention.',
         'In-person classes at our school in Kovaipudur, Coimbatore, for students who live nearby.',
+      ],
+      facts: [
+        { question: 'How many parent ragas are there?', answer: 'Seventy-two, called the melakarta ragas. Many more ragas grow from them.' },
+        { question: 'What is sruti?', answer: 'The steady base note you sing against. An old saying calls sruti the mother of music.' },
+        { question: 'Do instruments copy the voice?', answer: 'Yes. In Carnatic music the veena and violin try to sing, following every slide and turn of the voice.' },
+        { question: 'Who are the Trinity?', answer: 'Thyagaraja, Muthuswami Dikshitar and Shyama Shastri, whose songs sit at the heart of Carnatic music.' },
       ],
       faqs: [
         { question: 'I have never sung Carnatic music. Can I join?', answer: 'Yes. Lessons are open to beginners as well as advanced learners.' },

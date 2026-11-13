@@ -12,6 +12,7 @@ import CourseCard from '../../components/CourseCard.astro';
 import Faq from '../../components/Faq.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
 import HeroArt from '../../components/HeroArt.astro';
+import FactCards from '../../components/FactCards.astro';
 import { courses } from '../../data/courses';
 import { objectBrief } from '../../data/imagePrompts';
 import type { Course } from '../../data/courses';
@@ -104,6 +105,8 @@ const faqSchema = {
       </ul>
     </Container>
   </section>
+
+  <FactCards facts={page.facts} />
 
   <section class="py-14 md:py-16">
     <Container size="narrow">
