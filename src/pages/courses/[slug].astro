@@ -1,0 +1,122 @@
+---
+import { MessageCircle } from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Button from '../../components/Button.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import Faq from '../../components/Faq.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import { courses } from '../../data/courses';
+import type { Course } from '../../data/courses';
+import { site } from '../../config/site';
+import { canonicalUrl } from '../../utils/seo';
+import { whatsappLink, whatsappMessages } from '../../utils/whatsapp';
+
+export function getStaticPaths() {
+  return courses.map((course) => ({ params: { slug: course.slug }, props: { course } }));
+}
+
+interface Props {
+  course: Course;
+}
+
+const { course } = Astro.props;
+const { page } = course;
+const message = whatsappMessages[course.whatsapp];
+const others = courses.filter((other) => other.slug !== course.slug);
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: page.heading,
+  description: page.description,
+  url: canonicalUrl(course.href),
+  provider: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: page.faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<BaseLayout title={page.title} description={page.description} jsonLd={[courseSchema, faqSchema]}>
+  <section class="border-b border-line bg-brand-soft">
+    <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
+      <div>
+        <SectionHeading level={1} eyebrow={page.eyebrow} title={page.heading} lead={page.lead} />
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href={whatsappLink(message)} external size="lg">
+            <MessageCircle size={17} aria-hidden="true" /> WhatsApp us
+          </Button>
+          <Button href="/courses/" variant="secondary" size="lg">All classes</Button>
+        </div>
+      </div>
+      <ImagePlaceholder prompt={course.heroPrompt} width={1200} height={675} loading="eager" />
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="narrow">
+      <SectionHeading title="About the class" />
+      <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">
+        {page.about.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-y border-line bg-sunken py-14 md:py-16">
+    <Container size="wide">
+      <SectionHeading title="What you will learn" />
+      <ul class="mt-8 grid gap-5 md:grid-cols-2">
+        {page.learn.map((item) => (
+          <li class="rounded-2xl border border-line bg-surface p-6">
+            <h3 class="text-lg font-semibold text-ink">{item.title}</h3>
+            <p class="mt-2 leading-relaxed text-muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="narrow">
+      <SectionHeading title="How classes work" />
+      <ul class="mt-6 list-disc space-y-2 pl-5 text-lg leading-relaxed text-muted marker:text-link">
+        {page.howItWorks.map((point) => <li>{point}</li>)}
+      </ul>
+      <p class="mt-6 leading-relaxed text-muted">
+        Fees depend on the number of classes and the level. Message us and we will share the
+        current details.
+      </p>
+    </Container>
+  </section>
+
+  <section class="pb-14 md:pb-16">
+    <Container size="narrow">
+      <SectionHeading title="Questions you may have" />
+      <div class="mt-8"><Faq items={page.faqs} /></div>
+    </Container>
+  </section>
+
+  <section class="border-t border-line py-14 md:py-16">
+    <Container size="wide">
+      <SectionHeading title="Other classes" />
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {others.map((other) => <CourseCard course={other} />)}
+      </div>
+    </Container>
+  </section>
+
+  <CtaPanel
+    title="Ready to begin?"
+    text="Send us a message and tell us who will be learning. We will help you choose a timing that suits you."
+    {message}
+  />
+</BaseLayout>
