@@ -1,0 +1,36 @@
+---
+import { Compass, MessageCircle } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { courses } from '../data/courses';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
+---
+
+<BaseLayout title="Page not found" description="This page could not be found." noindex>
+  <section class="py-20 md:py-28">
+    <Container size="narrow" class="text-center">
+      <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-soft text-link">
+        <Compass size={30} aria-hidden="true" />
+      </span>
+      <h1 class="mt-6 text-4xl font-semibold text-ink sm:text-5xl">We could not find that page</h1>
+      <p class="mx-auto mt-4 max-w-md text-lg leading-relaxed text-muted">
+        It may have moved. Try one of these, or message us and we will help.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/" size="lg">Go to the home page</Button>
+        {courses.map((course) => (
+          <Button href={course.href} variant="secondary" size="lg">{course.name}</Button>
+        ))}
+      </div>
+      <p class="mt-8">
+        <a
+          href={whatsappLink(whatsappMessages.general)}
+          class="inline-flex items-center gap-2 font-semibold text-link hover:text-link-hover"
+        >
+          <MessageCircle size={18} aria-hidden="true" /> Message us on WhatsApp
+        </a>
+      </p>
+    </Container>
+  </section>
+</BaseLayout>
