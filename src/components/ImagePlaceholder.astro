@@ -7,6 +7,9 @@
  * until a short `alt` is given. It also describes
  * image, so each empty slot documents what should go in it.
  *
+ * Images in these slots are generated, so a small "Illustrative image"
+ * label is shown on them. Real photos of the school use <Image> directly.
+ *
  * Once the image is saved under src/assets/, pass it as `src`:
  *
  *   import veena from '../assets/heroes/veena.png';
@@ -55,7 +58,7 @@ const ratio = aspect ?? `${width}/${height}`;
 ---
 
 {src ? (
-  <div class={`w-full overflow-hidden ${rounded} ${className}`} style={`aspect-ratio: ${ratio};`}>
+  <div class={`relative w-full overflow-hidden ${rounded} ${className}`} style={`aspect-ratio: ${ratio};`}>
     <Image
       src={src}
       alt={alt ?? prompt}
@@ -67,6 +70,11 @@ const ratio = aspect ?? `${width}/${height}`;
       sizes={sizes}
       class="h-full w-full object-cover"
     />
+    {/* Images in these slots are generated, so say so rather than let
+        visitors take them for photos of the school's own students. */}
+    <span class="pointer-events-none absolute bottom-2 right-2 rounded-full bg-black/45 px-2 py-0.5 text-[10px] font-medium tracking-wide text-white/90">
+      Illustrative image
+    </span>
   </div>
 ) : (
   <figure
