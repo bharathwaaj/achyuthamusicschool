@@ -42,8 +42,8 @@ const whyPoints = [
   },
 ];
 
-// The street address and opening hours are left out until the school
-// confirms them. Do not invent values here.
+// Opening hours are left out until the school confirms them. Do not
+// invent values here. No service area is listed.
 const schoolSchema = {
   '@context': 'https://schema.org',
   '@type': ['EducationalOrganization', 'LocalBusiness'],
@@ -55,10 +55,18 @@ const schoolSchema = {
   email: site.email,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: site.area,
+    streetAddress: site.streetAddress,
+    addressLocality: site.city,
     addressRegion: site.state,
+    postalCode: site.pincode,
     addressCountry: site.country,
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  hasMap: site.mapsUrl,
   knowsAbout: ['Veena', 'Carnatic violin', 'Carnatic vocal'],
 };
 
