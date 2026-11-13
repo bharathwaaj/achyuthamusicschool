@@ -49,7 +49,12 @@ const howItWorks = [
 const classImages = { veena: veenaOnline, violin: violinPractice, vocal: vocalPractice };
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={instruments}
+  imageAlt="A veena, a violin and a tambura resting against a wall"
+>
   <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
     <HeroArt variant="courses" />
     <Container size="wide" class="grid items-center gap-10 md:grid-cols-2">

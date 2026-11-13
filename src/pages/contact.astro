@@ -41,7 +41,13 @@ const contactSchema = {
 };
 ---
 
-<BaseLayout title={title} description={description} jsonLd={[contactSchema]}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[contactSchema]}
+  image={studentsPhoto}
+  imageAlt="A group of young veena students seated together with their instruments"
+>
   <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
     <HeroArt variant="contact" />
     <Container size="wide" class="grid items-center gap-10 md:grid-cols-2">

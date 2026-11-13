@@ -71,7 +71,13 @@ const faqSchema = {
 };
 ---
 
-<BaseLayout title={page.title} description={page.description} jsonLd={[courseSchema, faqSchema]}>
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  jsonLd={[courseSchema, faqSchema]}
+  image={course.heroImage}
+  imageAlt={heroAlts[course.slug]}
+>
   <section class="hero-surface hero-surface--art border-b border-line">
     <HeroArt variant={course.slug} />
     <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">

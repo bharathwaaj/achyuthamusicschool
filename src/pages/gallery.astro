@@ -64,7 +64,12 @@ const entries = await Promise.all(
 );
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={groupClass}
+  imageAlt="A group of young veena students seated together with their instruments"
+>
   <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
     <HeroArt variant="gallery" />
     <Container size="wide">

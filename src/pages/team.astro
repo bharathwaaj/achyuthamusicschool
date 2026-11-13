@@ -7,6 +7,7 @@ import CtaPanel from '../components/CtaPanel.astro';
 import HeroArt from '../components/HeroArt.astro';
 import jayanthi from '../assets/images/jayanthi-ravichandran.jpg';
 import divya from '../assets/images/dr-divya.jpg';
+import groupClass from '../assets/gallery/veena-group-class.jpg';
 import { site } from '../config/site';
 
 const title = 'Our Veena, Violin and Vocal Teachers';
@@ -29,7 +30,12 @@ const teachers = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={groupClass}
+  imageAlt="A group of young veena students seated together with their instruments"
+>
   <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
     <HeroArt variant="team" />
     <Container size="wide">
