@@ -1,5 +1,7 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { Play } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -9,19 +11,42 @@ import classroom from '../assets/gallery/veena-classroom.jpg';
 import stage from '../assets/gallery/festival-stage.jpg';
 import practice from '../assets/gallery/veena-practice.jpg';
 import portrait from '../assets/gallery/student-portrait.jpg';
+import videoAkshara from '../assets/gallery/video-akshara-kriti.jpg';
+import videoAlankaaram from '../assets/gallery/video-alankaaram.jpg';
+import videoPractice from '../assets/gallery/video-practice.jpg';
+import videoGroup from '../assets/gallery/video-group-performance.jpg';
 
-const title = 'Gallery: Veena Classes and Performances';
+const title = 'Gallery: Veena Classes, Practice and Performances';
 const description =
-  'Photos from Achyutha Music School: students learning the veena together, practising at home and performing on stage.';
+  'Photos and videos from Achyutha Music School: students learning the veena together, practising at home and performing on stage.';
 
-// Photos from the school's own collection. Captions describe only what is visible.
-const photos = [
-  { src: groupClass, alt: 'A group of young students seated on a mat with veenas in front of them' },
-  { src: practice, alt: 'A student practising the veena at home' },
-  { src: stage, alt: 'Veena students performing on stage at a music festival' },
-  { src: classroom, alt: 'Students holding veenas in a classroom' },
-  { src: portrait, alt: 'A young student seated on the floor at home before class' },
+type Item =
+  | { kind: 'photo'; image: ImageMetadata; alt: string }
+  | { kind: 'video'; image: ImageMetadata; alt: string; id: string };
+
+// Photos and videos from the school's own collection. Alt text describes
+// only what is visible. Videos come from the school's YouTube channel.
+// Add new items here in any size: the layout fits each to its shape.
+const items: Item[] = [
+  { kind: 'video', image: videoAkshara, alt: 'Akshara playing a kriti on the veena', id: 'LQGaRtBZ0GA' },
+  { kind: 'photo', image: groupClass, alt: 'A group of young students seated on a mat with veenas in front of them' },
+  { kind: 'photo', image: practice, alt: 'A student practising the veena at home' },
+  { kind: 'video', image: videoGroup, alt: 'A group of students performing the veena together', id: '4WSlCI_V3Zg' },
+  { kind: 'photo', image: stage, alt: 'Veena students performing on stage at a music festival' },
+  { kind: 'video', image: videoAlankaaram, alt: 'A student playing alankaram exercises on the veena', id: 'XD6OfTIuSOg' },
+  { kind: 'photo', image: classroom, alt: 'Students holding veenas in a classroom' },
+  { kind: 'photo', image: portrait, alt: 'A young student seated on the floor at home before class' },
+  { kind: 'video', image: videoPractice, alt: 'A student practising the veena at home', id: 'hsRpEeCjwWI' },
 ];
+
+// The enlarged version of each photo shown in the viewer.
+const entries = await Promise.all(
+  items.map(async (item) => ({
+    ...item,
+    ratio: item.image.width / item.image.height,
+    full: item.kind === 'photo' ? (await getImage({ src: item.image, width: 1600 })).src : '',
+  })),
+);
 ---
 
 <BaseLayout title={title} description={description}>
@@ -31,23 +56,46 @@ const photos = [
         level={1}
         eyebrow="Gallery"
         title="Moments from our classes"
-        lead="Students learning, practising and performing."
+        lead="Photos and videos of students learning, practising and performing."
       />
     </Container>
   </section>
 
   <section class="py-14 md:py-16">
     <Container size="wide">
-      <ul class="columns-1 gap-4 sm:columns-2 lg:columns-3">
-        {photos.map((photo, index) => (
-          <li class="mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-line">
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              width={900}
-              loading={index < 2 ? 'eager' : 'lazy'}
-              class="h-auto w-full"
-            />
+      <!-- Each tile is as wide as its photo's shape, so rows fill evenly
+           whatever the sizes. -->
+      <ul class="flex flex-wrap gap-2 [--row-h:9rem] after:grow-[1000] after:content-[''] sm:[--row-h:12rem] lg:[--row-h:15rem]">
+        {entries.map((entry) => (
+          <li
+            class="relative overflow-hidden rounded-xl border border-line bg-sunken"
+            style={`aspect-ratio: ${entry.ratio}; flex: ${entry.ratio * 100} 1 calc(${entry.ratio} * var(--row-h));`}
+          >
+            <button
+              type="button"
+              class="group absolute inset-0 block h-full w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-brand"
+              data-viewer
+              data-kind={entry.kind}
+              data-src={entry.full}
+              data-video={entry.kind === 'video' ? entry.id : undefined}
+              data-alt={entry.alt}
+              aria-label={entry.kind === 'video' ? `Play video: ${entry.alt}` : `View photo: ${entry.alt}`}
+            >
+              <Image
+                src={entry.image}
+                alt=""
+                width={900}
+                loading="lazy"
+                class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+              />
+              {entry.kind === 'video' && (
+                <span class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/30">
+                  <span class="flex h-14 w-14 items-center justify-center rounded-full bg-brand text-brand-on shadow-lg">
+                    <Play size={24} fill="currentColor" aria-hidden="true" />
+                  </span>
+                </span>
+              )}
+            </button>
           </li>
         ))}
       </ul>
@@ -55,4 +103,53 @@ const photos = [
   </section>
 
   <CtaPanel title="Join our next class" text="Send us a message and tell us who will be learning. We will help you choose a class and a timing that suits you." />
+
+  <dialog
+    id="viewer"
+    class="m-auto max-h-[92vh] w-[min(92vw,64rem)] overflow-hidden rounded-2xl border-0 bg-black p-0 backdrop:bg-black/80"
+    aria-label="Gallery viewer"
+  >
+    <form method="dialog" class="absolute right-3 top-3 z-10">
+      <button type="submit" class="rounded-full bg-black/60 px-3 py-1.5 text-sm font-medium text-white hover:bg-black/80" aria-label="Close">
+        Close
+      </button>
+    </form>
+    <div id="viewer-body" class="flex items-center justify-center"></div>
+  </dialog>
 </BaseLayout>
+
+<script>
+  // Photos open enlarged. Videos load from YouTube only when opened, so the
+  // page makes no third-party requests until then.
+  const dialog = document.getElementById('viewer') as HTMLDialogElement | null;
+  const body = document.getElementById('viewer-body');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-viewer]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!dialog || !body) return;
+      if (button.dataset.kind === 'video') {
+        const frame = document.createElement('iframe');
+        frame.src = `https://www.youtube-nocookie.com/embed/${button.dataset.video}?autoplay=1&rel=0`;
+        frame.title = button.dataset.alt ?? 'Video';
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+        frame.allowFullscreen = true;
+        frame.className = 'w-full';
+        frame.style.aspectRatio = '16 / 9';
+        body.replaceChildren(frame);
+      } else {
+        const img = document.createElement('img');
+        img.src = button.dataset.src ?? '';
+        img.alt = button.dataset.alt ?? '';
+        img.className = 'max-h-[92vh] w-auto max-w-full object-contain';
+        body.replaceChildren(img);
+      }
+      dialog.showModal();
+    });
+  });
+
+  // Stop any playing video when the viewer closes or the backdrop is clicked.
+  dialog?.addEventListener('close', () => body?.replaceChildren());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>
