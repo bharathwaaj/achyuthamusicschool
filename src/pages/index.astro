@@ -7,12 +7,31 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CourseCard from '../components/CourseCard.astro';
 import { courses } from '../data/courses';
+import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 
 const title = 'Carnatic Music Classes in Coimbatore | Vocal, Violin and Veena';
 const description =
   'Learn Carnatic vocal, violin or veena in Kovaipudur, Coimbatore. Personal lessons for children and adults in the tradition of Sri S.V. Achyutha Iyer.';
+
+const whyPoints = [
+  {
+    icon: HeartHandshake,
+    title: 'Lessons shaped around the student',
+    text: 'Each student learns at their own pace. Children, adults, first-time learners and those returning to music all begin with a conversation about where they are.',
+  },
+  {
+    icon: BookOpenText,
+    title: 'Rooted in a guru\'s teaching',
+    text: `The school is founded on the teachings of ${site.guru} and carries forward his care for the discipline and beauty of Carnatic music.`,
+  },
+  {
+    icon: CalendarClock,
+    title: 'Timings that suit family life',
+    text: 'Veena classes are also available online, and vocal and violin have weekend sessions, so lessons can fit around school and work.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -56,6 +75,26 @@ const description =
       />
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         {courses.map((course) => <CourseCard course={course} />)}
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-y border-line bg-sunken py-16 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        title="Learning at Achyutha"
+        lead="Carnatic music is learned slowly and in person, with a teacher who listens. The classes are set up to make that easy for families."
+      />
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {whyPoints.map((point) => (
+          <div>
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-brand-soft text-link">
+              <point.icon size={22} aria-hidden="true" />
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-ink">{point.title}</h3>
+            <p class="mt-2 leading-relaxed text-muted">{point.text}</p>
+          </div>
+        ))}
       </div>
     </Container>
   </section>
