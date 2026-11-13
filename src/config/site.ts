@@ -14,6 +14,7 @@ export const site = {
   phone: '+919445913868',
   phoneDisplay: '+91 94459 13868',
   whatsappNumber: '918838291375',
+  whatsappDisplay: '+91 88382 91375',
   area: 'Kovaipudur',
   city: 'Coimbatore',
   state: 'Tamil Nadu',

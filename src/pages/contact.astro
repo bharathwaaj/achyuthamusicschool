@@ -12,6 +12,12 @@ import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 const title = `Contact ${site.name}: WhatsApp, Email and Visits`;
 const description = `Message ${site.name} on WhatsApp to ask about veena, violin or Carnatic vocal classes. You can also email us, or visit our school in ${site.area}, ${site.city}.`;
 
+const ways = [
+  { icon: MessageCircle, label: 'WhatsApp', value: site.whatsappDisplay, href: whatsappLink(whatsappMessages.general), external: true },
+  { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}`, external: false },
+  { icon: Phone, label: 'Phone', value: site.phoneDisplay, href: `tel:${site.phone}`, external: false },
+];
+
 const faqs = [
   {
     question: 'Is there an age limit to learn music?',
@@ -50,39 +56,47 @@ const contactSchema = {
   </section>
 
   <section class="py-14 md:py-16">
-    <Container size="wide">
-      <ul class="grid gap-5 md:grid-cols-[1fr_1fr_1.6fr]">
-        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
-          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
-            <Mail size={26} aria-hidden="true" />
+    <Container size="wide" class="grid gap-5 md:grid-cols-2">
+      <div class="rounded-2xl border border-line bg-surface p-6 md:p-8">
+        <h2 class="text-xl font-semibold text-ink">Get in touch</h2>
+        <ul class="mt-5 space-y-4">
+          {ways.map((way) => (
+            <li class="flex items-center gap-4">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft text-link">
+                <way.icon size={20} aria-hidden="true" />
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm text-muted">{way.label}</span>
+                <a
+                  href={way.href}
+                  class="break-words font-medium text-link hover:text-link-hover"
+                  target={way.external ? '_blank' : undefined}
+                  rel={way.external ? 'noopener noreferrer' : undefined}
+                >
+                  {way.value}
+                </a>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-line bg-surface p-6 md:p-8">
+        <h2 class="text-xl font-semibold text-ink">Visit us</h2>
+        <div class="mt-5 flex gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft text-link">
+            <MapPin size={20} aria-hidden="true" />
           </span>
-          <h2 class="mt-4 text-lg font-semibold text-ink">Email</h2>
-          <p class="mt-1 break-words">
-            <a href={`mailto:${site.email}`} class="text-link hover:text-link-hover">{site.email}</a>
-          </p>
-        </li>
-        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
-          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
-            <Phone size={26} aria-hidden="true" />
-          </span>
-          <h2 class="mt-4 text-lg font-semibold text-ink">Phone</h2>
-          <p class="mt-1">
-            <a href={`tel:${site.phone}`} class="text-link hover:text-link-hover">{site.phoneDisplay}</a>
-          </p>
-        </li>
-        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
-          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
-            <MapPin size={26} aria-hidden="true" />
-          </span>
-          <h2 class="mt-4 text-lg font-semibold text-ink">Visit us</h2>
-          <p class="mt-1 text-balance text-muted">{site.address}</p>
-          <p class="mt-2 text-balance text-sm text-muted">{site.landmark}</p>
-        </li>
-      </ul>
-      <p class="mx-auto mt-8 max-w-xl text-center leading-relaxed text-muted">
-        Planning to visit our school in {site.area}? Message us first, so we can find a time that
-        suits you.
-      </p>
+          <div>
+            <p class="font-medium text-ink">{site.address}</p>
+            <p class="mt-1 text-balance text-sm text-muted">{site.landmark}</p>
+          </div>
+        </div>
+        <p class="mt-5 border-t border-line pt-5 leading-relaxed text-muted">
+          Planning to visit our school in {site.area}? Message us first, so we can find a time that
+          suits you.
+        </p>
+      </div>
     </Container>
   </section>
 
