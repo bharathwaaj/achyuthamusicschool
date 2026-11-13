@@ -1,0 +1,14 @@
+// Cloudflare Workers static assets: serve the built site in dist/ as
+// plain files, with no server code. Cloudflare's build runs
+// "npm run build" and then "npx wrangler deploy", which reads this file.
+// Without it, wrangler tries to add a server adapter to the project.
+{
+  "name": "achyuthamusicschool",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // Serve dist/404.html, with a 404 status, for addresses that do not
+    // exist. The _redirects file in dist/ is applied automatically.
+    "not_found_handling": "404-page"
+  }
+}

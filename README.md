@@ -44,16 +44,26 @@ serves that build, and `npx astro check` type-checks the project.
 
 Old WordPress addresses are redirected in three places that must be kept in
 step: `redirects` in `astro.config.mjs` (works on any host),
-`public/_redirects` (Cloudflare Pages) and `vercel.json` (Vercel). The last
-two give real permanent redirects.
+`public/_redirects` (Cloudflare) and `vercel.json` (Vercel). The last two
+give real permanent redirects.
 
 ## Deploying
 
 The build is plain static HTML, so no adapter is needed.
 
-- **Cloudflare Pages:** build command `npm run build`, output directory
-  `dist`.
-- **Vercel:** the Astro preset works as it is.
+The site is hosted on Cloudflare as a Worker that serves static files. The
+project is connected to this repository, so every push to `main` builds and
+deploys it.
+
+- **Build command:** `npm run build`
+- **Deploy command:** `npx wrangler deploy`, which reads `wrangler.jsonc`
+  and uploads `dist/`. Missing pages get `404.html`, and
+  `public/_redirects` handles the old WordPress addresses.
+
+To check a deploy without publishing it, run `npm run build` and then
+`npx wrangler deploy --dry-run`.
+
+`vercel.json` keeps the same redirects in case the site ever moves to Vercel.
 
 Images are optimised during the build, so the host's image service is not
 used.
