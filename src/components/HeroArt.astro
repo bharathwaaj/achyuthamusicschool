@@ -18,6 +18,10 @@ const { variant } = Astro.props;
 const contactPath =
   'M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 C 1028 57, 1036 70, 1048 74';
 
+// The dotted trail carries on past the plane's landing point to the
+// house wall, so the dots meet the house.
+const contactTrailTail = 'S 1090 82, 1110 85';
+
 // Note and leaf shapes shared by the vocal and violin drawings.
 const notes = (positions: [number, number][]) => positions;
 ---
@@ -177,7 +181,8 @@ const notes = (positions: [number, number][]) => positions;
       <svg class="contact-art" viewBox="0 0 1200 100" preserveAspectRatio="xMinYMax meet" data-base-path={contactPath}>
         <path
           class="stroke contact-trail"
-          d={contactPath}
+          d={`${contactPath} ${contactTrailTail}`}
+          data-tail={contactTrailTail}
           stroke-width="2.4"
           stroke-dasharray="1 10"
           opacity="0.7"
@@ -227,7 +232,16 @@ const notes = (positions: [number, number][]) => positions;
       return value.toFixed(1);
     });
     svg.setAttribute('viewBox', `0 0 ${width.toFixed(1)} 100`);
-    svg.querySelector('.contact-trail')?.setAttribute('d', path);
+    // The trail's last stretch moves with the house rather than stretching.
+    const trail = svg.querySelector<SVGPathElement>('.contact-trail');
+    const shift = width - houseRight;
+    let tailIndex = 0;
+    const tail = (trail?.dataset.tail ?? '').replace(/-?\d+(\.\d+)?/g, (n) => {
+      const value = tailIndex % 2 === 0 ? Number(n) + shift : Number(n);
+      tailIndex += 1;
+      return value.toFixed(1);
+    });
+    trail?.setAttribute('d', `${path} ${tail}`);
     svg.querySelector('.contact-house')?.setAttribute('transform', `translate(${(width - houseRight).toFixed(1)} 0)`);
     const plane = svg.querySelector<SVGGElement>('.plane');
     if (plane) plane.style.offsetPath = `path('${path}')`;
