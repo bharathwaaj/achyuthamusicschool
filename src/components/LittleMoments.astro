@@ -1,0 +1,92 @@
+---
+/**
+ * "The little moments" wall: short, recognisable scenes from learning
+ * music at home, written on slightly crooked sticky notes with a strip of
+ * tape. Playful on purpose; these are moments, not claims.
+ */
+import Container from './Container.astro';
+import SectionHeading from './SectionHeading.astro';
+
+const moments = [
+  'That first time your fingers find the right fret, and it rings.',
+  "Practising while amma's filter coffee brews.",
+  'When paati starts humming along from the kitchen.',
+  'Ten minutes before school, and the veena still gets its turn.',
+  'Learning a new song on Saturday. Humming it all week.',
+  'Back to music after twenty years, and the fingers remember.',
+];
+
+// A different tilt and paper tone for each note, so the wall looks hand
+// pinned rather than laid out by a grid.
+const tilts = [-2.5, 1.8, -1.2, 2.4, -1.8, 1.2];
+---
+
+<section class="py-16 md:py-20">
+  <Container size="wide">
+    <SectionHeading
+      title="The little moments we love"
+      lead="Music fits into ordinary days. These are the bits our students tell us about."
+      align="center"
+    />
+    <ul class="moments mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {moments.map((moment, index) => (
+        <li class="note" style={`--tilt: ${tilts[index % tilts.length]}deg`} data-tone={index % 3}>
+          <span class="note__tape" aria-hidden="true"></span>
+          <p>{moment}</p>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<style>
+  .note {
+    position: relative;
+    padding: 1.75rem 1.5rem 1.5rem;
+    border-radius: 0.25rem;
+    background: var(--c-brand-soft);
+    color: var(--c-ink);
+    box-shadow: 0 10px 20px -14px rgb(0 0 0 / 0.55);
+    transform: rotate(var(--tilt));
+    transition: transform 0.25s ease;
+  }
+
+  .note[data-tone='1'] {
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+  }
+
+  .note[data-tone='2'] {
+    background: var(--c-sunken);
+  }
+
+  .note:hover {
+    transform: rotate(0deg) scale(1.03);
+  }
+
+  /* A strip of translucent tape holding the note up. */
+  .note__tape {
+    position: absolute;
+    top: -0.65rem;
+    left: 50%;
+    width: 5.5rem;
+    height: 1.4rem;
+    translate: -50% 0;
+    rotate: -3deg;
+    background: color-mix(in oklab, var(--c-brand) 35%, transparent);
+    border-radius: 2px;
+  }
+
+  .note p {
+    font-family: var(--font-hand);
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .note {
+      transition: none;
+    }
+  }
+</style>

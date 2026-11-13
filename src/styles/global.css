@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/lora";
+/* Handwritten face for playful notes only; latin, one weight. */
+@import "@fontsource/caveat/latin-600.css";
 
 /*
   Design tokens
@@ -93,6 +95,7 @@
 
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Lora Variable", ui-serif, Georgia, serif;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
 }
 
 @layer base {
