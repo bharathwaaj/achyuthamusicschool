@@ -1,0 +1,71 @@
+---
+import { MessageCircle, X } from '@lucide/astro';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
+
+interface Props {
+  message?: string;
+  text?: string;
+}
+
+const {
+  message = whatsappMessages.general,
+  text = 'Questions about classes? Send us a message on WhatsApp.',
+} = Astro.props;
+---
+
+<aside
+  id="whatsapp-nudge"
+  class="pointer-events-none fixed inset-x-0 bottom-0 z-40 translate-y-full px-3 pb-3 opacity-0 transition duration-300 sm:px-4 sm:pb-4"
+  aria-label="WhatsApp enquiry"
+  data-storage-key="whatsapp-nudge-dismissed"
+>
+  <div class="pointer-events-auto mx-auto flex max-w-xl items-center gap-3 rounded-2xl border border-line bg-surface p-3 shadow-lg sm:p-4">
+    <MessageCircle size={22} class="shrink-0 text-link" aria-hidden="true" />
+    <p class="flex-1 text-sm text-ink">{text}</p>
+    <a
+      href={whatsappLink(message)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="shrink-0 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-brand-on no-underline hover:bg-brand-strong hover:text-brand-on"
+    >
+      Message us
+    </a>
+    <button type="button" id="whatsapp-nudge-close" class="shrink-0 rounded-full p-1 text-muted hover:text-ink" aria-label="Dismiss">
+      <X size={18} aria-hidden="true" />
+    </button>
+  </div>
+</aside>
+
+<script>
+  const nudge = document.getElementById('whatsapp-nudge');
+  const key = nudge?.dataset.storageKey ?? 'whatsapp-nudge-dismissed';
+
+  const dismissed = () => {
+    try {
+      return sessionStorage.getItem(key) === '1';
+    } catch {
+      return false;
+    }
+  };
+
+  if (nudge && !dismissed()) {
+    const show = () => {
+      const scrolled = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
+      if (scrolled > 0.25) {
+        nudge.classList.remove('translate-y-full', 'opacity-0');
+        nudge.classList.add('translate-y-0', 'opacity-100');
+        window.removeEventListener('scroll', show);
+      }
+    };
+    window.addEventListener('scroll', show, { passive: true });
+  }
+
+  document.getElementById('whatsapp-nudge-close')?.addEventListener('click', () => {
+    nudge?.remove();
+    try {
+      sessionStorage.setItem(key, '1');
+    } catch {
+      // Ignore blocked storage; the nudge is already removed for this page.
+    }
+  });
+</script>
