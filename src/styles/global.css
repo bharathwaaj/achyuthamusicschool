@@ -246,3 +246,36 @@
     height: 5rem;
   }
 }
+
+/* A slow, gentle drift so the hero drawings feel alive without drawing
+   attention. Turned off for visitors who prefer reduced motion. */
+@keyframes hero-drift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(6px, -4px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-surface::before {
+    animation: hero-drift 7s ease-in-out infinite alternate;
+  }
+
+  /* Lotuses float and birds sit still, so they only bob. */
+  .hero-surface--veena::before,
+  .hero-surface--team::before {
+    animation-duration: 5s;
+    animation-name: hero-bob;
+  }
+}
+
+@keyframes hero-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-3px);
+  }
+}
