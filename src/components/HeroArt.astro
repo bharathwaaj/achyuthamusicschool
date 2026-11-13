@@ -96,21 +96,26 @@ const notes = (positions: [number, number][]) => positions;
     {variant === 'team' && (
       <svg viewBox="0 0 1200 100" preserveAspectRatio="xMaxYMax meet">
         <g class="stroke" stroke-width="1.5">
-          <path d="M-3000 55 L1200 55" />
-          <path d="M-3000 88 L1200 88" opacity="0.7" />
+          <path d="M-3000 55 L4200 55" />
+          <path d="M-3000 88 L4200 88" opacity="0.7" />
         </g>
         {[
           [150, 55, false, 1], [195, 55, true, 0.85], [420, 88, false, 1], [610, 55, true, 1],
           [660, 55, false, 0.8], [880, 88, true, 1.1], [1080, 55, false, 1],
         ].map(([x, y, flip, s], i) => (
           <g transform={`translate(${x} ${y}) scale(${flip ? -s : s} ${s})`}>
-            <g class="bird fill" style={`animation-delay: ${i * 1.9}s`}>
+            <g class="bird-land" style={`animation-delay: ${0.3 + i * 0.35}s`}>
+            <g class="bird-bob" style={`animation-delay: ${2.2 + i * 0.35}s; animation-duration: ${3.2 + (i % 3) * 0.6}s`}>
+            <g class="bird fill" style={`animation-delay: ${6 + i * 1.9}s`}>
+              <path class="wing" d="M-2 -15 C 2 -32, 12 -34, 15 -30 C 9 -24, 4 -18, -2 -15 Z" style={`animation-delay: ${0.3 + i * 0.35}s`} />
               <ellipse cx="0" cy="-11" rx="11" ry="9" />
               <circle cx="9" cy="-19" r="6.5" />
               <path d="M14.5 -21 L21 -18.5 L14.5 -16 Z" />
               <path d="M-8 -14 L-20 -21 L-17 -9 Z" />
               <rect x="-3" y="-3" width="1.6" height="4" />
               <rect x="2" y="-3" width="1.6" height="4" />
+            </g>
+            </g>
             </g>
           </g>
         ))}
@@ -165,6 +170,11 @@ const notes = (positions: [number, number][]) => positions;
     fill: currentColor;
   }
 
+  /* Wings only show while a bird is flying in. */
+  .wing {
+    opacity: 0;
+  }
+
   .stroke {
     fill: none;
     stroke: currentColor;
@@ -175,6 +185,8 @@ const notes = (positions: [number, number][]) => positions;
   .leaf,
   .lotus,
   .bird,
+  .bird-bob,
+  .bird-land,
   .steam {
     transform-box: fill-box;
     transform-origin: center;
@@ -206,7 +218,25 @@ const notes = (positions: [number, number][]) => positions;
       animation: lotus-float 8s ease-in-out infinite alternate;
     }
 
-    /* Birds stay still, then now and then tilt their heads. */
+    /* On first view each bird flies in from the upper right, flapping,
+       and settles on the string. This plays once. */
+    .bird-land {
+      animation: bird-land 1.8s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+    }
+
+    .wing {
+      transform-box: fill-box;
+      transform-origin: 0% 100%;
+      animation: wing-flap 1.8s linear both;
+    }
+
+    /* Then they breathe and sway softly on the string, each at its own
+       pace, and now and then tilt their heads. */
+    .bird-bob {
+      transform-origin: 50% 100%;
+      animation: bird-bob 3.5s ease-in-out infinite alternate;
+    }
+
     .bird {
       transform-origin: 50% 100%;
       animation: bird-tilt 13s ease-in-out infinite;
@@ -259,6 +289,87 @@ const notes = (positions: [number, number][]) => positions;
     }
     to {
       transform: translateY(-3px) rotate(1.5deg);
+    }
+  }
+
+  @keyframes bird-land {
+    0% {
+      opacity: 0;
+      transform: translate(90px, -70px) rotate(-12deg);
+    }
+    15% {
+      opacity: 1;
+    }
+    70% {
+      transform: translate(-3px, 2px) rotate(4deg);
+    }
+    85% {
+      transform: translate(1px, -2px) rotate(-1deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg);
+    }
+  }
+
+  @keyframes wing-flap {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    8% {
+      opacity: 1;
+      transform: scaleY(-0.5);
+    }
+    16% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    24% {
+      opacity: 1;
+      transform: scaleY(-0.5);
+    }
+    32% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    40% {
+      opacity: 1;
+      transform: scaleY(-0.5);
+    }
+    48% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    56% {
+      opacity: 1;
+      transform: scaleY(-0.5);
+    }
+    64% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    72% {
+      opacity: 1;
+      transform: scaleY(-0.5);
+    }
+    80% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    92%,
+    100% {
+      opacity: 0;
+      transform: scaleY(0.2);
+    }
+  }
+
+  @keyframes bird-bob {
+    from {
+      transform: translateY(0) rotate(-2deg) scaleY(1);
+    }
+    to {
+      transform: translateY(-1.5px) rotate(2deg) scaleY(1.04);
     }
   }
 
