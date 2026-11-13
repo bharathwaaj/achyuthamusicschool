@@ -1,0 +1,94 @@
+---
+import { BookOpenText, MessageCircle, Signal, Layers } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaPanel from '../components/CtaPanel.astro';
+import { courses } from '../data/courses';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
+
+const title = 'Fees and Enrollment for Veena, Violin and Vocal Classes';
+const description =
+  'Fees at Achyutha Music School depend on the number of classes and the level of learning. Message us on WhatsApp for the current fees and to enrol.';
+
+const factors = [
+  { icon: Layers, title: 'Number of classes', text: 'How many classes a student needs each month.' },
+  { icon: Signal, title: 'Level of learning', text: 'Where the student is now, from first lesson to advanced.' },
+  { icon: BookOpenText, title: 'Theory classes', text: 'Optional, held twice a month and charged separately.' },
+];
+
+const steps = ['Message us', 'Choose a class and timing', 'Begin at your own pace'];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="border-b border-line bg-brand-soft py-14 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        level={1}
+        eyebrow="Fees and enrollment"
+        title="Message us for fees"
+        lead="Every student is different, so we share fees once we know who will be learning."
+      />
+      <div class="mt-8">
+        <Button href={whatsappLink(whatsappMessages.fees)} external size="lg">
+          <MessageCircle size={17} aria-hidden="true" /> Ask about fees on WhatsApp
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="wide">
+      <SectionHeading title="What the fee depends on" align="center" />
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
+        {factors.map((item) => (
+          <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+            <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+              <item.icon size={26} aria-hidden="true" />
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+            <p class="mt-1 leading-relaxed text-muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <section class="border-y border-line bg-sunken py-14 md:py-16">
+    <Container size="narrow">
+      <SectionHeading title="How to enrol" align="center" />
+      <ol class="mt-10 grid gap-5 sm:grid-cols-3">
+        {steps.map((step, index) => (
+          <li class="flex flex-col items-center gap-3 rounded-2xl border border-line bg-surface p-5 text-center">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand font-semibold text-brand-on">
+              {index + 1}
+            </span>
+            <span class="font-medium text-ink">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="narrow">
+      <SectionHeading title="Ask about a class" align="center" />
+      <ul class="mt-8 flex flex-wrap justify-center gap-3">
+        {courses.map((course) => (
+          <li>
+            <Button href={whatsappLink(whatsappMessages[course.whatsapp])} external variant="secondary" size="lg">
+              {course.name}
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <CtaPanel
+    title="Ready when you are"
+    text="Tell us who will be learning and which class interests you. We will share the fees and suggest a timing."
+    message={whatsappMessages.fees}
+  />
+</BaseLayout>
