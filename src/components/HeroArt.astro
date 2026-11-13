@@ -168,19 +168,13 @@ const notes = (positions: [number, number][]) => positions;
       </svg>
     )}
     {variant === 'contact' && (
-      <svg viewBox="0 0 1200 100" preserveAspectRatio="xMaxYMax meet">
-        <defs>
-          <mask id="contact-trail" maskUnits="userSpaceOnUse" x="-50" y="-50" width="1300" height="200">
-            <path class="trail-reveal" d="M20 62 C 170 20, 270 90, 430 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78" pathLength="1" fill="none" stroke="#fff" stroke-width="12" />
-          </mask>
-        </defs>
+      <svg viewBox="0 0 1200 100" preserveAspectRatio="xMinYMax meet">
         <path
           class="stroke"
-          d="M20 62 C 170 20, 270 90, 430 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78"
+          d="M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 S 1070 76, 1094 80"
           stroke-width="2.4"
           stroke-dasharray="1 10"
           opacity="0.7"
-          mask="url(#contact-trail)"
         />
         <g class="fill">
           <path d="M1110 64 L1110 93 L1162 93 L1162 64 L1136 42 Z" />
@@ -190,8 +184,8 @@ const notes = (positions: [number, number][]) => positions;
         <rect class="door" x="1138" y="76" width="10" height="17" rx="1" />
         <path class="stroke smoke" d="M1152 40 C 1146 32, 1158 26, 1152 18" stroke-width="2" />
         <path class="stroke smoke smoke--late" d="M1154 40 C 1162 32, 1150 26, 1158 18" stroke-width="2" />
-        <g class="plane" style="offset-path: path('M20 62 C 170 20, 270 90, 430 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78');">
-          <g transform="rotate(-8) scale(1.8)">
+        <g class="plane" style="offset-path: path('M0 64 C 140 30, 300 22, 430 40 S 620 82, 760 66 S 940 34, 1010 52 S 1070 76, 1094 80');">
+          <g transform="scale(1.45) rotate(-8) translate(27 1)">
             <path class="fill" d="M24 -1 L-20 -17 L-6 -1 Z" />
             <path class="fill" d="M24 -1 L-6 -1 L-2 8 Z" opacity="0.45" />
             <path class="fill" d="M24 -1 L-6 -1 L-18 6 Z" opacity="0.7" />
@@ -261,13 +255,9 @@ const notes = (positions: [number, number][]) => positions;
     fill: var(--c-brand-soft);
   }
 
-  /* With motion off the whole trail shows. */
-  .trail-reveal {
-    stroke-dasharray: 1 1;
-    stroke-dashoffset: 0;
-  }
-
   /* With motion off, the plane rests partway along its path. */
+  /* The plane is drawn with its tail at the path point, so at the start
+     its back edge lines up with the page content above. */
   .plane {
     offset-distance: 45%;
     offset-rotate: auto;
@@ -328,8 +318,9 @@ const notes = (positions: [number, number][]) => positions;
       animation: lotus-float 8s ease-in-out infinite alternate;
     }
 
-    /* A paper plane follows the dotted path, loops once and reaches
-       the house, where the window lights up. Then it starts again. */
+    /* A paper plane glides along the dotted path: it climbs and slows,
+       swoops down faster, lifts a little, then eases down to the house,
+       where the window lights up. Then it starts again. */
     .plane {
       animation: plane-fly 11s ease-in-out infinite;
     }
@@ -338,10 +329,6 @@ const notes = (positions: [number, number][]) => positions;
       animation: window-glow 11s ease-in-out infinite;
     }
 
-    /* The dotted trail is drawn behind the plane as it flies. */
-    .trail-reveal {
-      animation: trail-draw 11s ease-in-out infinite;
-    }
 
     .smoke {
       transform-box: fill-box;
@@ -441,38 +428,29 @@ const notes = (positions: [number, number][]) => positions;
     0% {
       offset-distance: 0%;
       opacity: 0;
+      animation-timing-function: cubic-bezier(0.25, 0.4, 0.5, 1);
     }
     2% {
       opacity: 1;
     }
-    56% {
+    /* Climb: losing speed as it rises. */
+    20% {
+      offset-distance: 30%;
+      animation-timing-function: cubic-bezier(0.5, 0, 0.6, 1);
+    }
+    /* Swoop down and lift: quicker. */
+    40% {
+      offset-distance: 70%;
+      animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1);
+    }
+    /* Ease down to the house and slow to a stop. */
+    58% {
+      offset-distance: 100%;
       opacity: 1;
     }
-    62% {
-      offset-distance: 100%;
-      opacity: 0;
-    }
+    62%,
     100% {
       offset-distance: 100%;
-      opacity: 0;
-    }
-  }
-
-  @keyframes trail-draw {
-    0% {
-      stroke-dashoffset: 1;
-      opacity: 1;
-    }
-    62% {
-      stroke-dashoffset: 0;
-    }
-    88% {
-      stroke-dashoffset: 0;
-      opacity: 1;
-    }
-    98%,
-    100% {
-      stroke-dashoffset: 0;
       opacity: 0;
     }
   }
@@ -483,7 +461,7 @@ const notes = (positions: [number, number][]) => positions;
     100% {
       fill: var(--c-brand-soft);
     }
-    64%,
+    60%,
     84% {
       fill: #ffd27a;
     }
