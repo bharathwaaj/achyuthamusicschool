@@ -318,11 +318,12 @@ const notes = (positions: [number, number][]) => positions;
       animation: lotus-float 8s ease-in-out infinite alternate;
     }
 
-    /* A paper plane glides along the dotted path: it climbs and slows,
-       swoops down faster, lifts a little, then eases down to the house,
-       where the window lights up. Then it starts again. */
+    /* A paper plane glides along the dotted path at a speed that changes
+       smoothly: it loses speed as it climbs, gains it on the swoop down,
+       and eases into the house, where the window lights up. The keyframes
+       sample one continuous speed curve, so it never stops mid-flight. */
     .plane {
-      animation: plane-fly 11s ease-in-out infinite;
+      animation: plane-fly 11s linear infinite;
     }
 
     .window {
@@ -428,25 +429,81 @@ const notes = (positions: [number, number][]) => positions;
     0% {
       offset-distance: 0%;
       opacity: 0;
-      animation-timing-function: cubic-bezier(0.25, 0.4, 0.5, 1);
     }
     2% {
       opacity: 1;
     }
-    /* Climb: losing speed as it rises. */
-    20% {
-      offset-distance: 30%;
-      animation-timing-function: cubic-bezier(0.5, 0, 0.6, 1);
+    2.42% {
+      offset-distance: 4.15%;
     }
-    /* Swoop down and lift: quicker. */
-    40% {
-      offset-distance: 70%;
-      animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1);
+    4.83% {
+      offset-distance: 8.53%;
     }
-    /* Ease down to the house and slow to a stop. */
-    58% {
-      offset-distance: 100%;
-      opacity: 1;
+    7.25% {
+      offset-distance: 12.81%;
+    }
+    9.67% {
+      offset-distance: 16.61%;
+    }
+    12.08% {
+      offset-distance: 20.22%;
+    }
+    14.50% {
+      offset-distance: 23.24%;
+    }
+    16.92% {
+      offset-distance: 25.67%;
+    }
+    19.33% {
+      offset-distance: 28.19%;
+    }
+    21.75% {
+      offset-distance: 31.17%;
+    }
+    24.17% {
+      offset-distance: 34.77%;
+    }
+    26.58% {
+      offset-distance: 39.63%;
+    }
+    29.00% {
+      offset-distance: 45.53%;
+    }
+    31.42% {
+      offset-distance: 51.76%;
+    }
+    33.83% {
+      offset-distance: 58.55%;
+    }
+    36.25% {
+      offset-distance: 64.94%;
+    }
+    38.67% {
+      offset-distance: 70.33%;
+    }
+    41.08% {
+      offset-distance: 75.43%;
+    }
+    43.50% {
+      offset-distance: 80.12%;
+    }
+    45.92% {
+      offset-distance: 84.37%;
+    }
+    48.33% {
+      offset-distance: 88.75%;
+    }
+    50.75% {
+      offset-distance: 92.70%;
+    }
+    53.17% {
+      offset-distance: 95.83%;
+    }
+    55.58% {
+      offset-distance: 98.39%;
+    }
+    58.00% {
+      offset-distance: 100.00%;
     }
     62%,
     100% {
