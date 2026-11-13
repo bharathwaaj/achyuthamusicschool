@@ -1,5 +1,5 @@
 ---
-import { MessageCircle } from '@lucide/astro';
+import { Clock, Laptop, MessageCircle, Music2 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
@@ -15,6 +15,12 @@ import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 const title = 'Online Veena Classes for Children and Adults';
 const description =
   'Learn the classical veena online with personal lessons for children and adults, in the tradition of Sri S.V. Achyutha Iyer. Carnatic violin and vocal classes are also offered.';
+
+const heroPoints = [
+  { icon: Laptop, text: 'Online classes, from wherever you are' },
+  { icon: Clock, text: 'A pace that feels right for you' },
+  { icon: Music2, text: 'Violin and Carnatic vocal too' },
+];
 
 const whyPoints = [
   {
@@ -107,11 +113,19 @@ const faqs = [
         <h1 class="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
           Online veena classes for children and adults
         </h1>
-        <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-          Learn the veena from the comfort of your home, at a pace that feels right for you.
-          Our classes are online and follow the teaching of {site.guru}. We also teach violin
-          and Carnatic vocal.
+        <p class="mt-5 max-w-xl text-xl text-ink">
+          Learn the veena from the comfort of your home.
         </p>
+        <ul class="mt-5 space-y-3">
+          {heroPoints.map((point) => (
+            <li class="flex items-center gap-3 text-muted">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-link">
+                <point.icon size={18} aria-hidden="true" />
+              </span>
+              {point.text}
+            </li>
+          ))}
+        </ul>
         <div class="mt-8 flex flex-wrap gap-3">
           <Button href={whatsappLink(whatsappMessages.general)} external size="lg">
             <MessageCircle size={17} aria-hidden="true" /> WhatsApp us
