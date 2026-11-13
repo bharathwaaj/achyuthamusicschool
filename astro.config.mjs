@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // Old WordPress addresses that moved. Keep public/_redirects (Cloudflare
@@ -20,6 +21,7 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   redirects,
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') })],
   // Build several sizes of each image so phones download smaller files.
   image: {
     layout: 'constrained',
