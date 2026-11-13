@@ -16,8 +16,7 @@ import FactCards from '../../components/FactCards.astro';
 import { courses } from '../../data/courses';
 import { objectBrief } from '../../data/imagePrompts';
 import type { Course } from '../../data/courses';
-import { site } from '../../config/site';
-import { canonicalUrl } from '../../utils/seo';
+import { breadcrumbSchema, courseSchema, faqSchema } from '../../utils/schema';
 import { whatsappLink, whatsappMessages } from '../../utils/whatsapp';
 
 export function getStaticPaths() {
@@ -52,29 +51,20 @@ const aboutAlts: Record<string, string> = {
 };
 const aboutImages = { veena: veenaDetail, violin: violinDetail, vocal: tamburaDetail };
 
-const courseSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Course',
-  name: page.heading,
-  description: page.description,
-  url: canonicalUrl(course.href),
-  provider: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
-};
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: page.faqs.map((item) => ({
-    '@type': 'Question',
-    name: item.question,
-    acceptedAnswer: { '@type': 'Answer', text: item.answer },
-  })),
-};
+const structuredData = [
+  courseSchema(page.heading, page.description, course.href),
+  faqSchema(page.faqs),
+  breadcrumbSchema([
+    { name: 'Classes', path: '/courses/' },
+    { name: course.name, path: course.href },
+  ]),
+];
 ---
 
 <BaseLayout
   title={page.title}
   description={page.description}
-  jsonLd={[courseSchema, faqSchema]}
+  jsonLd={structuredData}
   image={course.heroImage}
   imageAlt={heroAlts[course.slug]}
 >

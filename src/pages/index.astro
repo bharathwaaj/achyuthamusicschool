@@ -14,6 +14,7 @@ import { courses } from '../data/courses';
 import { photoBrief } from '../data/imagePrompts';
 import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
+import { faqSchema, schoolSchema, websiteSchema } from '../utils/schema';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 
 const title = 'Online Veena Classes for Children & Adults';
@@ -44,33 +45,6 @@ const whyPoints = [
   },
 ];
 
-// Opening hours are left out until the school confirms them. Do not
-// invent values here. No service area is listed.
-const schoolSchema = {
-  '@context': 'https://schema.org',
-  '@type': ['EducationalOrganization', 'LocalBusiness'],
-  '@id': `${site.url}/#school`,
-  name: site.name,
-  url: site.url,
-  description,
-  telephone: site.phone,
-  email: site.email,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: site.streetAddress,
-    addressLocality: site.city,
-    addressRegion: site.state,
-    postalCode: site.pincode,
-    addressCountry: site.country,
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: site.geo.latitude,
-    longitude: site.geo.longitude,
-  },
-  hasMap: site.mapsUrl,
-  knowsAbout: ['Veena', 'Carnatic violin', 'Carnatic vocal'],
-};
 
 const steps = [
   {
@@ -115,7 +89,11 @@ const faqs = [
 ];
 ---
 
-<BaseLayout title={title} description={description} jsonLd={[schoolSchema]}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[schoolSchema(description), websiteSchema(), faqSchema(faqs)]}
+>
   <section class="hero-surface border-b border-line">
     <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
       <div>

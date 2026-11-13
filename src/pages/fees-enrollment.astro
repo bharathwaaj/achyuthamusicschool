@@ -1,5 +1,6 @@
 ---
 import { BookOpenText, MessageCircle, Signal, Layers } from '@lucide/astro';
+import { breadcrumbSchema } from '../utils/schema';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
@@ -22,7 +23,11 @@ const factors = [
 const steps = ['Message us', 'Choose a class and timing', 'Begin at your own pace'];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[breadcrumbSchema([{ name: 'Fees and enrolment', path: '/fees-enrollment/' }])]}
+>
   <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
     <HeroArt variant="fees" />
     <Container size="wide">

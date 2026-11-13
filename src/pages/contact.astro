@@ -9,7 +9,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import Faq from '../components/Faq.astro';
 import HeroArt from '../components/HeroArt.astro';
 import { site } from '../config/site';
-import { canonicalUrl } from '../utils/seo';
+import { breadcrumbSchema, faqSchema, pageSchema } from '../utils/schema';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 
 const title = `Contact ${site.name}: WhatsApp, Email and Visits`;
@@ -32,19 +32,16 @@ const faqs = [
   },
 ];
 
-const contactSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  name: title,
-  url: canonicalUrl('/contact/'),
-  about: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
-};
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  jsonLd={[contactSchema]}
+  jsonLd={[
+    pageSchema('ContactPage', title, '/contact/', description),
+    faqSchema(faqs),
+    breadcrumbSchema([{ name: 'Contact', path: '/contact/' }]),
+  ]}
   image={studentsPhoto}
   imageAlt="A group of young veena students seated together with their instruments"
 >

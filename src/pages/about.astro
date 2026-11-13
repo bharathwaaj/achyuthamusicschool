@@ -1,5 +1,6 @@
 ---
 import { ArrowRight, Flame, HeartHandshake, Laptop, MessageCircle, Music, Users } from '@lucide/astro';
+import { breadcrumbSchema, pageSchema } from '../utils/schema';
 import Button from '../components/Button.astro';
 import HeroArt from '../components/HeroArt.astro';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
@@ -44,6 +45,7 @@ const teachers = [
 <BaseLayout
   title={title}
   description={description}
+  jsonLd={[pageSchema('AboutPage', title, '/about/', description), breadcrumbSchema([{ name: 'About', path: '/about/' }])]}
   image={veenaTeaching}
   imageAlt="A teacher guiding a young student's hand on the veena during a lesson"
 >

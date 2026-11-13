@@ -1,5 +1,6 @@
 ---
 import { Image, getImage } from 'astro:assets';
+import { breadcrumbSchema, pageSchema } from '../utils/schema';
 import type { ImageMetadata } from 'astro';
 import { Play } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -67,6 +68,7 @@ const entries = await Promise.all(
 <BaseLayout
   title={title}
   description={description}
+  jsonLd={[pageSchema('CollectionPage', title, '/gallery/', description), breadcrumbSchema([{ name: 'Gallery', path: '/gallery/' }])]}
   image={groupClass}
   imageAlt="A group of young veena students seated together with their instruments"
 >
