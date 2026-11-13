@@ -181,8 +181,19 @@
     mask-repeat: no-repeat;
   }
 
+  /* Leaves drifting along a bow stroke and turning into notes, for the
+     soft, flowing sound of the violin. */
+  .hero-surface--violin {
+    padding-bottom: 3rem;
+  }
+
   .hero-surface--violin::before {
-    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'><g fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'><path d='M-100 200 Q 600 10 1300 170' opacity='1'/><path d='M-100 182 Q 600 28 1300 152' opacity='0.7'/><path d='M-100 164 Q 600 46 1300 134' opacity='0.45'/></g></svg>");
+    height: 5rem;
+    opacity: 0.45;
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 100'><path d='M10 30 C 120 30, 160 80, 280 70 S 460 40, 580 60' fill='none' stroke='%23000' stroke-width='1.5' stroke-dasharray='1 9' stroke-linecap='round' opacity='.6'/><g transform='translate(30 40) rotate(-35) scale(1)' opacity='1'><path d='M0 -13 C 9 -8, 9 7, 0 13 C -9 7, -9 -8, 0 -13 Z' fill='%23000'/><path d='M0 13 L0 19' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(90 62) rotate(20) scale(0.9)' opacity='1'><path d='M0 -13 C 9 -8, 9 7, 0 13 C -9 7, -9 -8, 0 -13 Z' fill='%23000'/><path d='M0 13 L0 19' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(150 48) rotate(-60) scale(0.8)' opacity='1'><path d='M0 -13 C 9 -8, 9 7, 0 13 C -9 7, -9 -8, 0 -13 Z' fill='%23000'/><path d='M0 13 L0 19' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(225 76)' opacity='0.95'><path d='M-1 -6 C 6 -6, 9 2, 2 5 C -5 8, -9 0, -1 -6 Z' fill='%23000' transform='rotate(-25)'/><rect x='4' y='-28' width='2' height='26' fill='%23000'/><path d='M5 -28 C 13 -24, 15 -16, 11 -10' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(300 60)' opacity='0.8'><path d='M-1 -6 C 6 -6, 9 2, 2 5 C -5 8, -9 0, -1 -6 Z' fill='%23000' transform='rotate(-25)'/><rect x='4' y='-28' width='2' height='26' fill='%23000'/><path d='M5 -28 C 13 -24, 15 -16, 11 -10' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(380 58)' opacity='0.6'><ellipse cx='0' cy='0' rx='6.5' ry='4.6' transform='rotate(-20)' fill='%23000'/><rect x='4.6' y='-24' width='2' height='24' fill='%23000'/><path d='M5.6 -24 C 13 -20, 15 -13, 11 -7' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(460 46)' opacity='0.45'><ellipse cx='0' cy='0' rx='6.5' ry='4.6' transform='rotate(-20)' fill='%23000'/><rect x='4.6' y='-24' width='2' height='24' fill='%23000'/><path d='M5.6 -24 C 13 -20, 15 -13, 11 -7' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g><g transform='translate(540 56)' opacity='0.3'><ellipse cx='0' cy='0' rx='6.5' ry='4.6' transform='rotate(-20)' fill='%23000'/><rect x='4.6' y='-24' width='2' height='24' fill='%23000'/><path d='M5.6 -24 C 13 -20, 15 -13, 11 -7' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/></g></svg>");
+    mask-size: auto 100%;
+    mask-position: left 1rem bottom;
+    mask-repeat: no-repeat;
   }
 
   /* A warm cup with steam curling up and drifting away as notes, for
