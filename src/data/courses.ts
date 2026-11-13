@@ -35,8 +35,10 @@ export interface CoursePageContent {
   /** Plain statements about how classes run. */
   howItWorks: string[];
   faqs: { question: string; answer: string }[];
-  /** Playful facts shown as flip cards. General knowledge, worth checking. */
+  /** Playful facts shown as flip cards, checked against the sources below. */
   facts: { question: string; answer: string }[];
+  /** Where the facts can be checked, linked under the cards. */
+  factSources: { label: string; url: string }[];
 }
 
 export const courses: Course[] = [
@@ -75,7 +77,11 @@ export const courses: Course[] = [
         { question: 'How many frets does a veena have?', answer: 'Twenty-four, set in wax along its long neck.' },
         { question: 'And how many strings?', answer: 'Seven. Four play the melody, and three along the side keep the rhythm.' },
         { question: 'What is it carved from?', answer: 'Traditionally, jackfruit wood, shaped by hand.' },
-        { question: 'Which instrument was first in India to get a GI tag?', answer: 'The Thanjavur veena, in 2013.' },
+        { question: 'Which instrument was first in India to get a GI tag?', answer: 'The Thanjavur veena, in 2012–13.' },
+      ],
+      factSources: [
+        { label: 'Saraswati veena (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Saraswati_veena' },
+        { label: 'Thanjavur veena (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Thanjavur_veena' },
       ],
       faqs: [
         { question: 'Can a complete beginner learn the veena?', answer: 'Yes. Many students begin with no earlier experience. We start from the basics and go at your pace.' },
@@ -118,8 +124,12 @@ export const courses: Course[] = [
       facts: [
         { question: 'Is the Carnatic violin a different instrument?', answer: 'No, it is the same violin. What changes is how it is held, tuned and played.' },
         { question: 'Why rest it on the foot?', answer: 'Sitting on the floor with the scroll on the foot frees the left hand to slide smoothly between notes.' },
-        { question: 'How long has it been in Carnatic music?', answer: 'About two hundred years. Baluswami Dikshitar, brother of the composer Muthuswami Dikshitar, is credited with bringing it in.' },
+        { question: 'How long has it been in Carnatic music?', answer: 'More than two hundred years. Baluswami Dikshitar, brother of the composer Muthuswami Dikshitar, is credited with bringing it in.' },
         { question: 'What did our guru play?', answer: 'The violin. Sri S.V. Achyutha Iyer was a violinist.' },
+      ],
+      factSources: [
+        { label: 'The violin in Carnatic music (Darbar)', url: 'https://darbar.org/article/the-violin-a-western-instrument-takes-centre-stage-in-carnatic-classical' },
+        { label: 'Nottuswara (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Nottuswara' },
       ],
       faqs: [
         { question: 'Is this Western or Carnatic violin?', answer: 'Our classes teach the violin in the Carnatic style.' },
@@ -166,6 +176,11 @@ export const courses: Course[] = [
         { question: 'What is sruti?', answer: 'The steady base note you sing against. An old saying calls sruti the mother of music.' },
         { question: 'Do instruments copy the voice?', answer: 'Yes. In Carnatic music the veena and violin try to sing, following every slide and turn of the voice.' },
         { question: 'Who are the Trinity?', answer: 'Thyagaraja, Muthuswami Dikshitar and Shyama Shastri, whose songs sit at the heart of Carnatic music.' },
+      ],
+      factSources: [
+        { label: 'Melakarta (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Melakarta' },
+        { label: 'Trinity of Carnatic music (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Trinity_of_Carnatic_music' },
+        { label: 'What is shruthi? (Artium Academy)', url: 'https://artiumacademy.com/blogs/what-is-shruthi-in-music/' },
       ],
       faqs: [
         { question: 'I have never sung Carnatic music. Can I join?', answer: 'Yes. Lessons are open to beginners as well as advanced learners.' },

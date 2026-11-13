@@ -9,9 +9,11 @@ import SectionHeading from './SectionHeading.astro';
 
 interface Props {
   facts: { question: string; answer: string }[];
+  /** Where readers can check the facts. */
+  sources?: { label: string; url: string }[];
 }
 
-const { facts } = Astro.props;
+const { facts, sources = [] } = Astro.props;
 ---
 
 <section id="did-you-know" class="scroll-mt-24 py-14 md:py-16">
@@ -35,6 +37,17 @@ const { facts } = Astro.props;
         </li>
       ))}
     </ul>
+    {sources.length > 0 && (
+      <p class="mt-6 text-center text-sm text-subtle">
+        Sources:{' '}
+        {sources.map((source, index) => (
+          <>
+            {index > 0 && ' · '}
+            <a href={source.url} target="_blank" rel="noopener">{source.label}</a>
+          </>
+        ))}
+      </p>
+    )}
   </Container>
 </section>
 
