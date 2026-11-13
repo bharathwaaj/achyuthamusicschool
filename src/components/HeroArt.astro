@@ -274,8 +274,10 @@ const notes = (positions: [number, number][]) => positions;
         <g class="about-stage" data-left="451" data-right="595">
         <g class="grow grow--tree" style="animation-delay: 2.35s">
           <path class="fill" d="M512 93 C 516 78, 514 58, 516 44 L 530 44 C 532 58, 530 78, 536 93 Z" />
-          <path class="stroke" d="M520 56 L494 40 M526 54 L556 38 M522 48 L510 32" stroke-width="3.2" />
+          <!-- Branches sit inside the swaying canopy, so the two move together
+               and the branch tips do not peek in and out at its edges. -->
           <g class="sway sway--canopy" style="animation-delay: -1.5s">
+            <path class="stroke" d="M520 56 L494 40 M526 54 L556 38 M522 48 L510 32" stroke-width="3.2" />
             <ellipse class="fill" cx="522" cy="28" rx="40" ry="17" />
             <ellipse class="fill" cx="478" cy="36" rx="26" ry="13" />
             <ellipse class="fill" cx="568" cy="34" rx="27" ry="13" />
