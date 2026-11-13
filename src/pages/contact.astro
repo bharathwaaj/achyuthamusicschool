@@ -51,7 +51,7 @@ const contactSchema = {
 
   <section class="py-14 md:py-16">
     <Container size="wide">
-      <ul class="grid gap-5 md:grid-cols-3">
+      <ul class="grid gap-5 md:grid-cols-[1fr_1fr_1.6fr]">
         <li class="rounded-2xl border border-line bg-surface p-6 text-center">
           <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
             <Mail size={26} aria-hidden="true" />
@@ -75,8 +75,8 @@ const contactSchema = {
             <MapPin size={26} aria-hidden="true" />
           </span>
           <h2 class="mt-4 text-lg font-semibold text-ink">Visit us</h2>
-          <p class="mt-1 text-muted">{site.address}</p>
-          <p class="text-sm text-subtle">{site.landmark}</p>
+          <p class="mt-1 text-balance text-muted">{site.address}</p>
+          <p class="mt-2 text-balance text-sm text-muted">{site.landmark}</p>
         </li>
       </ul>
       <p class="mx-auto mt-8 max-w-xl text-center leading-relaxed text-muted">
