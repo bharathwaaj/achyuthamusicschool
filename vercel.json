@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/vocal-lessons/", "destination": "/courses/vocal/", "permanent": true },
+    { "source": "/veena/", "destination": "/courses/veena/", "permanent": true },
+    { "source": "/violin/", "destination": "/courses/violin/", "permanent": true },
+    { "source": "/class-rooms/", "destination": "/gallery/", "permanent": true },
+    { "source": "/about-template/", "destination": "/about/", "permanent": true }
+  ]
+}

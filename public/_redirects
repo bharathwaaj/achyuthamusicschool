@@ -1,0 +1,6 @@
+# Cloudflare Pages. Keep in step with the redirects list in astro.config.mjs.
+/vocal-lessons/  /courses/vocal/  301
+/veena/          /courses/veena/  301
+/violin/         /courses/violin/ 301
+/class-rooms/    /gallery/        301
+/about-template/ /about/          301
