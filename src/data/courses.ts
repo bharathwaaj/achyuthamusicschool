@@ -51,7 +51,7 @@ export const courses: Course[] = [
     heroImage: veenaHero,
     heroPrompt: photoBrief('A Saraswati veena resting on its stand in a quiet corner of a living room, with a student seated nearby about to begin practice.'),
     page: {
-      title: 'Learn the Veena Online: Classes for Beginners',
+      title: 'Learn the Veena Online, Beginners Welcome',
       description:
         'Learn the veena online with personal lessons for children and adults. Beginners are welcome, and you can also join in person at our school in Kovaipudur.',
       eyebrow: 'Veena classes',
@@ -95,7 +95,7 @@ export const courses: Course[] = [
     heroImage: violinHero,
     heroPrompt: photoBrief('A teenage student practising the violin in the Carnatic style at home, seated on the floor, with a laptop in front showing the teacher.'),
     page: {
-      title: 'Online Carnatic Violin Classes for Children and Adults',
+      title: 'Online Carnatic Violin Classes',
       description:
         'Learn the violin in the Carnatic style online, with weekend sessions for busy weeks. For children and adults, beginners and experienced players alike.',
       eyebrow: 'Violin classes',
@@ -139,7 +139,7 @@ export const courses: Course[] = [
     heroImage: vocalHero,
     heroPrompt: photoBrief('A young student singing during an online lesson at home, a laptop in front of her and a tambura beside her.'),
     page: {
-      title: 'Online Carnatic Vocal Classes for Children and Adults',
+      title: 'Online Carnatic Vocal Classes',
       description:
         'Learn Carnatic singing online, from sruti and basic exercises to compositions. Personal lessons for beginners and advanced students, with weekend sessions.',
       eyebrow: 'Carnatic vocal classes',

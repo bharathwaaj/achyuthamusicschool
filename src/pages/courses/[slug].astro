@@ -39,6 +39,17 @@ const aboutPrompts: Record<string, string> = {
   vocal: objectBrief('A tambura leaning against a plain wall beside a window, shallow depth of field.'),
 };
 const others = courses.filter((other) => other.slug !== course.slug);
+// Short descriptions of the photos, for screen readers and search engines.
+const heroAlts: Record<string, string> = {
+  veena: 'A woman seated beside a veena on its stand at home',
+  violin: 'A student playing the violin in the Carnatic style at home, with a teacher on a laptop screen',
+  vocal: 'A young woman singing during an online lesson, with a tambura beside her',
+};
+const aboutAlts: Record<string, string> = {
+  veena: 'A Saraswati veena on its stand beside a window',
+  violin: 'A violin and bow resting on a wooden table',
+  vocal: 'A tambura leaning against a wall beside a window',
+};
 const aboutImages = { veena: veenaDetail, violin: violinDetail, vocal: tamburaDetail };
 
 const courseSchema = {
@@ -73,7 +84,7 @@ const faqSchema = {
           <Button href="/courses/" variant="secondary" size="lg">All classes</Button>
         </div>
       </div>
-      <ImagePlaceholder prompt={course.heroPrompt} src={course.heroImage} width={1200} height={675} loading="eager" />
+      <ImagePlaceholder prompt={course.heroPrompt} alt={heroAlts[course.slug]} src={course.heroImage} width={1200} height={675} loading="eager" />
     </Container>
   </section>
 
@@ -81,7 +92,7 @@ const faqSchema = {
 
   <section class="border-b border-line bg-sunken py-14 md:py-16">
     <Container size="wide" class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-      <ImagePlaceholder prompt={aboutPrompts[course.slug]} src={aboutImages[course.slug]} width={1200} height={900} aspect="4/3" />
+      <ImagePlaceholder prompt={aboutPrompts[course.slug]} alt={aboutAlts[course.slug]} src={aboutImages[course.slug]} width={1200} height={900} aspect="4/3" />
       <div>
         <SectionHeading title="About the class" />
         <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">

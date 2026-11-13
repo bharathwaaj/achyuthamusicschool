@@ -3,7 +3,8 @@
  * ImagePlaceholder
  *
  * Shows a labelled box until a real image exists. The `prompt` prop is
- * both the alt text and the text to paste into ChatGPT to generate the
+ * the text to paste into ChatGPT to generate the image, and the alt text
+ * until a short `alt` is given. It also describes
  * image, so each empty slot documents what should go in it.
  *
  * Once the image is saved under src/assets/, pass it as `src`:
@@ -18,8 +19,11 @@ import type { ImageMetadata } from 'astro';
 import { ImageIcon } from '@lucide/astro';
 
 interface Props {
-  /** Alt text and image generation prompt. */
+  /** Image generation prompt. Also the alt text when `alt` is not given. */
   prompt: string;
+  /** Short description for screen readers and search engines. Use this
+   *  once a real image exists, as the prompt holds style instructions. */
+  alt?: string;
   /** Omit until the image exists. */
   src?: ImageMetadata;
   width?: number;
@@ -34,6 +38,7 @@ interface Props {
 
 const {
   prompt,
+  alt,
   src,
   width = 1200,
   height = 675,
@@ -52,10 +57,11 @@ const ratio = aspect ?? `${width}/${height}`;
   <div class={`w-full overflow-hidden ${rounded} ${className}`} style={`aspect-ratio: ${ratio};`}>
     <Image
       src={src}
-      alt={prompt}
+      alt={alt ?? prompt}
       width={width}
       height={height}
       loading={loading}
+      fetchpriority={loading === 'eager' ? 'high' : undefined}
       sizes={sizes}
       class="h-full w-full object-cover"
     />

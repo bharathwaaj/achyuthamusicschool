@@ -16,9 +16,9 @@ import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 
-const title = 'Online Veena Classes for Children and Adults';
+const title = 'Online Veena Classes for Children & Adults';
 const description =
-  'Learn the classical veena online with personal lessons for children and adults, in the tradition of Sri S.V. Achyutha Iyer. Carnatic violin and vocal classes are also offered.';
+  'Learn the classical veena online with personal lessons for children and adults, in the tradition of Sri S.V. Achyutha Iyer. Violin and vocal classes too.';
 
 const heroPoints = [
   { icon: Laptop, text: 'Online classes, from wherever you are' },
@@ -146,6 +146,7 @@ const faqs = [
 
       <ImagePlaceholder
         src={homeVeena}
+        alt="A student playing the veena at home during an online lesson, with the teacher on a laptop screen"
         prompt={photoBrief('A young student practising a Saraswati veena at home during an online lesson, a laptop showing the teacher on the screen.')}
         width={1200}
         height={900}

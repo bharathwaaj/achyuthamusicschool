@@ -13,7 +13,7 @@ import vocalPractice from '../../assets/images/vocal-practice.png';
 import { courses } from '../../data/courses';
 import { objectBrief, photoBrief } from '../../data/imagePrompts';
 
-const title = 'Online Veena, Violin and Carnatic Vocal Classes';
+const title = 'Veena, Violin and Vocal Classes Online';
 const description =
   'Not sure which class to choose? See how veena, violin and Carnatic vocal classes differ, how online and in-person lessons work, and how to get started.';
 
@@ -31,6 +31,13 @@ const classPrompts: Record<string, string> = {
   veena: photoBrief('An adult learner seated beside a veena at home, looking at a laptop that shows the teacher during an online lesson.'),
   violin: photoBrief('A teenage student practising the violin in the Carnatic style at home, seated on the floor.'),
   vocal: photoBrief('A young woman singing at home, a tambura beside her, one hand resting on her knee.'),
+};
+
+// Short descriptions of the photos, for screen readers and search engines.
+const classAlts: Record<string, string> = {
+  veena: 'An adult learner with a veena, following an online lesson on a laptop',
+  violin: 'A student practising the violin, seated on the floor',
+  vocal: 'A young woman singing at home with a tambura beside her',
 };
 
 const howItWorks = [
@@ -52,7 +59,7 @@ const classImages = { veena: veenaOnline, violin: violinPractice, vocal: vocalPr
         title="Which class is right for you?"
         lead="We teach the veena, violin and Carnatic vocal. Here is a little about each, and how classes work, so you can choose with confidence."
       />
-      <ImagePlaceholder prompt={heroPrompt} src={instruments} width={1200} height={900} aspect="4/3" loading="eager" />
+      <ImagePlaceholder prompt={heroPrompt} alt="A veena, a violin and a tambura resting against a wall" src={instruments} width={1200} height={900} aspect="4/3" loading="eager" />
     </Container>
   </section>
 
@@ -62,6 +69,7 @@ const classImages = { veena: veenaOnline, violin: violinPractice, vocal: vocalPr
         <article class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <ImagePlaceholder
             prompt={classPrompts[course.slug]}
+            alt={classAlts[course.slug]}
             src={classImages[course.slug]}
             width={1200}
             height={900}
