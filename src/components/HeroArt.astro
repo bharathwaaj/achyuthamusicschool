@@ -7,7 +7,7 @@
  * which turns off the default string lines.
  */
 interface Props {
-  variant: 'veena' | 'violin' | 'vocal' | 'team' | 'gallery';
+  variant: 'veena' | 'violin' | 'vocal' | 'team' | 'gallery' | 'contact';
 }
 
 const { variant } = Astro.props;
@@ -167,6 +167,23 @@ const notes = (positions: [number, number][]) => positions;
         ))}
       </svg>
     )}
+    {variant === 'contact' && (
+      <svg viewBox="0 0 1200 100" preserveAspectRatio="xMaxYMax meet">
+        <path class="stroke" d="M-40 60 C 150 20, 260 90, 420 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78" stroke-width="2.4" stroke-dasharray="1 10" opacity="0.7" />
+        <g class="fill">
+          <path d="M1110 64 L1110 93 L1162 93 L1162 64 L1136 42 Z" />
+          <rect x="1149" y="44" width="7" height="14" />
+        </g>
+        <rect class="window" x="1116" y="68" width="11" height="9" rx="1" />
+        <rect class="door" x="1138" y="76" width="10" height="17" rx="1" />
+        <path class="stroke smoke" d="M1152 40 C 1146 32, 1158 26, 1152 18" stroke-width="2" />
+        <path class="stroke smoke smoke--late" d="M1154 40 C 1162 32, 1150 26, 1158 18" stroke-width="2" />
+        <g class="plane" style="offset-path: path('M-40 60 C 150 20, 260 90, 420 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78');">
+          <path class="fill" d="M13 0 L-11 -9 L-5 0 L-11 9 Z" />
+          <path class="stroke" d="M-5 0 L5 -1" stroke-width="1.2" />
+        </g>
+      </svg>
+    )}
   </div>
 </div>
 
@@ -214,6 +231,18 @@ const notes = (positions: [number, number][]) => positions;
 
   .fill {
     fill: currentColor;
+  }
+
+  /* House door and window show as openings in the house shape. */
+  .door,
+  .window {
+    fill: var(--c-brand-soft);
+  }
+
+  /* With motion off, the plane rests partway along its path. */
+  .plane {
+    offset-distance: 45%;
+    offset-rotate: auto;
   }
 
   /* Wings only show while a bird is flying in. */
@@ -269,6 +298,26 @@ const notes = (positions: [number, number][]) => positions;
     /* Lotuses float on the water. */
     .lotus {
       animation: lotus-float 8s ease-in-out infinite alternate;
+    }
+
+    /* A paper plane follows the dotted path, loops once and reaches
+       the house, where the window lights up. Then it starts again. */
+    .plane {
+      animation: plane-fly 11s ease-in-out infinite;
+    }
+
+    .window {
+      animation: window-glow 11s ease-in-out infinite;
+    }
+
+    .smoke {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: steam-rise 5s ease-in-out infinite;
+    }
+
+    .smoke--late {
+      animation-delay: 2.5s;
     }
 
     /* On first view each frame drops onto the string and swings to a
@@ -352,6 +401,39 @@ const notes = (positions: [number, number][]) => positions;
     }
     to {
       transform: translateY(-3px) rotate(1.5deg);
+    }
+  }
+
+  @keyframes plane-fly {
+    0% {
+      offset-distance: 0%;
+      opacity: 0;
+    }
+    6% {
+      opacity: 1;
+    }
+    56% {
+      opacity: 1;
+    }
+    62% {
+      offset-distance: 100%;
+      opacity: 0;
+    }
+    100% {
+      offset-distance: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes window-glow {
+    0%,
+    56%,
+    100% {
+      fill: var(--c-brand-soft);
+    }
+    64%,
+    84% {
+      fill: #ffd27a;
     }
   }
 

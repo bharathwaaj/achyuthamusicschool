@@ -7,6 +7,7 @@ import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Faq from '../components/Faq.astro';
+import HeroArt from '../components/HeroArt.astro';
 import { site } from '../config/site';
 import { canonicalUrl } from '../utils/seo';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
@@ -41,7 +42,8 @@ const contactSchema = {
 ---
 
 <BaseLayout title={title} description={description} jsonLd={[contactSchema]}>
-  <section class="hero-surface hero-surface--contact border-b border-line py-14 md:py-20">
+  <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
+    <HeroArt variant="contact" />
     <Container size="wide" class="grid items-center gap-10 md:grid-cols-2">
       <div>
       <SectionHeading
