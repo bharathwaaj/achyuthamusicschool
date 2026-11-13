@@ -1,0 +1,65 @@
+# Achyutha Music School
+
+The website for Achyutha Music School: online veena classes, with Carnatic
+violin and vocal. Built with Astro, Tailwind CSS and TypeScript, and output
+as a fully static site.
+
+## Run it
+
+Requires Node 24 (see `.nvmrc`).
+
+```bash
+npm install
+npm run dev
+```
+
+Other commands: `npm run build` writes the site to `dist/`, `npm run preview`
+serves that build, and `npx astro check` type-checks the project.
+
+## Where things live
+
+| Path | What it holds |
+| --- | --- |
+| `src/config/site.ts` | School name, contact details, WhatsApp number. Values set to `null` are not known yet. |
+| `src/data/courses.ts` | The three classes and the content of each class page. |
+| `src/data/nav.ts` | Header and footer links. |
+| `src/data/imagePrompts.ts` | Shared direction for the image briefs. |
+| `src/pages/` | One file per page. Class pages share `courses/[slug].astro`. |
+| `src/components/` | Reusable pieces such as the header, buttons and FAQ. |
+| `src/styles/global.css` | Colours and fonts, with light and dark values. |
+| `src/assets/` | Photos, the logo and icons. Astro resizes them at build time. |
+
+## Editing common things
+
+- **WhatsApp number and messages:** `whatsappNumber` in `src/config/site.ts`,
+  and the pre-filled messages in `src/utils/whatsapp.ts`.
+- **Address, hours, map and social links:** fill in the `null` values in
+  `src/config/site.ts`. The footer and contact page then show them.
+- **A new image:** images appear as placeholders that carry a brief. Save the
+  photo under `src/assets/` and pass it as `src` to `ImagePlaceholder`.
+- **A new gallery photo or video:** add an entry to `items` in
+  `src/pages/gallery.astro`. Any photo size works.
+
+## Redirects
+
+Old WordPress addresses are redirected in three places that must be kept in
+step: `redirects` in `astro.config.mjs` (works on any host),
+`public/_redirects` (Cloudflare Pages) and `vercel.json` (Vercel). The last
+two give real permanent redirects.
+
+## Deploying
+
+The build is plain static HTML, so no adapter is needed.
+
+- **Cloudflare Pages:** build command `npm run build`, output directory
+  `dist`.
+- **Vercel:** the Astro preset works as it is.
+
+Images are optimised during the build, so the host's image service is not
+used.
+
+## Writing and commits
+
+`AGENTS.md` holds the rules for commit messages and the guidelines for website
+copy, including how the school should be described. Read it before writing
+content.
