@@ -8,6 +8,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import CourseCard from '../components/CourseCard.astro';
 import Faq from '../components/Faq.astro';
 import { courses } from '../data/courses';
+import { photoBrief } from '../data/imagePrompts';
 import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
@@ -133,7 +134,7 @@ const faqs = [
       </div>
 
       <ImagePlaceholder
-        prompt="A young student seated cross-legged at home playing a Saraswati veena, a laptop on a low stool showing the teacher on a video call, a brass lamp glowing nearby, warm sandal-orange and charcoal palette on ivory, calm and respectful mood, illustrated editorial style, no text, no logos"
+        prompt={photoBrief('A young student practising a Saraswati veena at home during an online lesson, a laptop showing the teacher on the screen.')}
         width={1200}
         height={900}
         aspect="4/3"

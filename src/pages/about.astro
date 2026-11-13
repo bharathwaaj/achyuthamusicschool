@@ -7,15 +7,14 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaPanel from '../components/CtaPanel.astro';
 import { Image } from 'astro:assets';
 import guruPhoto from '../assets/images/achyutha-iyer.jpg';
+import { photoBrief } from '../data/imagePrompts';
 import { site } from '../config/site';
 
 const title = 'About Achyutha Music School';
 const description =
   'Achyutha Music School teaches the veena online, with Carnatic violin and vocal too. Learn how the school grew from the teaching of Sri S.V. Achyutha Iyer.';
 
-const palette =
-  'warm sandal-orange and charcoal colour palette on an ivory background, soft lamp light, calm and respectful mood, no text, no logos, illustrated editorial style, 4:3';
-const heroPrompt = `A teacher and a young student seated together on a mat, the teacher gently guiding the student's hand on a Saraswati veena, a brass lamp glowing beside them, ${palette}`;
+const heroPrompt = photoBrief('A teacher and a young student seated together on the floor at a lesson, the teacher gently correcting the student\'s hand position on a Saraswati veena.');
 
 const values = [
   { icon: HeartHandshake, title: 'Lessons shaped around you', text: 'Each lesson fits the student\'s level and way of learning.' },

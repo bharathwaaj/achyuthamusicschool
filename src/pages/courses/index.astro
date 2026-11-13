@@ -6,6 +6,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import { courses } from '../../data/courses';
+import { objectBrief, photoBrief } from '../../data/imagePrompts';
 
 const title = 'Online Veena, Violin and Carnatic Vocal Classes';
 const description =
@@ -18,15 +19,13 @@ const suits: Record<string, string> = {
   vocal: 'Learn Carnatic music through your own voice.',
 };
 
-const palette =
-  'warm sandal-orange and charcoal colour palette on an ivory background, soft lamp light, calm and respectful mood, no text, no logos, illustrated editorial style';
 
-// Prompts for illustrations to be generated in ChatGPT, one per slot.
-const heroPrompt = `A veena, a violin and a tambura resting together on a woven mat beside a brass lamp and jasmine flowers, the veena in the centre and largest, ${palette}, 4:3`;
+// Briefs for photographs to be generated outside the site, one per slot.
+const heroPrompt = objectBrief('A veena, a violin and a tambura resting against a plain wall in a living room.');
 const classPrompts: Record<string, string> = {
-  veena: `A student's hands plucking the strings of a Saraswati veena, a laptop on a low stool showing a teacher on a video call, ${palette}, 4:3`,
-  violin: `A young violinist seated cross-legged on a mat, the violin resting on the shoulder and foot in the Carnatic style, sheet-free and relaxed, ${palette}, 4:3`,
-  vocal: `A singer seated on a mat with a tambura beside her, one hand keeping tala on her knee, eyes closed in song, ${palette}, 4:3`,
+  veena: photoBrief('An adult learner seated beside a veena at home, looking at a laptop that shows the teacher during an online lesson.'),
+  violin: photoBrief('A teenage student practising the violin in the Carnatic style at home, seated on the floor.'),
+  vocal: photoBrief('A young woman singing at home, a tambura beside her, one hand resting on her knee.'),
 };
 
 const howItWorks = [

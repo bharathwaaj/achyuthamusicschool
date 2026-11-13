@@ -1,3 +1,4 @@
+import { photoBrief } from './imagePrompts';
 import type { whatsappMessages } from '../utils/whatsapp';
 
 export interface Course {
@@ -31,9 +32,6 @@ export interface CoursePageContent {
   faqs: { question: string; answer: string }[];
 }
 
-const palette =
-  'warm sandal-orange and charcoal colour palette on an ivory background, soft lamp light, calm and respectful mood, no text, no logos';
-
 export const courses: Course[] = [
   {
     slug: 'veena',
@@ -43,7 +41,7 @@ export const courses: Course[] = [
     summary: 'Our main class. Learn the classical veena with experienced teachers, online or in person.',
     formats: ['Online', 'In person in Kovaipudur'],
     whatsapp: 'veena',
-    heroPrompt: `A Saraswati veena resting on a wooden stand beside a brass lamp and fresh jasmine, a student's hands about to play, ${palette}, illustrated editorial style, 16:9`,
+    heroPrompt: photoBrief('A Saraswati veena resting on its stand in a quiet corner of a living room, with a student seated nearby about to begin practice.'),
     page: {
       title: 'Learn the Veena Online: Classes for Beginners',
       description:
@@ -80,7 +78,7 @@ export const courses: Course[] = [
     summary: 'Learn the violin in the Carnatic style, with personal attention and weekend sessions.',
     formats: ['Online', 'In person in Kovaipudur', 'Weekend sessions'],
     whatsapp: 'violin',
-    heroPrompt: `A student playing a violin in Carnatic style, seated cross-legged on a mat with the instrument resting on the shoulder and foot, a teacher beside them, ${palette}, illustrated editorial style, 16:9`,
+    heroPrompt: photoBrief('A teenage student practising the violin in the Carnatic style at home, seated on the floor, with a laptop in front showing the teacher.'),
     page: {
       title: 'Online Carnatic Violin Classes for Children and Adults',
       description:
@@ -117,7 +115,7 @@ export const courses: Course[] = [
     summary: 'Learn to sing Carnatic music, whether you are a child or an adult. Weekend sessions are available.',
     formats: ['Online', 'In person in Kovaipudur', 'Weekend sessions'],
     whatsapp: 'vocal',
-    heroPrompt: `A young student singing Carnatic music while her teacher keeps tala with her hand, seated on a mat in a bright south Indian home, a brass lamp nearby, ${palette}, illustrated editorial style, 16:9`,
+    heroPrompt: photoBrief('A young student singing during an online lesson at home, a laptop in front of her and a tambura beside her.'),
     page: {
       title: 'Online Carnatic Vocal Classes for Children and Adults',
       description:
