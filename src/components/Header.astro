@@ -12,8 +12,9 @@ const isActive = (href: string) => current === href || current.startsWith(href);
 
 <header class="sticky top-0 z-40 border-b border-line bg-ground/90 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-    <a href="/" class="block h-[60px] w-[150px] text-ink sm:h-[72px] sm:w-[180px]" aria-label="Achyutha Music School home">
-      <Logo class="h-full w-full" />
+    <a href="/" class="block h-[60px] w-[150px] text-ink sm:h-[72px] sm:w-[180px]">
+      <span class="block h-full w-full" aria-hidden="true"><Logo class="h-full w-full" /></span>
+      <span class="sr-only">Achyutha Music School home</span>
     </a>
 
     <nav class="hidden items-center gap-6 lg:flex" aria-label="Main">

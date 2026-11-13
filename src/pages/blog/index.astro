@@ -57,7 +57,7 @@ const noindex = posts.length === 0;
                 href={`/blog/${post.id}/`}
                 class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-link no-underline hover:text-link-hover"
               >
-                Read the answer <ArrowRight size={16} aria-hidden="true" />
+                Read “{post.data.title}” <ArrowRight size={16} aria-hidden="true" />
               </a>
             </li>
           ))}
