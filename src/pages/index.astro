@@ -12,9 +12,9 @@ import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 
-const title = 'Carnatic Music Classes in Coimbatore | Vocal, Violin and Veena';
+const title = 'Online Carnatic Music Classes | Vocal, Violin and Veena in Coimbatore';
 const description =
-  'Learn Carnatic vocal, violin or veena in Kovaipudur, Coimbatore. Personal lessons for children and adults in the tradition of Sri S.V. Achyutha Iyer.';
+  'Learn Carnatic vocal, violin or veena online, or in person in Kovaipudur, Coimbatore. Personal lessons for children and adults in the tradition of Sri S.V. Achyutha Iyer.';
 
 const whyPoints = [
   {
@@ -95,15 +95,15 @@ const faqs = [
     <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
       <div>
         <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-link">
-          {site.area}, {site.city}
+          Online and in {site.area}, {site.city}
         </p>
         <h1 class="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-          Carnatic music classes in Coimbatore
+          Carnatic music classes, online and in Coimbatore
         </h1>
         <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-          Learn vocal, violin or veena in the tradition of {site.guru}. Lessons are shaped
-          around each student, whether you are starting from the first swara or returning to
-          music after a break.
+          Learn vocal, violin or veena in the tradition of {site.guru}. Online is how we
+          prefer to teach, so students can learn from wherever they are. We also teach in
+          person at our school in {site.area}, {site.city}.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <Button href={whatsappLink(whatsappMessages.general)} external size="lg">
