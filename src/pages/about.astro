@@ -5,6 +5,8 @@ import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaPanel from '../components/CtaPanel.astro';
+import { Image } from 'astro:assets';
+import guruPhoto from '../assets/images/achyutha-iyer.jpg';
 import { site } from '../config/site';
 
 const title = 'About Achyutha Music School';
@@ -14,7 +16,6 @@ const description =
 const palette =
   'warm sandal-orange and charcoal colour palette on an ivory background, soft lamp light, calm and respectful mood, no text, no logos, illustrated editorial style, 4:3';
 const heroPrompt = `A teacher and a young student seated together on a mat, the teacher gently guiding the student's hand on a Saraswati veena, a brass lamp glowing beside them, ${palette}`;
-const guruPrompt = `A violin and bow laid on a folded silk cloth beside a brass lamp, a garland of jasmine and an open notebook of handwritten music, ${palette}`;
 
 const values = [
   { icon: HeartHandshake, title: 'Lessons shaped around you', text: 'Each lesson fits the student\'s level and way of learning.' },
@@ -43,7 +44,14 @@ const teachers = [
 
   <section class="py-14 md:py-20">
     <Container size="wide" class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-      <ImagePlaceholder prompt={guruPrompt} width={1200} height={900} aspect="4/3" class="md:order-2" />
+      <div class="mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-line md:order-2" style="aspect-ratio: 721/873;">
+        <Image
+          src={guruPhoto}
+          alt="Sri S.V. Achyutha Iyer with his wife"
+          width={720}
+          class="h-full w-full object-cover object-bottom"
+        />
+      </div>
       <div>
         <SectionHeading eyebrow="Our guru" title={site.guru} />
         <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">
