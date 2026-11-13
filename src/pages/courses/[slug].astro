@@ -11,6 +11,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import CourseCard from '../../components/CourseCard.astro';
 import Faq from '../../components/Faq.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
+import HeroArt from '../../components/HeroArt.astro';
 import { courses } from '../../data/courses';
 import { objectBrief } from '../../data/imagePrompts';
 import type { Course } from '../../data/courses';
@@ -59,7 +60,8 @@ const faqSchema = {
 ---
 
 <BaseLayout title={page.title} description={page.description} jsonLd={[courseSchema, faqSchema]}>
-  <section class={`hero-surface hero-surface--${course.slug} border-b border-line`}>
+  <section class="hero-surface hero-surface--art border-b border-line">
+    <HeroArt variant={course.slug} />
     <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
       <div>
         <SectionHeading level={1} eyebrow={page.eyebrow} title={page.heading} lead={page.lead} />
