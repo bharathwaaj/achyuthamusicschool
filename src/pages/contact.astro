@@ -75,15 +75,44 @@ const contactSchema = {
             <MapPin size={26} aria-hidden="true" />
           </span>
           <h2 class="mt-4 text-lg font-semibold text-ink">Visit us</h2>
-          <p class="mt-1 text-muted">
-            {site.address ?? `${site.area}, ${site.city}`}
-          </p>
+          <p class="mt-1 text-muted">{site.address}</p>
+          <p class="text-sm text-subtle">{site.landmark}</p>
         </li>
       </ul>
       <p class="mx-auto mt-8 max-w-xl text-center leading-relaxed text-muted">
-        Planning to visit our school in {site.area}? Message us first and we will send you the exact
-        location and a time that suits you.
+        Planning to visit our school in {site.area}? Message us first, so we can find a time that
+        suits you.
       </p>
+    </Container>
+  </section>
+
+  <section class="border-t border-line py-14 md:py-16">
+    <Container size="wide">
+      <SectionHeading title="Find our school" align="center" />
+      <div
+        id="school-map"
+        class="relative mt-8 flex items-center justify-center overflow-hidden rounded-2xl border border-line bg-sunken"
+        style="aspect-ratio: 16/9; min-height: 18rem;"
+        data-src={site.mapsEmbedUrl}
+      >
+        <div class="px-6 text-center">
+          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+            <MapPin size={26} aria-hidden="true" />
+          </span>
+          <p class="mt-3 text-muted">{site.address}</p>
+          <p class="text-sm text-subtle">{site.landmark}</p>
+          <div class="mt-5 flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              data-show-map
+              class="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-full border border-brand bg-brand px-5 py-2.5 text-sm font-semibold text-brand-on transition-colors hover:border-brand-strong hover:bg-brand-strong"
+            >
+              Show the map
+            </button>
+            <Button href={site.mapsUrl} external variant="secondary" size="md">Open in Google Maps</Button>
+          </div>
+        </div>
+      </div>
     </Container>
   </section>
 
@@ -94,3 +123,20 @@ const contactSchema = {
     </Container>
   </section>
 </BaseLayout>
+
+<script>
+  // Load the Google map only when the visitor asks for it, so the page makes
+  // no third-party requests until then.
+  const box = document.getElementById('school-map');
+  box?.querySelector('[data-show-map]')?.addEventListener('click', () => {
+    const src = box.dataset.src;
+    if (!src) return;
+    const frame = document.createElement('iframe');
+    frame.src = src;
+    frame.title = 'Map showing the location of Achyutha Music School';
+    frame.loading = 'lazy';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.className = 'absolute inset-0 h-full w-full border-0';
+    box.replaceChildren(frame);
+  });
+</script>
