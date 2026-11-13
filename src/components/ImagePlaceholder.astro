@@ -1,0 +1,75 @@
+---
+/**
+ * ImagePlaceholder
+ *
+ * Shows a labelled box until a real image exists. The `prompt` prop is
+ * both the alt text and the text to paste into ChatGPT to generate the
+ * image, so each empty slot documents what should go in it.
+ *
+ * Once the image is saved under src/assets/, pass it as `src`:
+ *
+ *   import veena from '../assets/heroes/veena.png';
+ *   <ImagePlaceholder prompt="..." src={veena} />
+ *
+ * Astro then resizes and converts it at build time.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { ImageIcon } from '@lucide/astro';
+
+interface Props {
+  /** Alt text and image generation prompt. */
+  prompt: string;
+  /** Omit until the image exists. */
+  src?: ImageMetadata;
+  width?: number;
+  height?: number;
+  /** CSS aspect ratio such as "16/9". Defaults to width/height. */
+  aspect?: string;
+  loading?: 'lazy' | 'eager';
+  sizes?: string;
+  class?: string;
+  rounded?: string;
+}
+
+const {
+  prompt,
+  src,
+  width = 1200,
+  height = 675,
+  aspect,
+  loading = 'lazy',
+  sizes,
+  class: className = '',
+  rounded = 'rounded-2xl',
+} = Astro.props;
+
+const ratio = aspect ?? `${width}/${height}`;
+---
+
+{src ? (
+  <div class={`w-full overflow-hidden ${rounded} ${className}`} style={`aspect-ratio: ${ratio};`}>
+    <Image
+      src={src}
+      alt={prompt}
+      width={width}
+      height={height}
+      loading={loading}
+      sizes={sizes}
+      class="h-full w-full object-cover"
+    />
+  </div>
+) : (
+  <figure
+    class={`relative w-full overflow-hidden border-2 border-dashed border-line bg-sunken ${rounded} ${className}`}
+    style={`aspect-ratio: ${ratio};`}
+    role="img"
+    aria-label={prompt}
+  >
+    <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+      <ImageIcon size={32} class="shrink-0 text-subtle" aria-hidden="true" />
+      <p class="max-w-md text-sm leading-relaxed text-muted">{prompt}</p>
+      <p class="font-mono text-xs text-subtle">{width} &times; {height}px</p>
+    </div>
+  </figure>
+)}
