@@ -3,6 +3,7 @@ import { BookOpenText, MessageCircle, Signal, Layers } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
+import HeroArt from '../components/HeroArt.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CtaPanel from '../components/CtaPanel.astro';
 import { courses } from '../data/courses';
@@ -22,7 +23,8 @@ const steps = ['Message us', 'Choose a class and timing', 'Begin at your own pac
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="hero-surface hero-surface--fees border-b border-line py-14 md:py-20">
+  <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
+    <HeroArt variant="fees" />
     <Container size="wide">
       <SectionHeading
         level={1}
