@@ -13,7 +13,7 @@ export const site = {
   email: 'support@achyuthamusicschool.com',
   phone: '+919445913868',
   phoneDisplay: '+91 94459 13868',
-  whatsappNumber: '919445913868',
+  whatsappNumber: '918838291375',
   area: 'Kovaipudur',
   city: 'Coimbatore',
   state: 'Tamil Nadu',
