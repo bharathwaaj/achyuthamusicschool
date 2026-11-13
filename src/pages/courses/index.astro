@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import { courses } from '../../data/courses';
+
+const [veena, ...others] = courses;
+
+const title = 'Online Veena, Violin and Carnatic Vocal Classes';
+const description =
+  'Join online veena classes, or learn Carnatic violin or vocal. Lessons for children and adults, beginners and returning learners, with weekend sessions for violin and vocal.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="border-b border-line bg-brand-soft py-14 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        level={1}
+        eyebrow="Our classes"
+        title="Veena, violin and Carnatic vocal classes"
+        lead="Veena is our main class, and we teach it online so you can join from anywhere. Violin and Carnatic vocal are also available, with weekend sessions."
+      />
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="wide" class="space-y-6">
+      <CourseCard course={veena} />
+      <div class="grid gap-6 md:grid-cols-2">
+        {others.map((course) => <CourseCard course={course} />)}
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-16 md:pb-20">
+    <Container size="narrow">
+      <SectionHeading title="Not sure where to begin?" />
+      <p class="mt-4 text-lg leading-relaxed text-muted">
+        That is perfectly fine. Tell us who will be learning, their age, and whether they have
+        played before. We will suggest a class and a timing that suits you.
+      </p>
+    </Container>
+  </section>
+
+  <CtaPanel />
+</BaseLayout>

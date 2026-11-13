@@ -1,0 +1,33 @@
+---
+import { MessageCircle } from '@lucide/astro';
+import Container from './Container.astro';
+import Button from './Button.astro';
+import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
+
+interface Props {
+  title?: string;
+  text?: string;
+  /** Pre-filled WhatsApp message. */
+  message?: string;
+  label?: string;
+}
+
+const {
+  title = 'Come and say hello',
+  text = 'Send us a message and tell us who will be learning. We will help you choose a class and a timing that suits you.',
+  message = whatsappMessages.general,
+  label = 'Message us on WhatsApp',
+} = Astro.props;
+---
+
+<section class="px-4 pb-4 sm:px-6">
+  <Container size="wide" class="rounded-3xl bg-header px-6 py-12 text-center text-header-text md:py-16">
+    <h2 class="text-3xl font-semibold sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed opacity-85">{text}</p>
+    <div class="mt-8 flex justify-center">
+      <Button href={whatsappLink(message)} external size="lg">
+        <MessageCircle size={18} aria-hidden="true" /> {label}
+      </Button>
+    </div>
+  </Container>
+</section>
