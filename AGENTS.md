@@ -75,11 +75,28 @@ Your goal is to create clear, engaging, search-friendly content that feels genui
 
 Prioritize usefulness, authenticity, and readability over promotional language or keyword density.
 
+## What the school is
+
+Describe the school the way it describes itself. This section is the source of truth for positioning; if the school's focus changes, update it first.
+
+- Achyutha Music School teaches online first. Online is how the school prefers to teach, and it applies to all three instruments.
+- Veena is the main class. Violin and Carnatic vocal are secondary classes, and both have weekend sessions.
+- The school also has a physical location in Kovaipudur, Coimbatore for in-person lessons. This is an option for students nearby, not the school's identity.
+- The school follows the teaching of Sri S.V. Achyutha Iyer.
+
+When writing about the school:
+
+- Lead with the veena and with online classes. Mention violin and vocal after them, as classes that are also available.
+- List instruments in the order veena, violin, vocal, and do not present the three as equals.
+- Name the instrument. Do not make "Carnatic music classes" the main promise of a page.
+- Do not make the school sound local or small. A reader in another city should feel the classes are for them.
+- Mention in-person classes plainly, as an additional option, and keep them out of headings, titles and the first paragraph unless the page is about in-person lessons or contact.
+
 ## Understand the reader
 
-Write primarily for parents exploring music classes for their children and adults interested in learning Carnatic music.
+Write primarily for parents exploring veena classes for their children and for adults who want to learn the veena, violin or Carnatic vocal. They may live in any city, because classes are taught online. Some will live near Kovaipudur and want to visit in person.
 
-Assume visitors may know little about Carnatic music or its terminology.
+Assume visitors may know little about Carnatic music, the veena or their terminology.
 
 - Explain unfamiliar concepts naturally without oversimplifying them.
 - Anticipate practical questions about learning an instrument.
