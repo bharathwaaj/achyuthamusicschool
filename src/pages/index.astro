@@ -8,6 +8,7 @@ import homeVeena from '../assets/images/home-veena.png';
 import SectionHeading from '../components/SectionHeading.astro';
 import CourseCard from '../components/CourseCard.astro';
 import Faq from '../components/Faq.astro';
+import HashtagRibbon from '../components/HashtagRibbon.astro';
 import { courses } from '../data/courses';
 import { photoBrief } from '../data/imagePrompts';
 import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
@@ -152,6 +153,8 @@ const faqs = [
       />
     </Container>
   </section>
+
+  <HashtagRibbon />
 
   <section class="py-16 md:py-20">
     <Container size="wide">

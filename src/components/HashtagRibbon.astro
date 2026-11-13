@@ -1,0 +1,105 @@
+---
+/**
+ * A tilted ribbon of playful hashtags that scrolls gently across the page,
+ * like a festival banner. Decorative: the same nudges appear as plain text
+ * for screen readers, and the scrolling stops for visitors who prefer
+ * reduced motion.
+ */
+interface Props {
+  tags?: string[];
+}
+
+const {
+  tags = [
+    '#PractiseNotScroll',
+    '#TenMinutesADay',
+    '#ScreenFreeHour',
+    '#VeenaBeforeReels',
+    '#OnlineFromAnywhere',
+    '#WeekendViolin',
+    '#SingInTheShowerThenComeToClass',
+  ],
+} = Astro.props;
+---
+
+<div class="ribbon-wrap" role="note" aria-label={tags.join(', ')}>
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon__track">
+      {[0, 1].map(() => (
+        <ul class="ribbon__list">
+          {tags.map((tag) => (
+            <li>
+              <span>{tag}</span>
+              <span class="ribbon__dot">♪</span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .ribbon-wrap {
+    overflow: hidden;
+    padding-block: 1.25rem;
+  }
+
+  .ribbon {
+    transform: rotate(-1.5deg);
+    margin-inline: -2rem;
+    background: var(--c-brand);
+    color: var(--c-brand-on);
+    box-shadow: 0 6px 18px -10px rgb(0 0 0 / 0.5);
+  }
+
+  .ribbon__track {
+    display: flex;
+    width: max-content;
+  }
+
+  .ribbon__list {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.7rem 0.75rem;
+    margin: 0;
+    list-style: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .ribbon__list li {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .ribbon__dot {
+    opacity: 0.55;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ribbon__track {
+      animation: ribbon-scroll 40s linear infinite;
+    }
+
+    .ribbon-wrap:hover .ribbon__track {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Two identical lists sit side by side, so moving by one list's width
+     loops without a jump. */
+  @keyframes ribbon-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
