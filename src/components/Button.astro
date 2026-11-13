@@ -12,11 +12,12 @@ const { href, variant = 'primary', size = 'md', external = false, class: classNa
   Astro.props;
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors no-underline';
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border font-semibold no-underline transition-colors';
 const variants = {
-  primary: 'bg-brand text-brand-on hover:bg-brand-strong hover:text-brand-on',
-  secondary: 'border border-line bg-surface text-ink hover:border-brand hover:text-ink',
-  ghost: 'text-link hover:text-link-hover',
+  primary:
+    'border-brand bg-brand text-brand-on hover:border-brand-strong hover:bg-brand-strong hover:text-brand-on',
+  secondary: 'border-ink/30 bg-transparent text-ink hover:border-ink hover:bg-ink/5 hover:text-ink',
+  ghost: 'border-transparent text-link hover:text-link-hover',
 };
 const sizes = { md: 'px-5 py-2.5 text-sm', lg: 'px-7 py-3.5 text-base' };
 ---
