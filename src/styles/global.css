@@ -123,8 +123,8 @@
 }
 
 /* Hero backdrop shared by every page. Soft sandal glows, a faint dot
-   texture and concentric rings that suggest sound spreading from an
-   instrument. Built from theme colours, so it works in light and dark. */
+   texture and flowing lines like vibrating strings. Built from theme
+   colours, so it works in light and dark. */
 @layer components {
   .hero-surface {
     position: relative;
@@ -136,24 +136,19 @@
       radial-gradient(40rem 24rem at 0% 100%, color-mix(in oklab, var(--c-accent) 12%, transparent), transparent 70%);
   }
 
-  /* Rings, anchored off the right edge. */
+  /* Three soft flowing lines along the bottom, like vibrating strings.
+     The SVG is used as a mask so the lines take the theme's brand colour. */
   .hero-surface::before {
     content: '';
     position: absolute;
     z-index: -1;
-    top: 50%;
-    right: -14rem;
-    width: 44rem;
-    height: 44rem;
-    translate: 0 -50%;
-    border-radius: 9999px;
-    background: repeating-radial-gradient(
-      circle,
-      transparent 0 2.4rem,
-      color-mix(in oklab, var(--c-brand) 28%, transparent) 2.4rem calc(2.4rem + 1px)
-    );
-    mask-image: radial-gradient(circle, #000 30%, transparent 70%);
-    opacity: 0.7;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 9rem;
+    background-color: var(--c-brand);
+    opacity: 0.35;
+    mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'><g fill='none' stroke='%23000' stroke-width='1.5'><path d='M0 120 C 200 60, 400 180, 600 120 S 1000 60, 1200 120'/><path d='M0 140 C 220 90, 420 190, 620 140 S 1020 90, 1200 140' opacity='.7'/><path d='M0 160 C 240 120, 440 200, 640 160 S 1040 120, 1200 160' opacity='.45'/></g></svg>") center / 100% 100% no-repeat;
   }
 
   /* Dot texture, fading out towards the bottom. */
