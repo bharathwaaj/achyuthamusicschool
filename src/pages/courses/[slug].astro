@@ -4,6 +4,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import veenaDetail from '../../assets/images/veena-detail.png';
+import violinDetail from '../../assets/images/violin-detail.png';
+import tamburaDetail from '../../assets/images/tambura-detail.png';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CourseCard from '../../components/CourseCard.astro';
 import Faq from '../../components/Faq.astro';
@@ -34,6 +37,7 @@ const aboutPrompts: Record<string, string> = {
   vocal: objectBrief('A tambura leaning against a plain wall beside a window, shallow depth of field.'),
 };
 const others = courses.filter((other) => other.slug !== course.slug);
+const aboutImages = { veena: veenaDetail, violin: violinDetail, vocal: tamburaDetail };
 
 const courseSchema = {
   '@context': 'https://schema.org',
@@ -66,13 +70,13 @@ const faqSchema = {
           <Button href="/courses/" variant="secondary" size="lg">All classes</Button>
         </div>
       </div>
-      <ImagePlaceholder prompt={course.heroPrompt} width={1200} height={675} loading="eager" />
+      <ImagePlaceholder prompt={course.heroPrompt} src={course.heroImage} width={1200} height={675} loading="eager" />
     </Container>
   </section>
 
   <section class="py-14 md:py-16">
     <Container size="wide" class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-      <ImagePlaceholder prompt={aboutPrompts[course.slug]} width={1200} height={900} aspect="4/3" />
+      <ImagePlaceholder prompt={aboutPrompts[course.slug]} src={aboutImages[course.slug]} width={1200} height={900} aspect="4/3" />
       <div>
         <SectionHeading title="About the class" />
         <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">

@@ -7,6 +7,7 @@ import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import CtaPanel from '../components/CtaPanel.astro';
 import { Image } from 'astro:assets';
 import guruPhoto from '../assets/images/achyutha-iyer.jpg';
+import veenaTeaching from '../assets/images/veena-teaching.png';
 import { photoBrief } from '../data/imagePrompts';
 import { site } from '../config/site';
 
@@ -37,7 +38,7 @@ const teachers = [
         title="A school that grew from a guru's teaching"
         lead="We teach the veena online, with Carnatic violin and vocal too. Everything we do begins with the way our guru taught."
       />
-      <ImagePlaceholder prompt={heroPrompt} width={1200} height={900} aspect="4/3" loading="eager" />
+      <ImagePlaceholder prompt={heroPrompt} src={veenaTeaching} width={1200} height={900} aspect="4/3" loading="eager" />
     </Container>
   </section>
 

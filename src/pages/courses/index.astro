@@ -5,6 +5,10 @@ import Container from '../../components/Container.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import instruments from '../../assets/images/instruments.png';
+import veenaOnline from '../../assets/images/veena-online.png';
+import violinPractice from '../../assets/images/violin-practice.png';
+import vocalPractice from '../../assets/images/vocal-practice.png';
 import { courses } from '../../data/courses';
 import { objectBrief, photoBrief } from '../../data/imagePrompts';
 
@@ -34,6 +38,7 @@ const howItWorks = [
   { icon: CalendarClock, title: 'Weekends for violin and vocal' },
   { icon: Sprout, title: 'Children, adults, beginners' },
 ];
+const classImages = { veena: veenaOnline, violin: violinPractice, vocal: vocalPractice };
 ---
 
 <BaseLayout title={title} description={description}>
@@ -45,7 +50,7 @@ const howItWorks = [
         title="Which class is right for you?"
         lead="We teach the veena, violin and Carnatic vocal. Here is a little about each, and how classes work, so you can choose with confidence."
       />
-      <ImagePlaceholder prompt={heroPrompt} width={1200} height={900} aspect="4/3" loading="eager" />
+      <ImagePlaceholder prompt={heroPrompt} src={instruments} width={1200} height={900} aspect="4/3" loading="eager" />
     </Container>
   </section>
 
@@ -55,6 +60,7 @@ const howItWorks = [
         <article class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <ImagePlaceholder
             prompt={classPrompts[course.slug]}
+            src={classImages[course.slug]}
             width={1200}
             height={900}
             aspect="4/3"

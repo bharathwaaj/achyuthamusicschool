@@ -1,3 +1,7 @@
+import type { ImageMetadata } from 'astro';
+import veenaHero from '../assets/images/veena-hero.png';
+import violinHero from '../assets/images/violin-hero.png';
+import vocalHero from '../assets/images/vocal-hero.png';
 import { photoBrief } from './imagePrompts';
 import type { whatsappMessages } from '../utils/whatsapp';
 
@@ -14,6 +18,7 @@ export interface Course {
   whatsapp: keyof typeof whatsappMessages;
   /** Prompt for the page's hero image, to be generated outside the site. */
   heroPrompt: string;
+  heroImage?: ImageMetadata;
   page: CoursePageContent;
 }
 
@@ -41,6 +46,7 @@ export const courses: Course[] = [
     summary: 'Our main class. Learn the classical veena with experienced teachers, online or in person.',
     formats: ['Online', 'In person in Kovaipudur'],
     whatsapp: 'veena',
+    heroImage: veenaHero,
     heroPrompt: photoBrief('A Saraswati veena resting on its stand in a quiet corner of a living room, with a student seated nearby about to begin practice.'),
     page: {
       title: 'Learn the Veena Online: Classes for Beginners',
@@ -78,6 +84,7 @@ export const courses: Course[] = [
     summary: 'Learn the violin in the Carnatic style, with personal attention and weekend sessions.',
     formats: ['Online', 'In person in Kovaipudur', 'Weekend sessions'],
     whatsapp: 'violin',
+    heroImage: violinHero,
     heroPrompt: photoBrief('A teenage student practising the violin in the Carnatic style at home, seated on the floor, with a laptop in front showing the teacher.'),
     page: {
       title: 'Online Carnatic Violin Classes for Children and Adults',
@@ -115,6 +122,7 @@ export const courses: Course[] = [
     summary: 'Learn to sing Carnatic music, whether you are a child or an adult. Weekend sessions are available.',
     formats: ['Online', 'In person in Kovaipudur', 'Weekend sessions'],
     whatsapp: 'vocal',
+    heroImage: vocalHero,
     heroPrompt: photoBrief('A young student singing during an online lesson at home, a laptop in front of her and a tambura beside her.'),
     page: {
       title: 'Online Carnatic Vocal Classes for Children and Adults',
