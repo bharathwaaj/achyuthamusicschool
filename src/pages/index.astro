@@ -6,6 +6,7 @@ import Button from '../components/Button.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CourseCard from '../components/CourseCard.astro';
+import Faq from '../components/Faq.astro';
 import { courses } from '../data/courses';
 import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
@@ -30,6 +31,21 @@ const whyPoints = [
     icon: CalendarClock,
     title: 'Timings that suit family life',
     text: 'Veena classes are also available online, and vocal and violin have weekend sessions, so lessons can fit around school and work.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Talk to the instructors',
+    text: 'Tell us who will be learning, their age and any earlier experience. We will suggest where to begin.',
+  },
+  {
+    title: 'Choose a class and timing',
+    text: 'Pick vocal, violin or veena and settle on a schedule that works for your family.',
+  },
+  {
+    title: 'Begin at your own pace',
+    text: 'Lessons start from where the student is, and move on as they grow in confidence.',
   },
 ];
 ---
@@ -125,6 +141,23 @@ const whyPoints = [
       <p class="mt-8">
         <Button href="/team/" variant="ghost">Meet all our teachers</Button>
       </p>
+    </Container>
+  </section>
+
+  <section class="border-y border-line bg-brand-soft py-16 md:py-20">
+    <Container size="wide">
+      <SectionHeading title="How to get started" align="center" />
+      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+        {steps.map((step, index) => (
+          <li class="rounded-2xl border border-line bg-surface p-6">
+            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-brand font-semibold text-brand-on">
+              {index + 1}
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-ink">{step.title}</h3>
+            <p class="mt-2 leading-relaxed text-muted">{step.text}</p>
+          </li>
+        ))}
+      </ol>
     </Container>
   </section>
 </BaseLayout>
