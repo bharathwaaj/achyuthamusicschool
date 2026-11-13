@@ -121,3 +121,49 @@
     outline-offset: 2px;
   }
 }
+
+/* Hero backdrop shared by every page. Soft sandal glows, a faint dot
+   texture and concentric rings that suggest sound spreading from an
+   instrument. Built from theme colours, so it works in light and dark. */
+@layer components {
+  .hero-surface {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--c-brand-soft);
+    background-image:
+      radial-gradient(60rem 30rem at 100% 0%, color-mix(in oklab, var(--c-brand) 22%, transparent), transparent 70%),
+      radial-gradient(40rem 24rem at 0% 100%, color-mix(in oklab, var(--c-accent) 12%, transparent), transparent 70%);
+  }
+
+  /* Rings, anchored off the right edge. */
+  .hero-surface::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    right: -14rem;
+    width: 44rem;
+    height: 44rem;
+    translate: 0 -50%;
+    border-radius: 9999px;
+    background: repeating-radial-gradient(
+      circle,
+      transparent 0 2.4rem,
+      color-mix(in oklab, var(--c-brand) 28%, transparent) 2.4rem calc(2.4rem + 1px)
+    );
+    mask-image: radial-gradient(circle, #000 30%, transparent 70%);
+    opacity: 0.7;
+  }
+
+  /* Dot texture, fading out towards the bottom. */
+  .hero-surface::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: radial-gradient(color-mix(in oklab, var(--c-ink) 14%, transparent) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, #000, transparent 75%);
+  }
+}
