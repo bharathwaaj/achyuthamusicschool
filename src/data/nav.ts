@@ -18,8 +18,5 @@ export const courseLinks: NavLink[] = [
   { href: '/courses/vocal/', label: 'Carnatic Vocal' },
 ];
 
-/** Footer shows the main links plus the class rooms page. */
-export const footerLinks: NavLink[] = [
-  ...navLinks,
-  { href: '/class-rooms/', label: 'Class rooms' },
-];
+/** Footer shows the same links as the header. */
+export const footerLinks: NavLink[] = navLinks;
