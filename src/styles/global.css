@@ -1,1 +1,93 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/lora";
+
+/*
+  Design tokens
+  ─────────────
+  Palette is taken from the school logo: sandal orange (#ff8e3c) and
+  charcoal (#1c191a), on a warm ivory ground with a maroon accent.
+
+  Layer 1 (:root)   raw values per theme.
+  Layer 2 (@theme)  semantic names that generate Tailwind utilities
+                    such as bg-brand, text-muted and border-line.
+  Components use only the semantic names.
+*/
+
+:root {
+  --c-ground: #fffaf3;
+  --c-surface: #ffffff;
+  --c-sunken: #f7eddf;
+  --c-ink: #1c191a;
+  --c-muted: #5c5148;
+  --c-subtle: #8a7d70;
+  --c-line: #e9dcc9;
+
+  --c-brand: #ff8e3c;
+  --c-brand-strong: #e0701a;
+  --c-brand-soft: #fff0e1;
+  --c-brand-on: #1c191a;
+  --c-link: #a64500;
+  --c-link-hover: #7a3200;
+
+  --c-accent: #7a1f2b;
+  --c-accent-soft: #f8e6e8;
+  --c-accent-on: #ffffff;
+
+  --c-header: #1c191a;
+  --c-header-text: #f6ece0;
+}
+
+@theme inline {
+  --color-ground: var(--c-ground);
+  --color-surface: var(--c-surface);
+  --color-sunken: var(--c-sunken);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-subtle: var(--c-subtle);
+  --color-line: var(--c-line);
+
+  --color-brand: var(--c-brand);
+  --color-brand-strong: var(--c-brand-strong);
+  --color-brand-soft: var(--c-brand-soft);
+  --color-brand-on: var(--c-brand-on);
+  --color-link: var(--c-link);
+  --color-link-hover: var(--c-link-hover);
+
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-accent-on: var(--c-accent-on);
+
+  --color-header: var(--c-header);
+  --color-header-text: var(--c-header-text);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora Variable", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    background-color: var(--c-ground);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    line-height: 1.2;
+  }
+
+  a {
+    color: var(--c-link);
+  }
+
+  a:hover {
+    color: var(--c-link-hover);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-brand-strong);
+    outline-offset: 2px;
+  }
+}
