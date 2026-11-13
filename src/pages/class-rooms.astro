@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import { Play, Smile, Sprout, TrendingUp } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaPanel from '../components/CtaPanel.astro';
+import thumb from '../assets/gallery/akshara-practice-thumb.jpg';
+
+const title = 'Class Rooms: Student Practice Sessions';
+const description =
+  'Watch a student practise the veena at Achyutha Music School, and see what makes practice rewarding for children and adults alike.';
+
+const videoId = 'LQGaRtBZ0GA';
+
+const joys = [
+  { icon: TrendingUp, title: 'Making progress', text: 'Every small improvement feels rewarding.' },
+  { icon: Smile, title: 'Enjoying the music', text: 'Playing is joyful, most of all when you feel the music.' },
+  { icon: Sprout, title: 'Enjoying the process', text: 'Practising for the love of it makes the learning fun.' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="border-b border-line bg-brand-soft py-14 md:py-20">
+    <Container size="wide">
+      <SectionHeading
+        level={1}
+        eyebrow="Class rooms"
+        title="Our students at practice"
+        lead="A glimpse of the effort and joy that go into learning."
+      />
+    </Container>
+  </section>
+
+  <section class="py-14 md:py-16">
+    <Container size="default">
+      <div
+        id="practice-video"
+        class="relative overflow-hidden rounded-2xl border border-line bg-sunken"
+        style="aspect-ratio: 16/9;"
+        data-video-id={videoId}
+      >
+        <Image src={thumb} alt="Akshara playing the veena during a practice session" width={960} class="absolute inset-0 h-full w-full object-cover" />
+        <button
+          type="button"
+          class="absolute inset-0 flex items-center justify-center bg-black/20 transition hover:bg-black/30 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-brand"
+          aria-label="Play the practice video"
+          data-play
+        >
+          <span class="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-brand-on shadow-lg">
+            <Play size={28} fill="currentColor" aria-hidden="true" />
+          </span>
+        </button>
+      </div>
+      <p class="mt-4 text-center text-muted">
+        Akshara practising Sri Thyagaraja's kriti "Giriraja Sudha" on the veena, in raga Bangala and
+        Adi tala.
+      </p>
+    </Container>
+  </section>
+
+  <section class="border-y border-line bg-sunken py-14 md:py-16">
+    <Container size="wide">
+      <SectionHeading title="What makes practice rewarding" align="center" />
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
+        {joys.map((item) => (
+          <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+            <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
+              <item.icon size={26} aria-hidden="true" />
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+            <p class="mt-1 leading-relaxed text-muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <CtaPanel title="Start practising with us" text="Send us a message and tell us who will be learning. We will help you choose a class and a timing that suits you." />
+</BaseLayout>
+
+<script>
+  // Load YouTube only when the visitor presses play, so the page makes no
+  // third-party requests until then.
+  const box = document.getElementById('practice-video');
+  box?.querySelector('[data-play]')?.addEventListener('click', () => {
+    const id = box.dataset.videoId;
+    if (!id) return;
+    const frame = document.createElement('iframe');
+    frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+    frame.title = 'Student practice session';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+    frame.allowFullscreen = true;
+    frame.className = 'absolute inset-0 h-full w-full';
+    box.replaceChildren(frame);
+  });
+</script>
