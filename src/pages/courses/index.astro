@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
+import HeroArt from '../../components/HeroArt.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import instruments from '../../assets/images/instruments.png';
 import veenaOnline from '../../assets/images/veena-online.png';
@@ -42,7 +43,8 @@ const classImages = { veena: veenaOnline, violin: violinPractice, vocal: vocalPr
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="hero-surface hero-surface--courses border-b border-line py-14 md:py-20">
+  <section class="hero-surface hero-surface--art border-b border-line py-14 md:py-20">
+    <HeroArt variant="courses" />
     <Container size="wide" class="grid items-center gap-10 md:grid-cols-2">
       <SectionHeading
         level={1}
