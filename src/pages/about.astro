@@ -1,6 +1,7 @@
 ---
 import { ArrowRight, Flame, HeartHandshake, Laptop, MessageCircle, Music, Users } from '@lucide/astro';
 import Button from '../components/Button.astro';
+import HeroArt from '../components/HeroArt.astro';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
@@ -41,7 +42,8 @@ const teachers = [
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="hero-surface hero-surface--about border-b border-line">
+  <section class="hero-surface hero-surface--art border-b border-line">
+    <HeroArt variant="about" />
     <Container size="wide" class="grid items-center gap-12 py-14 md:grid-cols-2 md:py-20">
       <div>
         <SectionHeading
