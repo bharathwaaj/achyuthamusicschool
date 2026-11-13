@@ -217,7 +217,7 @@ const notes = (positions: [number, number][]) => positions;
         </g>
         <g class="about-stage" data-left="66" data-right="90">
         <g class="grow" style="animation-delay: 0.55s">
-          <g class="sway" style="animation-delay: -1s">
+          <g class="sway" style="animation-delay: 1.70s">
             <path class="stroke" d="M78 93 L78 77" stroke-width="2.2" />
             <path class="fill" d="M78 80 C 69 79, 66 71, 71 69 C 76 70, 78 75, 78 80 Z" />
             <path class="fill" d="M78 78 C 87 77, 90 69, 85 67 C 80 68, 78 73, 78 78 Z" />
@@ -226,7 +226,7 @@ const notes = (positions: [number, number][]) => positions;
         </g>
         <g class="about-stage" data-left="135" data-right="165">
         <g class="grow" style="animation-delay: 0.9s">
-          <g class="sway" style="animation-delay: -2.5s">
+          <g class="sway" style="animation-delay: 2.05s">
             <path class="stroke" d="M150 93 L150 63" stroke-width="2.6" />
             <path class="fill" d="M150 84 C 139 83, 135 74, 141 72 C 147 73, 150 79, 150 84 Z" />
             <path class="fill" d="M150 78 C 161 77, 165 68, 159 66 C 153 67, 150 73, 150 78 Z" />
@@ -237,7 +237,7 @@ const notes = (positions: [number, number][]) => positions;
         </g>
         <g class="about-stage" data-left="219" data-right="258">
         <g class="grow" style="animation-delay: 1.25s">
-          <g class="sway" style="animation-delay: -0.5s">
+          <g class="sway" style="animation-delay: 2.40s">
             <path class="fill" d="M236 93 L236 60 L240 60 L240 93 Z" />
             <circle class="fill" cx="238" cy="48" r="11" />
             <circle class="fill" cx="228" cy="56" r="8" />
@@ -247,7 +247,7 @@ const notes = (positions: [number, number][]) => positions;
         </g>
         <g class="about-stage" data-left="322" data-right="380">
         <g class="grow" style="animation-delay: 1.6s">
-          <g class="sway" style="animation-delay: -3s">
+          <g class="sway" style="animation-delay: 2.75s">
             <path class="fill" d="M345 93 C 347 80, 346 62, 347 50 L 353 50 C 354 62, 353 80, 356 93 Z" />
             <path class="stroke" d="M349 64 L336 52 M351 60 L365 48" stroke-width="2.5" />
             <circle class="fill" cx="350" cy="34" r="15" />
@@ -260,7 +260,7 @@ const notes = (positions: [number, number][]) => positions;
         </g>
         <g class="about-stage about-stage--optional" data-left="398" data-right="466">
         <g class="grow" style="animation-delay: 1.95s">
-          <g class="sway" style="animation-delay: -2s">
+          <g class="sway" style="animation-delay: 3.10s">
             <path class="fill" d="M425 93 C 428 78, 426 58, 428 44 L 436 44 C 437 58, 436 78, 439 93 Z" />
             <path class="stroke" d="M430 62 L414 48 M433 58 L450 44" stroke-width="2.8" />
             <circle class="fill" cx="431" cy="26" r="18" />
@@ -276,7 +276,7 @@ const notes = (positions: [number, number][]) => positions;
           <path class="fill" d="M512 93 C 516 78, 514 58, 516 44 L 530 44 C 532 58, 530 78, 536 93 Z" />
           <!-- Branches sit inside the swaying canopy, so the two move together
                and the branch tips do not peek in and out at its edges. -->
-          <g class="sway sway--canopy" style="animation-delay: -1.5s">
+          <g class="sway sway--canopy" style="animation-delay: 3.50s">
             <path class="stroke" d="M520 56 L494 40 M526 54 L556 38 M522 48 L510 32" stroke-width="3.2" />
             <ellipse class="fill" cx="522" cy="28" rx="40" ry="17" />
             <ellipse class="fill" cx="478" cy="36" rx="26" ry="13" />
@@ -286,10 +286,10 @@ const notes = (positions: [number, number][]) => positions;
             <circle class="fill" cx="522" cy="12" r="11" />
           </g>
           <g class="stroke roots" stroke-width="1.6">
-            <path class="root" d="M466 46 C 465 62, 467 76, 466 90" style="animation-delay: -0.8s" />
-            <path class="root" d="M484 47 C 485 60, 483 70, 484 80" style="animation-delay: -2.1s" />
-            <path class="root" d="M560 46 C 561 60, 559 72, 560 86" style="animation-delay: -1.4s" />
-            <path class="root" d="M578 45 C 577 58, 579 68, 578 76" style="animation-delay: -3.2s" />
+            <path class="root" d="M466 46 C 465 62, 467 76, 466 90" style="animation-delay: 3.50s" />
+            <path class="root" d="M484 47 C 485 60, 483 70, 484 80" style="animation-delay: 4.10s" />
+            <path class="root" d="M560 46 C 561 60, 559 72, 560 86" style="animation-delay: 4.70s" />
+            <path class="root" d="M578 45 C 577 58, 579 68, 578 76" style="animation-delay: 5.30s" />
           </g>
           <g transform="translate(498 8) scale(0.6 0.6)">
             <g class="bird-land" style="animation-delay: 3.6s">
@@ -585,21 +585,23 @@ const notes = (positions: [number, number][]) => positions;
     /* On first view the story grows from left to right: a seed, a
        sprout, a plant, a sapling, a young tree, a grown tree and a
        banyan, and then a few birds fly in to settle on the banyan. This
-       plays once; then leaves sway and the banyan's roots drift gently. */
+       plays once. Each plant starts to sway, and the banyan's roots to
+       drift, only after it has finished growing, so the two motions
+       never overlap. */
     .grow {
       animation: grow-up 1.1s cubic-bezier(0.3, 1.3, 0.5, 1) both;
     }
 
     .sway {
-      animation: plant-sway 5s ease-in-out infinite alternate;
+      animation: plant-sway 9s ease-in-out infinite;
     }
 
     .sway--canopy {
-      animation-duration: 7s;
+      animation-duration: 12s;
     }
 
     .root {
-      animation: root-drift 6s ease-in-out infinite alternate;
+      animation: root-drift 11s ease-in-out infinite;
     }
 
     /* On first view each frame drops onto the string and swings to a
@@ -686,32 +688,42 @@ const notes = (positions: [number, number][]) => positions;
     }
   }
 
+  /* Scale only, with no fade: fading here while the leaves inside sway
+     made browsers drop the leaves for a moment. */
   @keyframes grow-up {
     from {
-      opacity: 0;
       transform: scale(0.2, 0);
     }
     to {
-      opacity: 1;
       transform: scale(1, 1);
     }
   }
 
+  /* Sway starts and ends upright, so it can begin after growing
+     without a jump. */
   @keyframes plant-sway {
-    from {
-      transform: rotate(-2.5deg);
+    0%,
+    100% {
+      transform: rotate(0deg);
     }
-    to {
+    25% {
       transform: rotate(2.5deg);
+    }
+    75% {
+      transform: rotate(-2.5deg);
     }
   }
 
   @keyframes root-drift {
-    from {
-      transform: rotate(-3deg);
+    0%,
+    100% {
+      transform: rotate(0deg);
     }
-    to {
+    25% {
       transform: rotate(3deg);
+    }
+    75% {
+      transform: rotate(-3deg);
     }
   }
 
