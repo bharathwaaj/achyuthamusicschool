@@ -89,30 +89,19 @@ const contactSchema = {
   <section class="border-t border-line py-14 md:py-16">
     <Container size="wide">
       <SectionHeading title="Find our school" align="center" />
-      <div
-        id="school-map"
-        class="relative mt-8 flex items-center justify-center overflow-hidden rounded-2xl border border-line bg-sunken"
-        style="aspect-ratio: 16/9; min-height: 18rem;"
-        data-src={site.mapsEmbedUrl}
-      >
-        <div class="px-6 text-center">
-          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-link">
-            <MapPin size={26} aria-hidden="true" />
-          </span>
-          <p class="mt-3 text-muted">{site.address}</p>
-          <p class="text-sm text-subtle">{site.landmark}</p>
-          <div class="mt-5 flex flex-wrap justify-center gap-3">
-            <button
-              type="button"
-              data-show-map
-              class="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-full border border-brand bg-brand px-5 py-2.5 text-sm font-semibold text-brand-on transition-colors hover:border-brand-strong hover:bg-brand-strong"
-            >
-              Show the map
-            </button>
-            <Button href={site.mapsUrl} external variant="secondary" size="md">Open in Google Maps</Button>
-          </div>
-        </div>
+      <div class="mt-8 overflow-hidden rounded-2xl border border-line bg-sunken" style="aspect-ratio: 16/9; min-height: 18rem;">
+        <iframe
+          src={site.mapsEmbedUrl}
+          title="Map showing the location of Achyutha Music School"
+          class="h-full w-full border-0"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
+      <p class="mt-4 text-center">
+        <Button href={site.mapsUrl} external variant="secondary" size="md">Open in Google Maps</Button>
+      </p>
     </Container>
   </section>
 
@@ -123,20 +112,3 @@ const contactSchema = {
     </Container>
   </section>
 </BaseLayout>
-
-<script>
-  // Load the Google map only when the visitor asks for it, so the page makes
-  // no third-party requests until then.
-  const box = document.getElementById('school-map');
-  box?.querySelector('[data-show-map]')?.addEventListener('click', () => {
-    const src = box.dataset.src;
-    if (!src) return;
-    const frame = document.createElement('iframe');
-    frame.src = src;
-    frame.title = 'Map showing the location of Achyutha Music School';
-    frame.loading = 'lazy';
-    frame.referrerPolicy = 'strict-origin-when-cross-origin';
-    frame.className = 'absolute inset-0 h-full w-full border-0';
-    box.replaceChildren(frame);
-  });
-</script>
