@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { site } from '../config/site';
 import { pageTitle, canonicalUrl } from '../utils/seo';
+import WhatsAppNudge from '../components/WhatsAppNudge.astro';
 
 interface Props {
   title?: string;
@@ -62,5 +63,6 @@ const canonical = canonicalUrl(Astro.url.pathname);
       <slot />
     </main>
     <slot name="footer" />
+    <WhatsAppNudge />
   </body>
 </html>
