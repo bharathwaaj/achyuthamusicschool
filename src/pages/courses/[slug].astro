@@ -1,5 +1,5 @@
 ---
-import { MessageCircle } from '@lucide/astro';
+import { Check, MessageCircle } from '@lucide/astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
@@ -25,6 +25,15 @@ interface Props {
 const { course } = Astro.props;
 const { page } = course;
 const message = whatsappMessages[course.whatsapp];
+
+const palette =
+  'warm sandal-orange and charcoal colour palette on an ivory background, soft lamp light, calm and respectful mood, no text, no logos, illustrated editorial style, 4:3';
+// Prompts for the second illustration on each page, generated in ChatGPT.
+const aboutPrompts: Record<string, string> = {
+  veena: `Close-up of a Saraswati veena with its carved yali head, a brass lamp and jasmine flowers beside it, ${palette}`,
+  violin: `A violin and bow resting on a woven mat beside a brass lamp and a small notebook, ${palette}`,
+  vocal: `A tambura leaning against a wall beside a brass lamp, a mat and a few jasmine flowers, ${palette}`,
+};
 const others = courses.filter((other) => other.slug !== course.slug);
 
 const courseSchema = {
@@ -63,22 +72,28 @@ const faqSchema = {
   </section>
 
   <section class="py-14 md:py-16">
-    <Container size="narrow">
-      <SectionHeading title="About the class" />
-      <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">
-        {page.about.map((paragraph) => <p>{paragraph}</p>)}
+    <Container size="wide" class="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+      <ImagePlaceholder prompt={aboutPrompts[course.slug]} width={1200} height={900} aspect="4/3" />
+      <div>
+        <SectionHeading title="About the class" />
+        <div class="mt-4 space-y-3 text-lg leading-relaxed text-muted">
+          {page.about.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
       </div>
     </Container>
   </section>
 
   <section class="border-y border-line bg-sunken py-14 md:py-16">
     <Container size="wide">
-      <SectionHeading title="What you will learn" />
-      <ul class="mt-8 grid gap-5 md:grid-cols-2">
-        {page.learn.map((item) => (
+      <SectionHeading title="What you will learn" align="center" />
+      <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {page.learn.map((item, index) => (
           <li class="rounded-2xl border border-line bg-surface p-6">
-            <h3 class="text-lg font-semibold text-ink">{item.title}</h3>
-            <p class="mt-2 leading-relaxed text-muted">{item.text}</p>
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft font-semibold text-link">
+              {index + 1}
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+            <p class="mt-1 leading-relaxed text-muted">{item.text}</p>
           </li>
         ))}
       </ul>
@@ -87,14 +102,18 @@ const faqSchema = {
 
   <section class="py-14 md:py-16">
     <Container size="narrow">
-      <SectionHeading title="How classes work" />
-      <ul class="mt-6 list-disc space-y-2 pl-5 text-lg leading-relaxed text-muted marker:text-link">
-        {page.howItWorks.map((point) => <li>{point}</li>)}
+      <SectionHeading title="How classes work" align="center" />
+      <ul class="mt-8 space-y-3">
+        {page.howItWorks.map((point) => (
+          <li class="flex items-start gap-3 rounded-2xl border border-line bg-surface p-4">
+            <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-soft text-link">
+              <Check size={16} aria-hidden="true" />
+            </span>
+            <span class="text-ink">{point}</span>
+          </li>
+        ))}
       </ul>
-      <p class="mt-6 leading-relaxed text-muted">
-        Fees depend on the number of classes and the level. Message us and we will share the
-        current details.
-      </p>
+      <p class="mt-6 text-center text-muted">Message us for fees and timings.</p>
     </Container>
   </section>
 
