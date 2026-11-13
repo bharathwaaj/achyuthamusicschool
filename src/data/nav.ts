@@ -13,9 +13,9 @@ export const navLinks: NavLink[] = [
 ];
 
 export const courseLinks: NavLink[] = [
-  { href: '/courses/vocal/', label: 'Carnatic Vocal' },
   { href: '/courses/veena/', label: 'Veena' },
   { href: '/courses/violin/', label: 'Violin' },
+  { href: '/courses/vocal/', label: 'Carnatic Vocal' },
 ];
 
 /** Footer shows the main links plus the class rooms page. */
