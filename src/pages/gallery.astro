@@ -1,6 +1,6 @@
 ---
 import { Image, getImage } from 'astro:assets';
-import { breadcrumbSchema, pageSchema } from '../utils/schema';
+import { breadcrumbSchema, pageSchema, videoSchema } from '../utils/schema';
 import type { ImageMetadata } from 'astro';
 import { Play } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -31,28 +31,29 @@ const description =
 
 type Item =
   | { kind: 'photo'; image: ImageMetadata; alt: string }
-  | { kind: 'video'; image: ImageMetadata; alt: string; id: string };
+  | { kind: 'video'; image: ImageMetadata; alt: string; id: string; uploaded: string };
 
-// Photos and videos from the school's own collection. Alt text describes
+// Photos and videos from the school's own collection. Video upload dates
+// come from the school's YouTube channel feed. Alt text describes
 // only what is visible. Videos come from the school's YouTube channel.
 // Add new items here in any size: the layout fits each to its shape.
 const items: Item[] = [
-  { kind: 'video', image: videoAkshara, alt: 'Akshara playing a kriti on the veena', id: 'LQGaRtBZ0GA' },
+  { kind: 'video', image: videoAkshara, alt: 'Akshara playing a kriti on the veena', id: 'LQGaRtBZ0GA', uploaded: '2024-11-09' },
   { kind: 'photo', image: groupClass, alt: 'A group of young students seated on a mat with veenas in front of them' },
-  { kind: 'video', image: videoGroup, alt: 'A group of students performing the veena together', id: '4WSlCI_V3Zg' },
-  { kind: 'video', image: videoAlankaaram, alt: 'A student playing alankaram exercises on the veena', id: 'XD6OfTIuSOg' },
+  { kind: 'video', image: videoGroup, alt: 'A group of students performing the veena together', id: '4WSlCI_V3Zg', uploaded: '2024-10-20' },
+  { kind: 'video', image: videoAlankaaram, alt: 'A student playing alankaram exercises on the veena', id: 'XD6OfTIuSOg', uploaded: '2024-10-20' },
   { kind: 'photo', image: practice, alt: 'A student practising the veena at home' },
-  { kind: 'video', image: videoAlankaaram2, alt: 'A student playing alankaram exercises on the veena, another take', id: 'baDldDqxyjs' },
-  { kind: 'video', image: videoPractice, alt: 'A student practising the veena at home', id: 'hsRpEeCjwWI' },
+  { kind: 'video', image: videoAlankaaram2, alt: 'A student playing alankaram exercises on the veena, another take', id: 'baDldDqxyjs', uploaded: '2024-10-20' },
+  { kind: 'video', image: videoPractice, alt: 'A student practising the veena at home', id: 'hsRpEeCjwWI', uploaded: '2024-10-04' },
   { kind: 'photo', image: stage, alt: 'Veena students performing on stage at a music festival' },
-  { kind: 'video', image: videoPractice2, alt: 'A student practising the veena at home', id: 'cT39pymI81Q' },
-  { kind: 'video', image: videoPractice3, alt: 'A student practising the veena at home', id: '_0M0fQgJFjg' },
+  { kind: 'video', image: videoPractice2, alt: 'A student practising the veena at home', id: 'cT39pymI81Q', uploaded: '2024-10-20' },
+  { kind: 'video', image: videoPractice3, alt: 'A student practising the veena at home', id: '_0M0fQgJFjg', uploaded: '2024-10-20' },
   { kind: 'photo', image: classroom, alt: 'Students holding veenas in a classroom' },
-  { kind: 'video', image: videoPractice4, alt: 'A student practising the veena at home', id: 'zUsmxEdNYkk' },
-  { kind: 'video', image: videoPractice5, alt: 'A student practising the veena at home', id: 'i6D8vsDLiBc' },
+  { kind: 'video', image: videoPractice4, alt: 'A student practising the veena at home', id: 'zUsmxEdNYkk', uploaded: '2024-10-20' },
+  { kind: 'video', image: videoPractice5, alt: 'A student practising the veena at home', id: 'i6D8vsDLiBc', uploaded: '2024-10-20' },
   { kind: 'photo', image: portrait, alt: 'A young student seated on the floor at home before class' },
-  { kind: 'video', image: videoPractice6, alt: 'A student practising the veena at home', id: '6MSkSCdngyE' },
-  { kind: 'video', image: videoPractice8, alt: 'A student practising the veena at home', id: '3zzfK_JRgZI' },
+  { kind: 'video', image: videoPractice6, alt: 'A student practising the veena at home', id: '6MSkSCdngyE', uploaded: '2024-10-20' },
+  { kind: 'video', image: videoPractice8, alt: 'A student practising the veena at home', id: '3zzfK_JRgZI', uploaded: '2024-10-20' },
 ];
 
 // The enlarged version of each photo shown in the viewer.
@@ -68,7 +69,11 @@ const entries = await Promise.all(
 <BaseLayout
   title={title}
   description={description}
-  jsonLd={[pageSchema('CollectionPage', title, '/gallery/', description), breadcrumbSchema([{ name: 'Gallery', path: '/gallery/' }])]}
+  jsonLd={[
+    pageSchema('CollectionPage', title, '/gallery/', description),
+    breadcrumbSchema([{ name: 'Gallery', path: '/gallery/' }]),
+    ...items.flatMap((item) => (item.kind === 'video' ? [videoSchema(item.id, item.alt, item.uploaded)] : [])),
+  ]}
   image={groupClass}
   imageAlt="A group of young veena students seated together with their instruments"
 >

@@ -136,3 +136,18 @@ export function teacherSchema(name: string, description: string, knowsAbout: str
     ...(knowsAbout.length ? { knowsAbout } : {}),
   };
 }
+
+/** A YouTube video from the school's channel, shown in the gallery. */
+export function videoSchema(id: string, name: string, uploadDate: string) {
+  return {
+    '@context': context,
+    '@type': 'VideoObject',
+    name,
+    description: `${name}. A video from ${site.name}.`,
+    thumbnailUrl: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+    uploadDate,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
+    url: `https://www.youtube.com/watch?v=${id}`,
+    publisher: { '@id': schoolId },
+  };
+}
