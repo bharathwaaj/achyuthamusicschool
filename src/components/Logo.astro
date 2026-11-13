@@ -1,0 +1,22 @@
+---
+import raw from '../assets/logo.svg?raw';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+// The artwork is black and charcoal on transparent, which disappears on a
+// dark ground. Recolour those fills to currentColor so the logo follows the
+// text colour of its container. The sandal-orange accent is kept.
+const svg = raw
+  .replace(/<\?xml[^>]*\?>/, '')
+  .replace(/fill="#000000"/g, 'fill="currentColor"')
+  .replace(/fill="#1c191a"/gi, 'fill="currentColor"')
+  .replace(/ width="\d+"/, ' width="100%"')
+  .replace(/ height="\d+"/, ' height="100%"')
+  .replace('<svg ', '<svg role="img" aria-label="Achyutha Music School" ');
+---
+
+<span class={`block ${className}`} set:html={svg} />
