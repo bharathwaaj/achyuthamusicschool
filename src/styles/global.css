@@ -38,6 +38,36 @@
   --c-header-text: #f6ece0;
 }
 
+/* Dark theme: same names, warm near-black ground. Toggled with the
+   .dark class on <html>. */
+.dark {
+  color-scheme: dark;
+
+  --c-ground: #15110e;
+  --c-surface: #1e1814;
+  --c-sunken: #19130f;
+  --c-ink: #f6ece0;
+  --c-muted: #c2b3a2;
+  --c-subtle: #9a8b7b;
+  --c-line: #3a2e25;
+
+  --c-brand: #ff8e3c;
+  --c-brand-strong: #ffa45f;
+  --c-brand-soft: #2e2016;
+  --c-brand-on: #1c191a;
+  --c-link: #ffa45f;
+  --c-link-hover: #ffc08f;
+
+  --c-accent: #e48a94;
+  --c-accent-soft: #34191d;
+  --c-accent-on: #1c191a;
+
+  --c-header: #0f0c0a;
+  --c-header-text: #f6ece0;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-ground: var(--c-ground);
   --color-surface: var(--c-surface);
