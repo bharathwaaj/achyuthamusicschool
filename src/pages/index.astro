@@ -12,9 +12,9 @@ import { BookOpenText, CalendarClock, HeartHandshake } from '@lucide/astro';
 import { site } from '../config/site';
 import { whatsappLink, whatsappMessages } from '../utils/whatsapp';
 
-const title = 'Online Carnatic Music Classes | Vocal, Violin and Veena in Coimbatore';
+const title = 'Online Veena Classes for Children and Adults';
 const description =
-  'Learn Carnatic vocal, violin or veena online, or in person in Kovaipudur, Coimbatore. Personal lessons for children and adults in the tradition of Sri S.V. Achyutha Iyer.';
+  'Learn the classical veena online with personal lessons for children and adults, in the tradition of Sri S.V. Achyutha Iyer. Carnatic violin and vocal classes are also offered.';
 
 const whyPoints = [
   {
@@ -99,26 +99,26 @@ const faqs = [
     <Container size="wide" class="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
       <div>
         <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-link">
-          Online and in {site.area}, {site.city}
+          Online veena classes
         </p>
         <h1 class="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-          Carnatic music classes, online and in Coimbatore
+          Online veena classes for children and adults
         </h1>
         <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-          Learn vocal, violin or veena in the tradition of {site.guru}. Online is how we
-          prefer to teach, so students can learn from wherever they are. We also teach in
-          person at our school in {site.area}, {site.city}.
+          Learn the classical veena in the tradition of {site.guru}. Online is how we prefer
+          to teach, so you can learn from wherever you are. Carnatic violin and vocal
+          lessons are also available.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <Button href={whatsappLink(whatsappMessages.general)} external size="lg">
             <MessageCircle size={18} aria-hidden="true" /> Message us on WhatsApp
           </Button>
-          <Button href="/courses/" variant="secondary" size="lg">See the classes</Button>
+          <Button href="/courses/veena/" variant="secondary" size="lg">Explore veena classes</Button>
         </div>
       </div>
 
       <ImagePlaceholder
-        prompt="A teacher and a young student sitting together on a mat with a veena and a violin beside them, a brass lamp glowing, warm sandal-orange and charcoal palette on ivory, calm and respectful mood, illustrated editorial style, no text, no logos"
+        prompt="A young student seated cross-legged at home playing a Saraswati veena, a laptop on a low stool showing the teacher on a video call, a brass lamp glowing nearby, warm sandal-orange and charcoal palette on ivory, calm and respectful mood, illustrated editorial style, no text, no logos"
         width={1200}
         height={900}
         aspect="4/3"
