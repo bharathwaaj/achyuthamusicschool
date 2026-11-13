@@ -58,6 +58,14 @@ serves that build, and `npx astro check` type-checks the project.
 - **Headers:** `public/_headers` sets long caching for built files and keeps
   the workers.dev address out of search results.
 
+## Writing a blog post
+
+Posts are Markdown files in `src/content/blog/`. Copy `_template.md`, fill in
+the fields, and keep `draft: true` until a teacher has checked it. Planned
+topics, with the questions to ask the teachers, are in
+`docs/blog-topics.md`. The blog page, the footer link and each class page's
+Read more list appear automatically once the first post is published.
+
 ## Redirects
 
 Old WordPress addresses are redirected in three places that must be kept in
