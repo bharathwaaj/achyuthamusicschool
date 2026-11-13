@@ -106,7 +106,7 @@ const entries = await Promise.all(
             >
               <Image
                 src={entry.image}
-                alt=""
+                alt={entry.kind === 'video' ? `Video still: ${entry.alt}` : entry.alt}
                 width={900}
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 loading="lazy"
