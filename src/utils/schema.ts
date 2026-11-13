@@ -42,6 +42,7 @@ export function schoolSchema(description: string, imageUrl?: string) {
     },
     hasMap: site.mapsUrl,
     knowsAbout: ['Veena', 'Carnatic violin', 'Carnatic vocal'],
+    sameAs: Object.values(site.social).filter((url): url is string => Boolean(url)),
   };
 }
 

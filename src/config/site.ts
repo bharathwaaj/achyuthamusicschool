@@ -35,9 +35,11 @@ export const site = {
   /** TODO: confirm opening hours with the school. */
   hours: null as string | null,
 
-  /** TODO: the live site links to Facebook, X and Instagram but the
+  /** The school's YouTube channel, where the gallery videos come from.
+   *  TODO: the old site linked to Facebook, X and Instagram, but the
    *  exact profile URLs were not available. */
   social: {
+    youtube: 'https://www.youtube.com/@AchyuthaMusicSchool-Achyutha' as string | null,
     facebook: null as string | null,
     instagram: null as string | null,
     x: null as string | null,

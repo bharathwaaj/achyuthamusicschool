@@ -1,5 +1,5 @@
 ---
-import { Mail, MapPin, Phone } from '@lucide/astro';
+import { Mail, MapPin, Phone, SquarePlay } from '@lucide/astro';
 import Logo from './Logo.astro';
 import Container from './Container.astro';
 import { site } from '../config/site';
@@ -49,6 +49,14 @@ const year = new Date().getFullYear();
           <Mail size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
           <a href={`mailto:${site.email}`} class="break-words text-header-text no-underline">{site.email}</a>
         </li>
+        {site.social.youtube && (
+          <li class="flex gap-2">
+            <SquarePlay size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
+            <a href={site.social.youtube} target="_blank" rel="noopener" class="text-header-text no-underline">
+              Watch us on YouTube
+            </a>
+          </li>
+        )}
       </ul>
     </div>
   </Container>

@@ -1,5 +1,6 @@
 ---
 import { Image, getImage } from 'astro:assets';
+import { site } from '../config/site';
 import { breadcrumbSchema, pageSchema, videoSchema } from '../utils/schema';
 import type { ImageMetadata } from 'astro';
 import { Play } from '@lucide/astro';
@@ -128,6 +129,12 @@ const entries = await Promise.all(
           </li>
         ))}
       </ul>
+      {site.social.youtube && (
+        <p class="mt-8 text-center text-muted">
+          More practice sessions and performances are on our{' '}
+          <a href={site.social.youtube} target="_blank" rel="noopener">YouTube channel</a>.
+        </p>
+      )}
     </Container>
   </section>
 
