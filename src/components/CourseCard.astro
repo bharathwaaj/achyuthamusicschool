@@ -9,24 +9,41 @@ interface Props {
 const { course } = Astro.props;
 const icons = { vocal: Mic, veena: Music4, violin: Music2 };
 const Icon = icons[course.slug];
+const featured = course.primary === true;
 ---
 
 <a
   href={course.href}
-  class="group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 no-underline transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
+  class:list={[
+    'group flex h-full rounded-2xl border bg-surface no-underline transition hover:-translate-y-0.5 hover:shadow-md',
+    featured
+      ? 'flex-col gap-5 border-brand p-7 md:flex-row md:items-center md:gap-8 md:p-9'
+      : 'flex-col border-line p-6 hover:border-brand',
+  ]}
 >
-  <span class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-link">
-    <Icon size={24} aria-hidden="true" />
+  <span
+    class:list={[
+      'flex shrink-0 items-center justify-center rounded-full bg-brand-soft text-link',
+      featured ? 'h-16 w-16' : 'h-12 w-12',
+    ]}
+  >
+    <Icon size={featured ? 30 : 24} aria-hidden="true" />
   </span>
-  <h3 class="mt-5 text-xl font-semibold text-ink">{course.name}</h3>
-  <p class="mt-2 flex-1 leading-relaxed text-muted">{course.summary}</p>
-  <ul class="mt-4 flex flex-wrap gap-2">
-    {course.formats.map((format) => (
-      <li class="rounded-full bg-sunken px-3 py-1 text-xs font-medium text-muted">{format}</li>
-    ))}
-  </ul>
-  <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-link group-hover:text-link-hover">
-    Explore {course.name.toLowerCase()} classes
-    <ArrowRight size={16} class="transition-transform group-hover:translate-x-1" aria-hidden="true" />
-  </span>
+  <div class="flex flex-1 flex-col">
+    <h3 class:list={['font-semibold text-ink', featured ? 'text-2xl' : 'mt-5 text-xl']}>
+      {course.name}
+    </h3>
+    <p class:list={['mt-2 flex-1 leading-relaxed text-muted', featured && 'text-lg']}>
+      {course.summary}
+    </p>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      {course.formats.map((format) => (
+        <li class="rounded-full bg-sunken px-3 py-1 text-xs font-medium text-muted">{format}</li>
+      ))}
+    </ul>
+    <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-link group-hover:text-link-hover">
+      Explore {course.name.toLowerCase()} classes
+      <ArrowRight size={16} class="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+    </span>
+  </div>
 </a>
