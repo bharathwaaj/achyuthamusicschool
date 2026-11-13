@@ -40,6 +40,21 @@ serves that build, and `npx astro check` type-checks the project.
 - **A new gallery photo or video:** add an entry to `items` in
   `src/pages/gallery.astro`. Any photo size works.
 
+## Search and sharing
+
+- **Titles and descriptions:** set per page through `BaseLayout`'s `title`
+  and `description`. Keep the full title under about 65 characters and the
+  description under about 155.
+- **Share images:** pass `image` and `imageAlt` to `BaseLayout`; a 1200 by
+  630 crop is made at build time. Pages without one use the home photo.
+- **Alt text:** give every real photo a short `alt` describing what it
+  shows. The image `prompt` is only for generating the picture.
+- **Structured data:** helpers in `src/utils/schema.ts` describe the school,
+  breadcrumbs, FAQs, classes and teachers from `src/config/site.ts`. Add
+  opening hours there once the school confirms them.
+- **Headers:** `public/_headers` sets long caching for built files and keeps
+  the workers.dev address out of search results.
+
 ## Redirects
 
 Old WordPress addresses are redirected in three places that must be kept in
