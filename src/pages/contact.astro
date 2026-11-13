@@ -1,5 +1,7 @@
 ---
-import { Mail, MapPin, MessageCircle, Phone } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import { ExternalLink, Mail, MapPin, MessageCircle, Phone } from '@lucide/astro';
+import studentsPhoto from '../assets/gallery/veena-group-class.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
@@ -40,7 +42,8 @@ const contactSchema = {
 
 <BaseLayout title={title} description={description} jsonLd={[contactSchema]}>
   <section class="border-b border-line bg-brand-soft py-14 md:py-20">
-    <Container size="wide">
+    <Container size="wide" class="grid items-center gap-10 md:grid-cols-2">
+      <div>
       <SectionHeading
         level={1}
         eyebrow="Contact"
@@ -52,11 +55,23 @@ const contactSchema = {
           <MessageCircle size={17} aria-hidden="true" /> Message us on WhatsApp
         </Button>
       </div>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-line" style="aspect-ratio: 4/3;">
+        <Image
+          src={studentsPhoto}
+          alt="A group of young veena students seated together with their instruments"
+          width={1200}
+          sizes="(min-width: 1152px) 560px, (min-width: 768px) 50vw, 100vw"
+          loading="eager"
+          class="h-full w-full object-cover"
+        />
+      </div>
     </Container>
   </section>
 
   <section class="py-14 md:py-16">
-    <Container size="wide" class="grid gap-5 md:grid-cols-2">
+    <Container size="wide" class="grid gap-5 lg:grid-cols-[2fr_3fr]">
+      <div class="flex flex-col gap-5">
       <div class="rounded-2xl border border-line bg-surface p-6 md:p-8">
         <h2 class="text-xl font-semibold text-ink">Get in touch</h2>
         <ul class="mt-5 space-y-4">
@@ -97,25 +112,26 @@ const contactSchema = {
           suits you.
         </p>
       </div>
-    </Container>
-  </section>
+      </div>
 
-  <section class="border-t border-line py-14 md:py-16">
-    <Container size="wide">
-      <SectionHeading title="Find our school" align="center" />
-      <div class="mt-8 overflow-hidden rounded-2xl border border-line bg-sunken" style="aspect-ratio: 16/9; min-height: 18rem;">
+      <div class="relative min-h-[22rem] overflow-hidden rounded-2xl border border-line bg-sunken">
         <iframe
           src={site.mapsEmbedUrl}
           title="Map showing the location of Achyutha Music School"
-          class="h-full w-full border-0"
+          class="absolute inset-0 h-full w-full border-0"
           loading="lazy"
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
         ></iframe>
+        <a
+          href={site.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-brand-on shadow-lg hover:bg-brand-strong"
+        >
+          Open in Google Maps <ExternalLink size={15} aria-hidden="true" />
+        </a>
       </div>
-      <p class="mt-4 text-center">
-        <Button href={site.mapsUrl} external variant="secondary" size="md">Open in Google Maps</Button>
-      </p>
     </Container>
   </section>
 
