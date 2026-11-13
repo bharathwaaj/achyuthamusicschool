@@ -16,7 +16,7 @@ const { variant } = Astro.props;
 const notes = (positions: [number, number][]) => positions;
 ---
 
-<div class="hero-art" data-variant={variant} aria-hidden="true">
+<div class:list={['hero-art', `hero-art--${variant}`]} aria-hidden="true">
   <div class="hero-art__frame">
     {variant === 'vocal' && (
       <svg viewBox="0 0 600 100" preserveAspectRatio="xMinYMax meet">
@@ -169,7 +169,19 @@ const notes = (positions: [number, number][]) => positions;
     )}
     {variant === 'contact' && (
       <svg viewBox="0 0 1200 100" preserveAspectRatio="xMaxYMax meet">
-        <path class="stroke" d="M-40 60 C 150 20, 260 90, 420 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78" stroke-width="2.4" stroke-dasharray="1 10" opacity="0.7" />
+        <defs>
+          <mask id="contact-trail" maskUnits="userSpaceOnUse" x="-50" y="-50" width="1300" height="200">
+            <path class="trail-reveal" d="M20 62 C 170 20, 270 90, 430 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78" pathLength="1" fill="none" stroke="#fff" stroke-width="12" />
+          </mask>
+        </defs>
+        <path
+          class="stroke"
+          d="M20 62 C 170 20, 270 90, 430 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78"
+          stroke-width="2.4"
+          stroke-dasharray="1 10"
+          opacity="0.7"
+          mask="url(#contact-trail)"
+        />
         <g class="fill">
           <path d="M1110 64 L1110 93 L1162 93 L1162 64 L1136 42 Z" />
           <rect x="1149" y="44" width="7" height="14" />
@@ -178,9 +190,13 @@ const notes = (positions: [number, number][]) => positions;
         <rect class="door" x="1138" y="76" width="10" height="17" rx="1" />
         <path class="stroke smoke" d="M1152 40 C 1146 32, 1158 26, 1152 18" stroke-width="2" />
         <path class="stroke smoke smoke--late" d="M1154 40 C 1162 32, 1150 26, 1158 18" stroke-width="2" />
-        <g class="plane" style="offset-path: path('M-40 60 C 150 20, 260 90, 420 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78');">
-          <path class="fill" d="M13 0 L-11 -9 L-5 0 L-11 9 Z" />
-          <path class="stroke" d="M-5 0 L5 -1" stroke-width="1.2" />
+        <g class="plane" style="offset-path: path('M20 62 C 170 20, 270 90, 430 60 S 640 20, 760 55 C 820 72, 860 30, 820 25 C 790 22, 790 60, 840 66 S 1010 72, 1092 78');">
+          <g transform="rotate(-8) scale(1.8)">
+            <path class="fill" d="M24 -1 L-20 -17 L-6 -1 Z" />
+            <path class="fill" d="M24 -1 L-6 -1 L-2 8 Z" opacity="0.45" />
+            <path class="fill" d="M24 -1 L-6 -1 L-18 6 Z" opacity="0.7" />
+            <path class="stroke" d="M24 -1 L-6 -1" stroke-width="1.2" opacity="0.5" />
+          </g>
         </g>
       </svg>
     )}
@@ -195,6 +211,12 @@ const notes = (positions: [number, number][]) => positions;
     pointer-events: none;
     color: var(--c-brand);
     opacity: 0.32;
+  }
+
+  /* The contact drawing is mostly a thin trail, so it can be a little
+     stronger and stay subtle. */
+  .hero-art--contact {
+    opacity: 0.45;
   }
 
   /* Lines up with the page content, like the Container component. */
@@ -237,6 +259,12 @@ const notes = (positions: [number, number][]) => positions;
   .door,
   .window {
     fill: var(--c-brand-soft);
+  }
+
+  /* With motion off the whole trail shows. */
+  .trail-reveal {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
   }
 
   /* With motion off, the plane rests partway along its path. */
@@ -308,6 +336,11 @@ const notes = (positions: [number, number][]) => positions;
 
     .window {
       animation: window-glow 11s ease-in-out infinite;
+    }
+
+    /* The dotted trail is drawn behind the plane as it flies. */
+    .trail-reveal {
+      animation: trail-draw 11s ease-in-out infinite;
     }
 
     .smoke {
@@ -409,7 +442,7 @@ const notes = (positions: [number, number][]) => positions;
       offset-distance: 0%;
       opacity: 0;
     }
-    6% {
+    2% {
       opacity: 1;
     }
     56% {
@@ -421,6 +454,25 @@ const notes = (positions: [number, number][]) => positions;
     }
     100% {
       offset-distance: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes trail-draw {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    62% {
+      stroke-dashoffset: 0;
+    }
+    88% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    98%,
+    100% {
+      stroke-dashoffset: 0;
       opacity: 0;
     }
   }
